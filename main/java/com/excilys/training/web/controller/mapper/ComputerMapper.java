@@ -1,5 +1,7 @@
 package main.java.com.excilys.training.web.controller.mapper;
 
+
+
 import java.sql.Date;
 
 import main.java.com.excilys.training.web.controller.dto.ComputerDto;
@@ -18,14 +20,18 @@ public class ComputerMapper {
 
 
 
+	
 	public Date convert(String s) {
+		Date d = null;
 		
-		if(s=="NULL" || s=="null") {
+		if(s.equals("NULL")) {
 			return null;
 		}
-		
-		return Date.valueOf(s);
-		
+		else {
+			Date.valueOf(s);
+			System.out.println(d);
+			return d;
+		}
 		
 	}
 	
