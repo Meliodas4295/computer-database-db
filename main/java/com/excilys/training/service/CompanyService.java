@@ -14,7 +14,7 @@ public class CompanyService {
 		return this.getCompany().display(id);
 	}
 	public void displayAllCompany() {
-		this.displayAllCompany();
+		this.getCompany().displayAll();
 	}
 	public CompanyDao getCompany() {
 		return company;
