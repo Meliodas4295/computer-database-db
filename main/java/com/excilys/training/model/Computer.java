@@ -1,15 +1,15 @@
 package main.java.com.excilys.training.model;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class Computer {
 	private int id;
 	private String name;
-	private Date introduced;
-	private Date discontinued;
+	private LocalDateTime introduced;
+	private LocalDateTime discontinued;
 	private int company_id;
 	
-	public Computer(int id, String name, Date introduced, Date discontinued, int company_id) {
+	public Computer(int id, String name, LocalDateTime introduced, LocalDateTime discontinued, int company_id) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -34,19 +34,19 @@ public class Computer {
 		this.name = name;
 	}
 
-	public Date getIntroduced() {
+	public LocalDateTime getIntroduced() {
 		return introduced;
 	}
 
-	public void setIntroduced(Date introduced) {
+	public void setIntroduced(LocalDateTime introduced) {
 		this.introduced = introduced;
 	}
 
-	public Date getDiscontinued() {
+	public LocalDateTime getDiscontinued() {
 		return discontinued;
 	}
 
-	public void setDiscontinued(Date discontinued) {
+	public void setDiscontinued(LocalDateTime discontinued) {
 		this.discontinued = discontinued;
 	}
 

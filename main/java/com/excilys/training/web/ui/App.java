@@ -2,6 +2,8 @@ package main.java.com.excilys.training.web.ui;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Scanner;
 
 import main.java.com.excilys.training.model.Computer;
@@ -30,12 +32,9 @@ public class App{
 		try {
 		      Class.forName(driver);
 		      System.out.println("Driver O.K.");
-
 		      conn = DriverManager.getConnection(url, user, passwd);
 		      System.out.println("Connexion effective !");
 		      String choix;
-			//String c = "1993-01-01 02:00:00";
-		      //System.out.println(c.substring(17, c.length()));
 		      do {
 			      System.out.println("-------------------------------");
 			      System.out.println("              MENU             ");
@@ -57,6 +56,7 @@ public class App{
 			    	  ComputerDao computerDao = new ComputerDao(conn);
 			      	  ComputerService computerService = new ComputerService(computerDao);
 			      	  computerService.displayAllcomputer();
+			      	  System.out.println(computerDao.computers());
 			      }
 			      else {
 			    	  Scanner sc10 = new Scanner(System.in);
