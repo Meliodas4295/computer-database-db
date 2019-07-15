@@ -2,6 +2,8 @@ package main.java.com.excilys.training.web.ui;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Scanner;
 
 import main.java.com.excilys.training.model.Computer;
@@ -30,12 +32,9 @@ public class App{
 		try {
 		      Class.forName(driver);
 		      System.out.println("Driver O.K.");
-
 		      conn = DriverManager.getConnection(url, user, passwd);
 		      System.out.println("Connexion effective !");
 		      String choix;
-			//String c = "1993-01-01 02:00:00";
-		      //System.out.println(c.substring(17, c.length()));
 		      do {
 			      System.out.println("-------------------------------");
 			      System.out.println("              MENU             ");
@@ -57,6 +56,7 @@ public class App{
 			    	  ComputerDao computerDao = new ComputerDao(conn);
 			      	  ComputerService computerService = new ComputerService(computerDao);
 			      	  computerService.displayAllcomputer();
+			      	  System.out.println(computerDao.computers());
 			      }
 			      else {
 			    	  Scanner sc10 = new Scanner(System.in);
@@ -73,11 +73,11 @@ public class App{
 			      	  String discontinued = sc40.nextLine();
 			      	  Scanner sc50 = new Scanner(System.in);
 			      	  System.out.print("Veuillez insérer l'id de l'entreprise:");
-			      	  int company_id = sc50.nextInt();
+			      	  String company_id = sc50.nextLine();
 			      	  
 			      	ComputerDto computerDto = new ComputerDto(id, name, introduced, discontinued, company_id );
 		      		ComputerMapper computerMapper = new ComputerMapper(computerDto);
-		      		Computer computer = new Computer(computerDto.getId(), computerDto.getName(),computerMapper.convert(computerDto.getIntroduced()), computerMapper.convert(computerDto.getDiscontinued()), computerDto.getCompany_id());
+		      		Computer computer = new Computer(computerDto.getId(), computerDto.getName(),computerMapper.convert(computerDto.getIntroduced()), computerMapper.convert(computerDto.getDiscontinued()), computerMapper.convertCompanyId(computerDto.getCompany_id()));
 				      switch(action) {
 				      	
 				      	case 3:

@@ -5,8 +5,8 @@ public class ComputerDto {
 	private String name;
 	private String introduced;
 	private String discontinued;
-	private int company_id;
-	public ComputerDto(int id, String name, String introduced, String discontinued, int company_id) {
+	private String company_id;
+	public ComputerDto(int id, String name, String introduced, String discontinued, String company_id) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -38,10 +38,10 @@ public class ComputerDto {
 	public void setDiscontinued(String discontinued) {
 		this.discontinued = discontinued;
 	}
-	public int getCompany_id() {
+	public String getCompany_id() {
 		return company_id;
 	}
-	public void setCompany_id(int company_id) {
+	public void setCompany_id(String company_id) {
 		this.company_id = company_id;
 	}
 	
