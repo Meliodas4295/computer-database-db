@@ -73,11 +73,11 @@ public class App{
 			      	  String discontinued = sc40.nextLine();
 			      	  Scanner sc50 = new Scanner(System.in);
 			      	  System.out.print("Veuillez insérer l'id de l'entreprise:");
-			      	  int company_id = sc50.nextInt();
+			      	  String company_id = sc50.nextLine();
 			      	  
 			      	ComputerDto computerDto = new ComputerDto(id, name, introduced, discontinued, company_id );
 		      		ComputerMapper computerMapper = new ComputerMapper(computerDto);
-		      		Computer computer = new Computer(computerDto.getId(), computerDto.getName(),computerMapper.convert(computerDto.getIntroduced()), computerMapper.convert(computerDto.getDiscontinued()), computerDto.getCompany_id());
+		      		Computer computer = new Computer(computerDto.getId(), computerDto.getName(),computerMapper.convert(computerDto.getIntroduced()), computerMapper.convert(computerDto.getDiscontinued()), computerMapper.convertCompanyId(computerDto.getCompany_id()));
 				      switch(action) {
 				      	
 				      	case 3:

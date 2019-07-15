@@ -25,6 +25,13 @@ public class ComputerMapper {
 		}
 		
 	}
+	public Integer convertCompanyId(String s) {
+		if(s.equals("NULL")) {
+			return null;
+		}
+		Integer i = Integer.valueOf(s);
+		return i;
+	}
 	
 	public ComputerDto getCompterDto() {
 		return compterDto;

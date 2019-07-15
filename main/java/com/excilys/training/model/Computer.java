@@ -7,9 +7,9 @@ public class Computer {
 	private String name;
 	private LocalDateTime introduced;
 	private LocalDateTime discontinued;
-	private int company_id;
+	private Integer company_id;
 	
-	public Computer(int id, String name, LocalDateTime introduced, LocalDateTime discontinued, int company_id) {
+	public Computer(int id, String name, LocalDateTime introduced, LocalDateTime discontinued, Integer company_id) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -50,11 +50,11 @@ public class Computer {
 		this.discontinued = discontinued;
 	}
 
-	public int getCompany_id() {
+	public Integer getCompany_id() {
 		return company_id;
 	}
 
-	public void setCompany_id(int company_id) {
+	public void setCompany_id(Integer company_id) {
 		this.company_id = company_id;
 	}
 

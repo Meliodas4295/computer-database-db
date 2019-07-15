@@ -126,7 +126,12 @@ public class ComputerDao extends Dao<Computer>{
 			else {
 				stmt.setTimestamp(4, Timestamp.valueOf(obj.getDiscontinued().minusHours(2)));
 			}
-			stmt.setInt(5, obj.getCompany_id());
+			if(obj.getCompany_id()==null) {
+				stmt.setNull(5, java.sql.Types.INTEGER);
+			}
+			else {
+				stmt.setInt(5, obj.getCompany_id());
+			}
 			int nbMaj = stmt.executeUpdate();
 			System.out.println("nb mise a jour = "+nbMaj);
 			} catch (SQLException e) {
@@ -169,7 +174,12 @@ public class ComputerDao extends Dao<Computer>{
 			else {
 				stmt.setInt(4, obj.getCompany_id());
 			}
-			stmt.setInt(5, obj.getId());
+			if(obj.getCompany_id()==null) {
+				stmt.setNull(4, java.sql.Types.INTEGER);
+			}
+			else {
+				stmt.setInt(5, obj.getId());
+			}
 			int nbMaj = stmt.executeUpdate();
 			System.out.println("nb mise a jour = "+nbMaj);
 			} catch (SQLException e) {
