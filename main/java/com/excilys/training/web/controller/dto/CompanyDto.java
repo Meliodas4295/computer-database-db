@@ -1,5 +1,9 @@
 package main.java.com.excilys.training.web.controller.dto;
 
+import java.util.Objects;
+
+import main.java.com.excilys.training.model.Company;
+
 public class CompanyDto {
 	int id;
 	String name;
@@ -20,6 +24,19 @@ public class CompanyDto {
 	public void setName(String name) {
 		this.name = name;
 	}
+	@Override
+	public boolean equals(Object o) {
+		if(this == o) {
+			return true;
+		}
+		if(o==null || getClass()!= o.getClass()) {
+			return false;
+		}
+		
+		CompanyDto that = (CompanyDto) o;
+		return Objects.equals(id, that.id) && Objects.equals(name, that.name);
+	}
+
 	
 
 }

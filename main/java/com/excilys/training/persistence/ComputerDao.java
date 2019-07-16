@@ -25,37 +25,6 @@ public class ComputerDao extends Dao<Computer>{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public List<Computer> computers(){
-		List<Computer> c = new ArrayList<Computer>();
-		ResultSet résultats = null;
-		try {
-			Statement stmt = this.getConn().createStatement();
-			résultats = stmt.executeQuery(SQL_FIND_ALL);
-			while(résultats.next()) {
-				Computer computer= null;
-				if(résultats.getTimestamp(3)==null && résultats.getTimestamp(4)!=null) {
-					computer =  new Computer(résultats.getInt(1), résultats.getString(2), null, Timestamp.valueOf(résultats.getString(4)).toLocalDateTime(), résultats.getInt(5));
-				}
-				else if(résultats.getTimestamp(3)!=null && résultats.getTimestamp(4)==null) {
-					computer =  new Computer(résultats.getInt(1), résultats.getString(2), Timestamp.valueOf(résultats.getString(3)).toLocalDateTime(), null, résultats.getInt(5));
-				}
-				else if(résultats.getTimestamp(3)==null && résultats.getTimestamp(4)==null) {
-					computer =  new Computer(résultats.getInt(1), résultats.getString(2), null, null, résultats.getInt(5));
-				}
-				else {
-					computer =  new Computer(résultats.getInt(1), résultats.getString(2), Timestamp.valueOf(résultats.getString(3)).toLocalDateTime(), Timestamp.valueOf(résultats.getString(4)).toLocalDateTime(), résultats.getInt(5));
-				}
-				c.add(computer);
-			}
-			résultats.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			//traitement de l'exception
-			}
-		return c;
-		
-	}
-
 	@Override
 	public Computer display(int id) {
 		// TODO Auto-generated method stub
@@ -69,10 +38,37 @@ public class ComputerDao extends Dao<Computer>{
 			rsmd = résultats.getMetaData();
 			int nbCols = rsmd.getColumnCount();
 			while(résultats.next()) {
-				c = new Computer(id, résultats.getString("name"), résultats.getTimestamp("introduced").toLocalDateTime(), résultats.getTimestamp("discontinued").toLocalDateTime(), résultats.getInt("company_id"));
-				for(int i = 1;i<=nbCols;i++) {
-					System.out.print(résultats.getString(i) + " ");
+				if(Integer.valueOf(résultats.getInt("company_id"))!=0) {
+					if(résultats.getTimestamp("introduced")==null && résultats.getTimestamp("discontinued")!=null) {
+						c = new Computer(id, résultats.getString("name"), null, résultats.getTimestamp("discontinued").toLocalDateTime(), Integer.valueOf(résultats.getInt("company_id")));
+					}
+					else if(résultats.getTimestamp("introduced")!=null && résultats.getTimestamp("discontinued")==null) {
+						c = new Computer(id, résultats.getString("name"), résultats.getTimestamp("introduced").toLocalDateTime(), null, Integer.valueOf(résultats.getInt("company_id")));
+					}
+					else if(résultats.getTimestamp("introduced")==null && résultats.getTimestamp("discontinued")==null) {
+						c = new Computer(id, résultats.getString("name"), null, null, Integer.valueOf(résultats.getInt("company_id")));
+					}
+					else {
+						c = new Computer(id, résultats.getString("name"), résultats.getTimestamp("introduced").toLocalDateTime(), résultats.getTimestamp("discontinued").toLocalDateTime(), Integer.valueOf(résultats.getInt("company_id")));
+					}
 				}
+				else {
+					if(résultats.getTimestamp("introduced")==null && résultats.getTimestamp("discontinued")!=null) {
+						c = new Computer(id, résultats.getString("name"), null, résultats.getTimestamp("discontinued").toLocalDateTime(), null);
+					}
+					else if(résultats.getTimestamp("introduced")!=null && résultats.getTimestamp("discontinued")==null) {
+						c = new Computer(id, résultats.getString("name"), résultats.getTimestamp("introduced").toLocalDateTime(), null, null);
+					}
+					else if(résultats.getTimestamp("introduced")==null && résultats.getTimestamp("discontinued")==null) {
+						c = new Computer(id, résultats.getString("name"), null, null, null);
+					}
+					else {
+						c = new Computer(id, résultats.getString("name"), résultats.getTimestamp("introduced").toLocalDateTime(), résultats.getTimestamp("discontinued").toLocalDateTime(), null);
+					}
+				}
+				//for(int i = 1;i<=nbCols;i++) {
+				//	System.out.print(résultats.getString(i) + " ");
+				//}
 			}
 			résultats.close();
 			} catch (SQLException e) {
@@ -83,8 +79,9 @@ public class ComputerDao extends Dao<Computer>{
 	}
 
 	@Override
-	public void displayAll() {
+	public StringBuffer displayAll() {
 		// TODO Auto-generated method stub
+		StringBuffer da = new StringBuffer("");
 		ResultSet résultats = null;
 		try {
 			Statement stmt = this.getConn().createStatement();
@@ -94,15 +91,16 @@ public class ComputerDao extends Dao<Computer>{
 			int nbCols = rsmd.getColumnCount();
 			while(résultats.next()) {
 				for(int i = 1;i<=nbCols;i++) {
-					System.out.print(résultats.getString(i) + " ");
+					da.append(résultats.getString(i) + " ");
 				}
-			System.out.println("");
+			da.append("\n");
 			}
 			résultats.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			//traitement de l'exception
 			}
+		return da;
 		
 		
 	}
@@ -133,7 +131,7 @@ public class ComputerDao extends Dao<Computer>{
 				stmt.setInt(5, obj.getCompany_id());
 			}
 			int nbMaj = stmt.executeUpdate();
-			System.out.println("nb mise a jour = "+nbMaj);
+			//System.out.println("nb mise a jour = "+nbMaj);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			//traitement de l'exception
@@ -148,7 +146,7 @@ public class ComputerDao extends Dao<Computer>{
 			PreparedStatement stmt = this.getConn().prepareStatement(SQL_DELETE);
 			stmt.setInt(1, obj.getId());
 			int nbMaj = stmt.executeUpdate();
-			System.out.println("nb mise a jour = "+nbMaj);
+			//System.out.println("nb mise a jour = "+nbMaj);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			//traitement de l'exception
@@ -157,31 +155,17 @@ public class ComputerDao extends Dao<Computer>{
 	}
 
 	@Override
-	public void update(Computer obj, String column, String newValue) {
+	public void update(Computer obj, String id, String name, String introduced, String discontinued, String company_id) {
 		// TODO Auto-generated method stub
 		try {
 			PreparedStatement stmt = this.getConn().prepareStatement(SQL_UPDATE);
-			stmt.setString(1, obj.getName());
-			if(obj.getIntroduced()==null) {
-				stmt.setTimestamp(2, null);
-			}
-			else {
-				stmt.setTimestamp(2, Timestamp.valueOf(obj.getIntroduced()));
-			}
-			if(obj.getDiscontinued()==null) {
-				stmt.setTimestamp(3, Timestamp.valueOf(obj.getDiscontinued()));
-			}
-			else {
-				stmt.setInt(4, obj.getCompany_id());
-			}
-			if(obj.getCompany_id()==null) {
-				stmt.setNull(4, java.sql.Types.INTEGER);
-			}
-			else {
-				stmt.setInt(5, obj.getId());
-			}
+			stmt.setString(5, id);
+			stmt.setString(1, name);
+			stmt.setString(2, introduced);
+			stmt.setString(3, discontinued);
+			stmt.setString(4, company_id);
 			int nbMaj = stmt.executeUpdate();
-			System.out.println("nb mise a jour = "+nbMaj);
+			//System.out.println("nb mise a jour = "+nbMaj);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			//traitement de l'exception

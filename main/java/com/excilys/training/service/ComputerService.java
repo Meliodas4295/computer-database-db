@@ -15,7 +15,7 @@ public class ComputerService {
 	}
 	
 	public void displayAllcomputer() {
-		this.getComputer().displayAll();
+		System.out.println(this.getComputer().displayAll());
 	}
 	
 	public void createNewComputer(Computer c) {
@@ -26,8 +26,8 @@ public class ComputerService {
 		this.getComputer().delete(c);
 	}
 	
-	public void updateComputer(Computer c, String column, String newValue) {
-		this.getComputer().update(c, column, newValue);
+	public void updateComputer(Computer c,String id, String name, String introduced, String discontinued, String company_id) {
+		this.getComputer().update(c, id, name, introduced,discontinued, company_id );
 	}
 
 	public ComputerDao getComputer() {

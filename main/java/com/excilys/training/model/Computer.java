@@ -1,6 +1,7 @@
 package main.java.com.excilys.training.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Computer {
 	private int id;
@@ -62,6 +63,22 @@ public class Computer {
 	public String toString() {
 		return "Computer [getId()=" + getId() + ", getName()=" + getName() + ", getIntroduced()=" + getIntroduced()
 				+ ", getDiscontinued()=" + getDiscontinued() + ", getCompany_id()=" + getCompany_id() + "]";
+	}
+	@Override
+	public boolean equals(Object o) {
+		if(this == o) {
+			return true;
+		}
+		if(o==null || getClass()!= o.getClass()) {
+			return false;
+		}
+		
+		Computer that = (Computer) o;
+		return Objects.equals(id, that.id) 
+				&& Objects.equals(name, that.name) 
+				&& Objects.equals(introduced, that.introduced)
+				&& Objects.equals(discontinued, that.discontinued)
+				&& Objects.equals(company_id, that.company_id);
 	}
 	
 	
