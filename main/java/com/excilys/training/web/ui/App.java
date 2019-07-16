@@ -56,7 +56,7 @@ public class App{
 			    	  ComputerDao computerDao = new ComputerDao(conn);
 			      	  ComputerService computerService = new ComputerService(computerDao);
 			      	  computerService.displayAllcomputer();
-			      	  System.out.println(computerDao.computers());
+			      	  System.out.println(computerDao.display(507));
 			      }
 			      else {
 			    	  Scanner sc10 = new Scanner(System.in);

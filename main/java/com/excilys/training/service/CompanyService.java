@@ -14,7 +14,7 @@ public class CompanyService {
 		return this.getCompany().display(id);
 	}
 	public void displayAllCompany() {
-		this.getCompany().displayAll();
+		System.out.println(this.getCompany().displayAll());
 	}
 	public CompanyDao getCompany() {
 		return company;
