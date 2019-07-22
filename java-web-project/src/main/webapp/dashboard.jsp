@@ -16,14 +16,14 @@
 <body>
     <header class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="views/dashboard.html"> Application - Computer Database </a>
+            <a class="navbar-brand" href="/java-web-project/"> Application - Computer Database </a>
         </div>
     </header>
 
     <section id="main">
         <div class="container">
             <h1 id="homeTitle">
-                121 Computers found
+                <c:out value="${size}"></c:out> Computers found
             </h1>
             <div id="actions" class="form-horizontal">
                 <div class="pull-left">
@@ -35,7 +35,7 @@
                     </form>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-success" id="addComputer" href="views/addComputer.html">Add Computer</a> 
+                    <a class="btn btn-success" id="addComputer" href="addComputer.jsp">Add Computer</a> 
                     <a class="btn btn-default" id="editComputer" href="#" onclick="$.fn.toggleEditMode();">Edit</a>
                 </div>
             </div>
@@ -78,7 +78,20 @@
                     </tr>
                 </thead>
                 <!-- Browse attribute computers -->
-                <tbody id="results">
+                <tbody>
+                	<c:forEach items="${list}" var="item">
+                      	<tr>
+                      		<td class="editMode">
+                            	<input type="checkbox" name="cb" class="cb">
+                        	</td>
+                        	<td><c:out value= "${item.name}"/></td>
+                        	<td><c:out value= "${item.introduced}"/></td>
+                        	<td><c:out value= "${item.discontinued}"/></td>
+                        	<td><c:out value= "${item.company_id}"/></td>
+                    	</tr>
+      				</c:forEach>
+                </tbody>
+                <!--tbody id="results">
                     <tr>
                         <td class="editMode">
                             <input type="checkbox" name="cb" class="cb" value="0">
@@ -224,7 +237,7 @@
 
                     </tr>
                     
-                </tbody>
+                </tbody-->
             </table>
         </div>
     </section>
@@ -237,11 +250,14 @@
                       <span aria-hidden="true">&laquo;</span>
                   </a>
               </li>
-              <li><a href="#">1</a></li>
+              <!--li><a href="#">1</a></li>
               <li><a href="#">2</a></li>
               <li><a href="#">3</a></li>
               <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
+              <li><a href="#">5</a></li-->
+              <c:forEach var = "i" begin = "1" end = "${nbPages}">
+         			<li><a href="${pageContext.request.contextPath}/DashboardServlet?&page=${i}"><c:out value="${i}">${i}</c:out></a></li>
+      			</c:forEach>
               <li>
                 <a href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>

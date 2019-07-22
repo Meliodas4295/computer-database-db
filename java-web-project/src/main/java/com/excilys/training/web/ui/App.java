@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.List;
 import java.util.Scanner;
 
 import com.excilys.training.model.Computer;
@@ -54,7 +55,10 @@ public class App{
 			      else if(action==2) {
 			    	  ComputerDao computerDao = new ComputerDao();
 			      	  ComputerService computerService = new ComputerService();
-			      	  computerService.displayAllcomputer();
+			      	  List<Computer> comp = computerService.displayComputersPagination(10, 0);
+			      	  for(int i = 0;i<comp.size();i++) {
+			      		  System.out.println(comp.get(i));
+			      	  }
 			      }
 			      else {
 			    	  Scanner sc10 = new Scanner(System.in);
@@ -74,7 +78,7 @@ public class App{
 			      	  String company_id = sc50.nextLine();
 			      	  
 			      	ComputerDto computerDto = new ComputerDto(id, name, introduced, discontinued, company_id );
-		      		ComputerMapper computerMapper = new ComputerMapper(computerDto);
+		      		ComputerMapper computerMapper = new ComputerMapper();
 		      		Computer computer = new Computer(computerDto.getId(), computerDto.getName(),computerMapper.convert(computerDto.getIntroduced()), computerMapper.convert(computerDto.getDiscontinued()), computerMapper.convertCompanyId(computerDto.getCompany_id()));
 				      switch(action) {
 				      	
@@ -82,18 +86,18 @@ public class App{
 				      		
 				      		ComputerDao computerDaoCreate = new ComputerDao();
 				      		ComputerService computerServiceCreate = new ComputerService();
-				      		computerServiceCreate.createNewComputer(computer);
+				      		computerServiceCreate.createNewComputer(computerDto);
 				      		break;
 				      	case 4:
 				      		ComputerDao computerDaoDelete = new ComputerDao();
 				      		ComputerService computerServiceDelete = new ComputerService();
-				      		computerServiceDelete.deleteComputer(computer);
+				      		computerServiceDelete.deleteComputer(computerDto);
 				      		break;
 				      		
 				      	case 5:
 				      		ComputerDao computerDaoUpdate = new ComputerDao();
 				      		ComputerService computerServiceUpdate = new ComputerService();
-				      		computerServiceUpdate.deleteComputer(computer);
+				      		computerServiceUpdate.deleteComputer(computerDto);
 				      		break;
 				      		
 				      }

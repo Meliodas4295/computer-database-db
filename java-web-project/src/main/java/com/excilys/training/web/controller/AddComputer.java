@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.excilys.training.model.Computer;
+import com.excilys.training.service.ComputerService;
 import com.excilys.training.web.controller.dto.ComputerDto;
 import com.excilys.training.web.controller.mapper.ComputerMapper;
 
@@ -20,8 +21,7 @@ public class AddComputer extends HttpServlet {
 	    String discontinued = request.getParameter("discontinued") + " 00:00:00";
 	    String companyId = request.getParameter("companyId");
 	    ComputerDto computerDto = new ComputerDto(Integer.parseInt(id), name, introduced, discontinued, companyId );
-  		ComputerMapper computerMapper = new ComputerMapper(computerDto);
-  		Computer computer = new Computer(computerDto.getId(), computerDto.getName(),computerMapper.convert(computerDto.getIntroduced()), computerMapper.convert(computerDto.getDiscontinued()), computerMapper.convertCompanyId(computerDto.getCompany_id()));
-  		
+  		ComputerService computer = new ComputerService();
+  		computer.createNewComputer(computerDto);
 	}
 }

@@ -3,15 +3,20 @@ package com.excilys.training.web.controller.mapper;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.excilys.training.model.Computer;
+import com.excilys.training.persistence.CompanyDao;
 import com.excilys.training.web.controller.dto.ComputerDto;
 
 public class ComputerMapper {
-	private ComputerDto compterDto;
+	private static ComputerMapper instance;
 	
-	public ComputerMapper(ComputerDto compterDto) {
-		super();
-		this.compterDto = compterDto;
-	}
+	public static ComputerMapper getInstance() {
+	    if (instance == null) {
+	      instance = new ComputerMapper();
+	    }
+	    return instance;
+	  }
+	
 
 	public LocalDateTime convert(String s) {
 		
@@ -33,12 +38,9 @@ public class ComputerMapper {
 		return i;
 	}
 	
-	public ComputerDto getCompterDto() {
-		return compterDto;
-	}
-
-	public void setCompterDto(ComputerDto compterDto) {
-		this.compterDto = compterDto;
+	public Computer computerDtoToComputer(ComputerDto computer) {
+		Computer c =new Computer(computer.getName(),convert(computer.getIntroduced()), convert(computer.getDiscontinued()), convertCompanyId(computer.getCompany_id()));
+		return c;
 	}
 	
 	

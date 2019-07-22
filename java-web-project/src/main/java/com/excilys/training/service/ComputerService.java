@@ -1,41 +1,57 @@
 package com.excilys.training.service;
 
+import java.util.List;
+
 import com.excilys.training.model.Computer;
 import com.excilys.training.persistence.ComputerDao;
+import com.excilys.training.web.controller.dto.ComputerDto;
+import com.excilys.training.web.controller.mapper.ComputerMapper;
 
 public class ComputerService {
-	private ComputerDao computer;
+	private ComputerDao computerDao;
+	private ComputerMapper computerMapper;
 
 	public ComputerService() {
 		super();
-		this.computer = ComputerDao.getInstance();
+		this.computerDao = ComputerDao.getInstance();
+		this.computerMapper = ComputerMapper.getInstance();
 	}
 	public Computer displayComputer(int id) {
-		return this.getComputer().find(id);
+		return this.getComputerDao().find(id);
 	}
 	
-	public void displayAllcomputer() {
-		System.out.println(this.getComputer().displayAll());
+	public List<Computer> displayAllcomputer() {
+		return this.getComputerDao().displayAll();
 	}
 	
-	public void createNewComputer(Computer c) {
-		this.getComputer().create(c);
+	public List<Computer> displayComputersPagination(int limit, int offset){
+		return this.getComputerDao().displayPagination(limit, offset);
 	}
 	
-	public void deleteComputer(Computer c) {
-		this.getComputer().delete(c);
+	public void createNewComputer(ComputerDto c) {
+		this.getComputerDao().create(this.getComputerMapper().computerDtoToComputer(c));
 	}
 	
-	public void updateComputer(Computer c) {
-		this.getComputer().update(c);
+	public void deleteComputer(ComputerDto c) {
+		this.getComputerDao().delete(this.getComputerMapper().computerDtoToComputer(c));
+	}
+	
+	public void updateComputer(ComputerDto c) {
+		this.getComputerDao().update(this.getComputerMapper().computerDtoToComputer(c));
 	}
 
-	public ComputerDao getComputer() {
-		return computer;
+	public ComputerDao getComputerDao() {
+		return computerDao;
 	}
 
-	public void setComputer(ComputerDao computer) {
-		this.computer = computer;
+	public void setComputerDao(ComputerDao computer) {
+		this.computerDao = computer;
+	}
+	public ComputerMapper getComputerMapper() {
+		return computerMapper;
+	}
+	public void setComputerMapper(ComputerMapper computerMapper) {
+		this.computerMapper = computerMapper;
 	}
 	
 

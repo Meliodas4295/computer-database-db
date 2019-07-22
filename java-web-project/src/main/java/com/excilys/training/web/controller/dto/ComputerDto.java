@@ -14,6 +14,13 @@ public class ComputerDto {
 		this.discontinued = discontinued;
 		this.company_id = company_id;
 	}
+	public ComputerDto(String name, String introduced, String discontinued, String company_id) {
+		super();
+		this.name = name;
+		this.introduced = introduced;
+		this.discontinued = discontinued;
+		this.company_id = company_id;
+	}
 	public int getId() {
 		return id;
 	}
