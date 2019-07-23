@@ -617,7 +617,7 @@ public class ComputerDaoTest extends TestCase {
 		LocalDateTime discontinued = null;
 		Integer companyId = null;
 		Computer computerTh = new Computer(575,"CX", introduced,discontinued, companyId);
-		c.delete(computerTh);
+		c.delete(computerTh.getId());
 		List<Computer> listc = c.displayAll();
 		assertFalse(listc.contains(computerTh));
 	}

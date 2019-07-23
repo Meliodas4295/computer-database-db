@@ -39,9 +39,68 @@ public class ComputerMapper {
 	}
 	
 	public Computer computerDtoToComputer(ComputerDto computer) {
-		Computer c =new Computer(computer.getName(),convert(computer.getIntroduced()), convert(computer.getDiscontinued()), convertCompanyId(computer.getCompany_id()));
+		Computer c = new Computer();
+		if(computer.getCompany_id()!=null) {
+			if(computer.getIntroduced()==null && computer.getDiscontinued()!=null) {
+				c =new Computer(computer.getName(),null, convert(computer.getDiscontinued()), convertCompanyId(computer.getCompany_id()));
+			}
+			else if(computer.getIntroduced()!=null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getName(),convert(computer.getIntroduced()), null, convertCompanyId(computer.getCompany_id()));
+			}
+			else if(computer.getIntroduced()==null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getName(),null, null, convertCompanyId(computer.getCompany_id()));
+			}
+			else {
+				c =new Computer(computer.getName(),convert(computer.getIntroduced()), convert(computer.getDiscontinued()), convertCompanyId(computer.getCompany_id()));
+			}
+		}
+		else {
+			if(computer.getIntroduced()==null && computer.getDiscontinued()!=null) {
+				c =new Computer(computer.getName(),null, convert(computer.getDiscontinued()), null);
+			}
+			else if(computer.getIntroduced()!=null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getName(),convert(computer.getIntroduced()), null, null);
+			}
+			else if(computer.getIntroduced()==null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getName(),null, null, null);
+			}
+			else {
+				c =new Computer(computer.getName(),convert(computer.getIntroduced()), convert(computer.getDiscontinued()), null);
+			}
+		}
 		return c;
 	}
-	
+	public Computer computerDtoToComputerWithId(ComputerDto computer) {
+		Computer c = new Computer();
+		if(computer.getCompany_id()!=null) {
+			if(computer.getIntroduced()==null && computer.getDiscontinued()!=null) {
+				c =new Computer(computer.getId(),computer.getName(),null, convert(computer.getDiscontinued()), convertCompanyId(computer.getCompany_id()));
+			}
+			else if(computer.getIntroduced()!=null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getId(),computer.getName(),convert(computer.getIntroduced()), null, convertCompanyId(computer.getCompany_id()));
+			}
+			else if(computer.getIntroduced()==null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getId(),computer.getName(),null, null, convertCompanyId(computer.getCompany_id()));
+			}
+			else {
+				c =new Computer(computer.getId(),computer.getName(),convert(computer.getIntroduced()), convert(computer.getDiscontinued()), convertCompanyId(computer.getCompany_id()));
+			}
+		}
+		else {
+			if(computer.getIntroduced()==null && computer.getDiscontinued()!=null) {
+				c =new Computer(computer.getId(),computer.getName(),null, convert(computer.getDiscontinued()), null);
+			}
+			else if(computer.getIntroduced()!=null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getId(),computer.getName(),convert(computer.getIntroduced()), null, null);
+			}
+			else if(computer.getIntroduced()==null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getId(),computer.getName(),null, null, null);
+			}
+			else {
+				c =new Computer(computer.getName(),convert(computer.getIntroduced()), convert(computer.getDiscontinued()), null);
+			}
+		}
+		return c;
+	}
 	
 }

@@ -58,7 +58,7 @@ public class CompanyDao extends Dao<Company>{
 		
 	}
 
-	public void delete(Company obj) {
+	public void delete(int id) {
 		// TODO Auto-generated method stub
 		
 	}

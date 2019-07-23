@@ -111,11 +111,11 @@ public class ComputerDao extends Dao<Computer>{
 		
 	}
 
-	public void delete(Computer obj) {
+	public void delete(int id) {
 		// TODO Auto-generated method stub
 		try {
 			PreparedStatement stmt = this.connect.prepareStatement(SQL_DELETE);
-			stmt.setInt(1, obj.getId());
+			stmt.setInt(1, id);
 			stmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -11,5 +11,25 @@
 		<servlet-name>DashboardServlet</servlet-name>
 		<url-pattern>/DashboardServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AddComputer</servlet-name>
+		<servlet-class>com.excilys.training.web.controller.AddComputer</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AddComputer</servlet-name>
+		<url-pattern>/AddComputer</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditComputer</servlet-name>
+		<servlet-class>com.excilys.training.web.controller.EditComputer</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EditComputer</servlet-name>
+		<url-pattern>/EditComputer</url-pattern>
+	</servlet-mapping>
 </web-app>
 
