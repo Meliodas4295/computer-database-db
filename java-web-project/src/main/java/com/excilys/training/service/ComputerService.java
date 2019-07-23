@@ -32,12 +32,12 @@ public class ComputerService {
 		this.getComputerDao().create(this.getComputerMapper().computerDtoToComputer(c));
 	}
 	
-	public void deleteComputer(ComputerDto c) {
-		this.getComputerDao().delete(this.getComputerMapper().computerDtoToComputer(c));
+	public void deleteComputer(int id) {
+		this.getComputerDao().delete(id);
 	}
 	
 	public void updateComputer(ComputerDto c) {
-		this.getComputerDao().update(this.getComputerMapper().computerDtoToComputer(c));
+		this.getComputerDao().update(this.getComputerMapper().computerDtoToComputerWithId(c));
 	}
 
 	public ComputerDao getComputerDao() {

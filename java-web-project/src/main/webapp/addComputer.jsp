@@ -15,7 +15,7 @@
 <body>
     <header class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="dashboard.jsp"> Application - Computer Database </a>
+            <a class="navbar-brand" href="DashboardServlet"> Application - Computer Database </a>
         </div>
     </header>
 
@@ -24,31 +24,33 @@
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2 box">
                     <h1>Add Computer</h1>
-                    <form action="addComputer" method="POST">
+                    <form action="AddComputer" method="POST">
                         <fieldset>
                             <div class="form-group">
                                 <label for="computerName">Computer name</label>
-                                <input type="text" class="form-control" id="computerName" placeholder="Computer name">
+                                <input type="text" name ="computerName" class="form-control" id="computerName" placeholder="Computer name">
                             </div>
                             <div class="form-group">
                                 <label for="introduced">Introduced date</label>
-                                <input type="date" class="form-control" id="introduced" placeholder="Introduced date">
+                                <input type="date" name ="introduced" class="form-control" id="introduced" placeholder="Introduced date">
                             </div>
                             <div class="form-group">
                                 <label for="discontinued">Discontinued date</label>
-                                <input type="date" class="form-control" id="discontinued" placeholder="Discontinued date">
+                                <input type="date" name ="discontinued" class="form-control" id="discontinued" placeholder="Discontinued date">
                             </div>
                             <div class="form-group">
                                 <label for="companyId">Company</label>
-                                <select class="form-control" id="companyId" >
-                                    <option value="0">--</option>
+                                <select class="form-control" id="companyId" name ="companyId">
+                                    <c:forEach items="${companies}" var="company" >
+                                    	<option value="${company.id}"><c:out value="${company.name}"></c:out></option>
+                                    </c:forEach>
                                 </select>
                             </div>                  
                         </fieldset>
                         <div class="actions pull-right">
                             <input type="submit" value="Add" class="btn btn-primary">
                             or
-                            <a href="/java-web-project/" class="btn btn-default">Cancel</a>
+                            <a href="DashboardServlet" class="btn btn-default">Cancel</a>
                         </div>
                     </form>
                 </div>

@@ -55,7 +55,7 @@ public class App{
 			      else if(action==2) {
 			    	  ComputerDao computerDao = new ComputerDao();
 			      	  ComputerService computerService = new ComputerService();
-			      	  List<Computer> comp = computerService.displayComputersPagination(10, 0);
+			      	  List<Computer> comp = computerService.displayAllcomputer();
 			      	  for(int i = 0;i<comp.size();i++) {
 			      		  System.out.println(comp.get(i));
 			      	  }
@@ -91,13 +91,13 @@ public class App{
 				      	case 4:
 				      		ComputerDao computerDaoDelete = new ComputerDao();
 				      		ComputerService computerServiceDelete = new ComputerService();
-				      		computerServiceDelete.deleteComputer(computerDto);
+				      		computerServiceDelete.deleteComputer(computer.getId());
 				      		break;
 				      		
 				      	case 5:
 				      		ComputerDao computerDaoUpdate = new ComputerDao();
 				      		ComputerService computerServiceUpdate = new ComputerService();
-				      		computerServiceUpdate.deleteComputer(computerDto);
+				      		computerServiceUpdate.updateComputer(computerDto);
 				      		break;
 				      		
 				      }
