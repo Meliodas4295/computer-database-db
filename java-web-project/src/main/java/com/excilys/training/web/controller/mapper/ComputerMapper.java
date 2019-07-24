@@ -8,8 +8,16 @@ import com.excilys.training.persistence.CompanyDao;
 import com.excilys.training.web.controller.dto.ComputerDto;
 
 public class ComputerMapper {
+	/**
+	 * instance de la classe ComputerMapper.
+	 */
 	private static ComputerMapper instance;
 	
+	/**
+	 * 
+	 * @return l'instance de la classe ComputerMapper.
+	 * Si l'instance est null, créer une nouvelle instance.
+	 */
 	public static ComputerMapper getInstance() {
 	    if (instance == null) {
 	      instance = new ComputerMapper();
@@ -17,7 +25,11 @@ public class ComputerMapper {
 	    return instance;
 	  }
 	
-
+	/**
+	 * Transforme un String en LocalDateTime.
+	 * @param s
+	 * @return un LocalDateTime.
+	 */
 	public LocalDateTime convert(String s) {
 		
 		if(s.equals("NULL")) {
@@ -30,6 +42,12 @@ public class ComputerMapper {
 		}
 		
 	}
+	
+	/**
+	 * Transforme un String en Integer.
+	 * @param s
+	 * @return un Integer.
+	 */
 	public Integer convertCompanyId(String s) {
 		if(s.equals("NULL")) {
 			return null;
@@ -38,6 +56,11 @@ public class ComputerMapper {
 		return i;
 	}
 	
+	/**
+	 * Transforme un ComputerDto en Computer.
+	 * @param computer (ComputerDto)
+	 * @return un Computer
+	 */
 	public Computer computerDtoToComputer(ComputerDto computer) {
 		Computer c = new Computer();
 		if(computer.getCompany_id()!=null) {
@@ -70,6 +93,12 @@ public class ComputerMapper {
 		}
 		return c;
 	}
+	
+	/**
+	 * Transforme un ComputerDto(avec le constructeur sans id) en Computer(avec le constructeur sans id).
+	 * @param computer
+	 * @return un Computer(avec le constructeur sans id).
+	 */
 	public Computer computerDtoToComputerWithId(ComputerDto computer) {
 		Computer c = new Computer();
 		if(computer.getCompany_id()!=null) {

@@ -14,21 +14,58 @@ import com.excilys.training.model.Computer;
 
 public class ComputerDao extends Dao<Computer>{
 	
-	
+	public ComputerDao() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Instance de la classe ComputerDao.
+	 */
 	private static ComputerDao instance;
-	private final String SQL_FIND_ALL = "SELECT * FROM computer";
+	/**
+	 * Requête SQL permettant de sélectionner tout les éléments de la table computer.
+	 */
+	private final String SQL_FIND_ALL = "SELECT * FROM computer LEFT JOIN company ON computer.company_id=company.id";
+	/**
+	 * Requête SQL permettant de sélectionner des éléments compris entre deux valeurs de la table computer.
+	 */
 	private final String SQL_FIND_ALL_PAGINATION = "SELECT * FROM computer LIMIT ? OFFSET ?";
+	/**
+	 * Requête SQL permettant de sélectionner un élément la table computer.
+	 */
 	private final String SQL_FIND_BY_ID = "SELECT * FROM computer WHERE id = ? ";
+	/**
+	 * Requête SQL permettant de créer un élément la table computer.
+	 */
 	private final String SQL_CREATE = "INSERT INTO computer (name, introduced,discontinued,company_id) VALUES (?,?,?,?)";
+	/**
+	 * Requête SQL permettant de supprimer un élément la table computer.
+	 */
 	private final String SQL_DELETE = "DELETE FROM computer WHERE id = ?";
+	/**
+	 * Requête SQL permettant de modifier un élément la table computer.
+	 */
 	private final String SQL_UPDATE = "UPDATE computer SET name = ?, introduced = ?,discontinued = ?,company_id = ? WHERE id = ? ";
 	
-	public static ComputerDao getInstance() {
+	/**
+	 * 
+	 * @return l'instance de la classe ComputerDao.
+	 * Si l'instance est null, créer une nouvelle instance.
+	 * @throws SQLException 
+	 */
+	public static ComputerDao getInstance() throws SQLException {
 	    if (instance == null) {
 	      instance = new ComputerDao();
 	    }
 	    return instance;
 	  }
+	
+	/**
+	 * Permet de trouver un Computer dans la base de données.
+	 * @param id
+	 * @return le Computer trouver.
+	 */
 	public Computer find(int id) {
 		// TODO Auto-generated method stub
 		Computer c = new Computer();
@@ -78,6 +115,11 @@ public class ComputerDao extends Dao<Computer>{
 		return c;
 	}
 
+	/**
+	 * Permet de créer un nouveau Computer dans la base de données.
+	 * @param obj (Computer)
+	 * @return la Computer créer.
+	 */
 	public Computer create(Computer obj) {
 		// TODO Auto-generated method stub
 		try {
@@ -111,6 +153,10 @@ public class ComputerDao extends Dao<Computer>{
 		
 	}
 
+	/**
+	 * Permet d'effacer une Computer de la base de données.
+	 * @param id
+	 */
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		try {
@@ -124,6 +170,11 @@ public class ComputerDao extends Dao<Computer>{
 		
 	}
 
+	/**
+	 * Permet de modifier une Computer de la base de données.
+	 * @param obj (Computer)
+	 * @return la Computer modifier.
+	 */
 	public Computer update(Computer obj) {
 		// TODO Auto-generated method stub
 		try {
@@ -157,6 +208,11 @@ public class ComputerDao extends Dao<Computer>{
 		return obj;
 		
 	}
+	
+	/**
+	 * Permet de visualiser les Computer de la base de données.
+	 * @return liste des Computer de la base de données.
+	 */
 	public List<Computer> displayAll(){
 		List<Computer> c = new ArrayList<Computer>();
 		ResultSet résultats = null;
@@ -203,6 +259,13 @@ public class ComputerDao extends Dao<Computer>{
 		return c;
 		
 	}
+	
+	/**
+	 * Permet de visualiser les Computer paginer de la base de données.
+	 * @param limit (int) nombre de valeur dans la page paginée. 
+	 * @param offset (int) valeur de départ de la pagination.
+	 * @return la liste des Computer paginée.
+	 */
 	public List<Computer> displayPagination(int limit, int offset) {
 		List<Computer> c = new ArrayList<Computer>();
 		ResultSet résultats = null;

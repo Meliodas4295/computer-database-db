@@ -1,6 +1,7 @@
 package com.excilys.training.web.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,8 +18,15 @@ import com.excilys.training.web.controller.dto.ComputerDto;
 
 public class EditComputer extends HttpServlet {
 	
-	private CompanyService companyService = new CompanyService();
-	private ComputerService computerService = new ComputerService();
+	private CompanyService companyService;
+	private ComputerService computerService;
+	
+	public EditComputer() throws SQLException {
+		super();
+		this.companyService = new CompanyService();
+		this.computerService = new ComputerService();
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,8 +49,7 @@ public class EditComputer extends HttpServlet {
 	    String discontinued = req.getParameter("discontinued");
 	    String companyId = req.getParameter("companyId");
 	    ComputerDto computerDto = new ComputerDto(Integer.parseInt(id),name, introduced, discontinued, companyId );
-	    ComputerService computer = new ComputerService();
-  		computer.updateComputer(computerDto);
+  		computerService.updateComputer(computerDto);
   		ServletContext context = getServletContext();
   	    RequestDispatcher rd = context.getRequestDispatcher("/DashboardServlet");
   	    rd.forward(req, resp);

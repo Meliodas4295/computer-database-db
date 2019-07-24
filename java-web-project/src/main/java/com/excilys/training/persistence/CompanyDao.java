@@ -12,19 +12,45 @@ import java.util.List;
 import com.excilys.training.model.Company;
 
 public class CompanyDao extends Dao<Company>{
-	
-	private static CompanyDao instance;
-	private final String SQL_FIND_ALL = "SELECT * FROM company";
-	private final String SQL_FIND_ALL_PAGINATION = "SELECT * FROM company LIMIT ? OFFSET ?";
-	private final String SQL_FIND_BY_ID = "SELECT * FROM company WHERE id = ? ";
+	public CompanyDao() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	public static CompanyDao getInstance() {
+	/**
+	 * Instance de la classe CompanyDao.
+	 */
+	private static CompanyDao instance;
+	/**
+	 * Requête SQL permettant de sélectionner tout les éléments de la table company.
+	 */
+	private final String SQL_FIND_ALL = "SELECT * FROM company";
+	/**
+	 * Requête SQL permettant de sélectionner des éléments compris entre deux valeurs de la table company.
+	 */
+	private final String SQL_FIND_ALL_PAGINATION = "SELECT * FROM company LIMIT ? OFFSET ?";
+	/**
+	 * Requête SQL permettant de sélectionner un élément la table company.
+	 */
+	private final String SQL_FIND_BY_ID = "SELECT * FROM company WHERE id = ? ";
+	/**
+	 * 
+	 * @return l'instance de la classe CompanyDao.
+	 * Si l'instance est null, créer une nouvelle instance.
+	 * @throws SQLException 
+	 */
+	public static CompanyDao getInstance() throws SQLException {
 	    if (instance == null) {
 	      instance = new CompanyDao();
 	    }
 	    return instance;
 	  }
-
+	
+	/**
+	 * Permet de trouver une Company dans la base de données.
+	 * @param id
+	 * @return la Company trouver.
+	 */
 	public Company find(int id) {
 		// TODO Auto-generated method stub
 		Company c= new Company();
@@ -51,23 +77,42 @@ public class CompanyDao extends Dao<Company>{
 	}
 
 	
-
+	/**
+	 * Permet de créer une nouvelle company dans la base de données.
+	 * (PS: Classe non implémenter)
+	 * @param obj (Company)
+	 * @return la Company créer.
+	 */
 	public Company create(Company obj) {
 		return obj;
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * Permet d'effacer une Company de la base de données.
+	 * (PS: Classe non implémenter)
+	 * @param id
+	 */
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * Permet de modifier une Company de la base de données.
+	 * (PS: Classe non implémenter)
+	 * @param obj (Company)
+	 * @return la Company modifier.
+	 */
 	public Company update(Company obj) {
 		return obj;
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Permet de visualiser les Company de la base de données.
+	 * @return liste des Company de la base de données.
+	 */
 	public List<Company> displayAll(){
 		List<Company> c = new ArrayList<Company>();
 		ResultSet résultats = null;
@@ -86,6 +131,13 @@ public class CompanyDao extends Dao<Company>{
 		return c;
 	}
 	
+	/**
+	 * Permet de visualiser les Company paginer de la base de données.
+	 * (PS: Classe non implémenter)
+	 * @param limit (int) nombre de valeur dans la page paginée. 
+	 * @param offset (int) valeur de départ de la pagination.
+	 * @return la liste des Company paginée.
+	 */
 	public List<Company> displayPagination(int limit, int offset) {
 		// TODO Auto-generated method stub
 		return null;
