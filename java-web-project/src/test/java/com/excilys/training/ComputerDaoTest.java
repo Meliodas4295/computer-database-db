@@ -35,11 +35,19 @@ public class ComputerDaoTest extends TestCase {
 	public void testDisplayAll() {
 		LocalDateTime introduced = null;
 		LocalDateTime discontinued = null;
+<<<<<<< HEAD
 		Company companyId = null;
 		List<Computer> listComputreTh = new ArrayList<Computer>();
 		listComputreTh.add(new Computer.ComputerBuilder().id(507).name("English Electric DEUCE").introduced(introduced).discontinued(discontinued).companyId(companyId).build());
 		List<Computer> listComputrePr = computerDao.displayAll();
 		assertTrue(listComputrePr.contains(listComputreTh.get(0)));
+=======
+		Integer companyId = null;
+		List<Computer> th = new ArrayList<Computer>();
+		th.add(new Computer(507,"English Electric DEUCE", introduced,discontinued, companyId));
+		List<Computer> pr = c.displayAll();
+		assertTrue(pr.contains(th.get(0)));
+>>>>>>> develop
 	}
 
 	@Test
@@ -63,20 +71,35 @@ public class ComputerDaoTest extends TestCase {
 	public void testCreateComputer() {
 		LocalDateTime introduced = null;
 		LocalDateTime discontinued = null;
+<<<<<<< HEAD
 		Company companyId = null;
 		Computer computerTh = new Computer.ComputerBuilder().id(507).name("English Electric DEUCE").introduced(introduced).discontinued(discontinued).companyId(companyId).build();
 		List<Computer> firstList = computerDao.displayAll();
 		computerDao.create(computerTh);
 		List<Computer> listc = computerDao.displayAll();
+=======
+		Integer companyId = null;
+		Computer computerTh = new Computer("CX", introduced,discontinued, companyId);
+		List<Computer> firstList = c.displayAll();
+		c.create(computerTh);
+		List<Computer> listc = c.displayAll();
+>>>>>>> develop
 		assertTrue(listc.size()>firstList.size());
 	}
 	
 	@Test
 	public void testDeleteComputer() {
+<<<<<<< HEAD
 		List<Computer> computer = computerDao.displayAll();
 		Computer newComputer = computer.get(computer.size()-1);
 		computerDao.delete(newComputer.getId());
 		List<Computer> listc = computerDao.displayAll();
+=======
+		List<Computer> computer = c.displayAll();
+		Computer newComputer = computer.get(computer.size()-1);
+		c.delete(newComputer.getId());
+		List<Computer> listc = c.displayAll();
+>>>>>>> develop
 		assertFalse(listc.contains(newComputer));
 	}
 

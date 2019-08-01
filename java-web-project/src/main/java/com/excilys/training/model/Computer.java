@@ -7,6 +7,7 @@ public class Computer {
 	/**
 	 * Id du Computer
 	 */
+<<<<<<< HEAD
 	private final int id;
 	/**
 	 * Nom du Computer
@@ -28,11 +29,38 @@ public class Computer {
 	/**
 	 * Constructeur de la class Computer.
 	 * @param id
+=======
+	private int id;
+	/**
+	 * Nom du Computer
+	 */
+	private String name;
+	/**
+	 * La date d'introduction du Computer sur le marché.
+	 */
+	private LocalDateTime introduced;
+	/**
+	 * La date où le Computer a été arrêté.
+	 */
+	private LocalDateTime discontinued;
+	/**
+	 * L'id de la Company qui possède le Computer.
+	 */
+	private Integer company_id;
+	
+	/**
+	 * Constructeur vide.
+	 */
+	public Computer() {}
+	/**
+	 * Constructeur ne dépendant pas de l'id.
+>>>>>>> develop
 	 * @param name
 	 * @param introduced
 	 * @param discontinued
 	 * @param company_id
 	 */
+<<<<<<< HEAD
 	private Computer(ComputerBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;
@@ -41,6 +69,31 @@ public class Computer {
 		this.companyId = builder.companyId;
 	}
 	/**
+=======
+	public Computer(String name, LocalDateTime introduced, LocalDateTime discontinued, Integer company_id) {
+		this.name = name;
+		this.introduced = introduced;
+		this.discontinued = discontinued;
+		this.company_id = company_id;
+	}
+	/**
+	 * Constructeur de la class Computer.
+	 * @param id
+	 * @param name
+	 * @param introduced
+	 * @param discontinued
+	 * @param company_id
+	 */
+	public Computer(int id, String name, LocalDateTime introduced, LocalDateTime discontinued, Integer company_id) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.introduced = introduced;
+		this.discontinued = discontinued;
+		this.company_id = company_id;
+	}
+	/**
+>>>>>>> develop
 	 * 
 	 * @return l'id du computer (int id).
 	 */
@@ -48,6 +101,16 @@ public class Computer {
 		return id;
 	}
 	/**
+<<<<<<< HEAD
+=======
+	 * Écrit l'id du Computer.
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	/**
+>>>>>>> develop
 	 * 
 	 * @return le nom du computer (String name).
 	 */
@@ -55,6 +118,16 @@ public class Computer {
 		return name;
 	}
 	/**
+<<<<<<< HEAD
+=======
+	 * Écrit le nom du Computer.
+	 * @param id
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+>>>>>>> develop
 	 * 
 	 * @return la date d'introduction du computer (LocalDateTime introduced).
 	 */
@@ -62,6 +135,16 @@ public class Computer {
 		return introduced;
 	}
 	/**
+<<<<<<< HEAD
+=======
+	 * Écrit la date d'introduction du Computer.
+	 * @param id
+	 */
+	public void setIntroduced(LocalDateTime introduced) {
+		this.introduced = introduced;
+	}
+	/**
+>>>>>>> develop
 	 * 
 	 * @return la date d'arrêt du Computer (LocalDateTime discontinued).
 	 */
@@ -69,6 +152,7 @@ public class Computer {
 		return discontinued;
 	}
 	/**
+<<<<<<< HEAD
 	 * 
 	 * @return l'id de la Company possédant le Computer (Integer company_id).
 	 */
@@ -125,6 +209,44 @@ public class Computer {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
+=======
+	 * Écrit la date d'arrêt du Computer.
+	 * @param id
+	 */
+	public void setDiscontinued(LocalDateTime discontinued) {
+		this.discontinued = discontinued;
+	}
+	/**
+	 * 
+	 * @return l'id de la Company possédant le Computer (Integer company_id).
+	 */
+	public Integer getCompany_id() {
+		return company_id;
+	}
+	/**
+	 * Écrit l'id de la Company possédant le Computer.
+	 * @param id
+	 */
+	public void setCompany_id(Integer company_id) {
+		this.company_id = company_id;
+	}
+
+	@Override
+	/**
+	 * Retourne une chaîne de caractère composée des paramètres du Computer.
+	 */
+	public String toString() {
+		return "Computer [getId()=" + getId() + ", getName()=" + getName() + ", getIntroduced()=" + getIntroduced()
+				+ ", getDiscontinued()=" + getDiscontinued() + ", getCompany_id()=" + getCompany_id() + "]";
+	}
+	@Override
+	/**
+	 * Renvoie True si les deux objets sont des Company 
+	 * et s'ils ont le même id, name, introduced, discontinued et company_id.
+	 */
+	public boolean equals(Object o) {
+		if(this == o) {
+>>>>>>> develop
 			return true;
 		if (obj == null)
 			return false;

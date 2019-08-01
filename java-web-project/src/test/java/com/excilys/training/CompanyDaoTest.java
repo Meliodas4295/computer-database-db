@@ -31,8 +31,13 @@ public class CompanyDaoTest extends TestCase {
 	@Test
 	public void testDisplayAll() {
 		List<Company> th = new ArrayList<Company>();
+<<<<<<< HEAD
 		th.add(new Company.CompanyBuilder(30).name("Sanyo").build());
 		List<Company> pr = companyDao.displayAll();
+=======
+		th.add(new Company(30,"Sanyo"));
+		List<Company> pr = c.displayAll();
+>>>>>>> develop
 		assertTrue(pr.contains(th.get(0)));
 	}
 

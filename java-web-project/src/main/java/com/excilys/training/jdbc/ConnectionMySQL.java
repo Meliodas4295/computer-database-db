@@ -22,6 +22,27 @@ public class ConnectionMySQL {
         config.addDataSourceProperty( "prepStmtCacheSqlLimit" , "2048" );
         ds = new HikariDataSource( config );
     }
+<<<<<<< HEAD
+=======
+ 
+	//private static String url = "jdbc:mysql://localhost:3306/computer-database-db";
+	/**
+	 * Nom du user
+	 */
+	//private static String user = "admincdb";
+	/**
+	 * Mot de passe du user
+	 */
+	//private static String passwd = "qwerty1234";
+	/**
+	 * Driver
+	 */
+	//private static String driver = "com.mysql.cj.jdbc.Driver";
+	/**
+	 * Objet Connection
+	 */
+	//private static Connection connect;
+>>>>>>> develop
     private ConnectionMySQL() {}
 	/**
 	 * Méthode qui va nous retourner notre instance
@@ -31,6 +52,7 @@ public class ConnectionMySQL {
 	 */
 	public static Connection getInstance() throws SQLException{
 		return ds.getConnection();	
+<<<<<<< HEAD
 	}
 	/*
 	public static Connection getInstance2() throws SQLException{
@@ -61,4 +83,7 @@ public class ConnectionMySQL {
  
         }
     }
+=======
+	}	
+>>>>>>> develop
 }

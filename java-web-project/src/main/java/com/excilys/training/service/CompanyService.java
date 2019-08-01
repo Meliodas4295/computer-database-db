@@ -12,7 +12,11 @@ public class CompanyService {
 	/**
 	 * objet de type CompanyDao
 	 */
+<<<<<<< HEAD
 	private CompanyDao companyDao;
+=======
+	private CompanyDao company;
+>>>>>>> develop
 	
 	/**
 	 * Constructeur de la classe CompanyService, 
@@ -20,7 +24,12 @@ public class CompanyService {
 	 * @throws SQLException 
 	 */
 	public CompanyService() throws SQLException {
+<<<<<<< HEAD
 		this.companyDao = CompanyDao.getInstance();
+=======
+		super();
+		this.company = CompanyDao.getInstance();
+>>>>>>> develop
 	}
 	
 	/**
@@ -36,11 +45,31 @@ public class CompanyService {
 	 * @return la liste des Company.
 	 */
 	public List<Company> displayAllCompany() {
+<<<<<<< HEAD
 		return this.companyDao.displayAll();
 	}
 	
 	public void deleteCompany(Company company) {
 		this.companyDao.delete(company);
+=======
+		return this.getCompany().displayAll();
+	}
+	
+	/**
+	 * 
+	 * @return la CompanyDao.  
+	 */
+	public CompanyDao getCompany() {
+		return company;
+	}
+
+	/**
+	 * Écrit une CompanyDao.
+	 * @param company
+	 */
+	public void setCompany(CompanyDao company) {
+		this.company = company;
+>>>>>>> develop
 	}
 	
 	

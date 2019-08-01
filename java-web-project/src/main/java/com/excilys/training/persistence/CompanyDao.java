@@ -12,6 +12,7 @@ import com.excilys.training.jdbc.ConnectionMySQL;
 import com.excilys.training.model.Company;
 import com.excilys.training.model.Company.CompanyBuilder;
 
+<<<<<<< HEAD
 public class CompanyDao{
 	private Connection connect;
 	private ComputerDao computerDao;
@@ -20,12 +21,19 @@ public class CompanyDao{
 		super();
 		this.connect = ConnectionMySQL.getInstance();
 		this.computerDao = ComputerDao.getInstance();
+=======
+public class CompanyDao extends Dao<Company>{
+	public CompanyDao() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+>>>>>>> develop
 	}
 
 	/**
 	 * Instance de la classe CompanyDao.
 	 */
 	private static CompanyDao instance;
+<<<<<<< HEAD
 	
 	private static final String SQL_DELETE = "DELETE FROM company WHERE id = ?";
 	/**
@@ -40,6 +48,20 @@ public class CompanyDao{
 	 * Requête SQL permettant de sélectionner un élément la table company.
 	 */
 	private static final String SQL_FIND_BY_ID = "SELECT id, name FROM company WHERE id = ? ";
+=======
+	/**
+	 * Requête SQL permettant de sélectionner tout les éléments de la table company.
+	 */
+	private final String SQL_FIND_ALL = "SELECT * FROM company";
+	/**
+	 * Requête SQL permettant de sélectionner des éléments compris entre deux valeurs de la table company.
+	 */
+	private final String SQL_FIND_ALL_PAGINATION = "SELECT * FROM company LIMIT ? OFFSET ?";
+	/**
+	 * Requête SQL permettant de sélectionner un élément la table company.
+	 */
+	private final String SQL_FIND_BY_ID = "SELECT * FROM company WHERE id = ? ";
+>>>>>>> develop
 	/**
 	 * 
 	 * @return l'instance de la classe CompanyDao.
@@ -88,6 +110,7 @@ public class CompanyDao{
 	}
 	/**
 	 * Permet d'effacer une Company de la base de données.
+<<<<<<< HEAD
 	 * @param id
 	 */
 	public void delete(Company company) {
@@ -99,6 +122,14 @@ public class CompanyDao{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+=======
+	 * (PS: Classe non implémenter)
+	 * @param id
+	 */
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		
+>>>>>>> develop
 	}
 	/**
 	 * Permet de modifier une Company de la base de données.

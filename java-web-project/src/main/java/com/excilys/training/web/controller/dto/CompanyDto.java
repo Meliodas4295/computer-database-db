@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.excilys.training.model.Company;
 
 public class CompanyDto {
+<<<<<<< HEAD
 
 	/**
 	 * l'id de la classe CompanyDto.
@@ -14,15 +15,32 @@ public class CompanyDto {
 	 * le nom de la classe CompanyDto
 	 */
 	private final String name;
+=======
+	/**
+	 * l'id de la classe CompanyDto.
+	 */
+	int id;
+	/**
+	 * le nom de la classe CompanyDto
+	 */
+	String name;
+>>>>>>> develop
 	
 	/**
 	 * Constructeur de la classe CompanyDto.
 	 * @param id
 	 * @param name
 	 */
+<<<<<<< HEAD
 	private CompanyDto(CompanyDtoBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;
+=======
+	public CompanyDto(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+>>>>>>> develop
 	}
 	
 	/**
@@ -34,6 +52,17 @@ public class CompanyDto {
 	}
 	
 	/**
+<<<<<<< HEAD
+=======
+	 * Écrit l'id de la CompanyDto.
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	/**
+>>>>>>> develop
 	 * 
 	 * @return le nom de la CompanyDto.
 	 */
@@ -41,6 +70,7 @@ public class CompanyDto {
 		return name;
 	}
 	
+<<<<<<< HEAD
 	public static class CompanyDtoBuilder{
 		private final int id;
 		private String name;
@@ -68,6 +98,22 @@ public class CompanyDto {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
+=======
+	/**
+	 * Écrit le nom de la CompanyDto.
+	 * @param name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	@Override
+	/**
+	 * Renvoie True si les deux objets sont des CompanyDto 
+	 * et s'ils ont le même id et name.
+	 */
+	public boolean equals(Object o) {
+		if(this == o) {
+>>>>>>> develop
 			return true;
 		if (obj == null)
 			return false;

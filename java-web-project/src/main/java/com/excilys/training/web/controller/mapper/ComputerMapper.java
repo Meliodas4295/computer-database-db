@@ -51,7 +51,11 @@ public class ComputerMapper {
 	 * @param s
 	 * @return un Integer.
 	 */
+<<<<<<< HEAD
 	public Company convertCompanyId(String s) {
+=======
+	public Integer convertCompanyId(String s) {
+>>>>>>> develop
 		if(s.equals("NULL")) {
 			return null;
 		}
@@ -64,6 +68,7 @@ public class ComputerMapper {
 	 * @param computer (ComputerDto)
 	 * @return un Computer
 	 */
+<<<<<<< HEAD
 	public Computer computerDtoToComputer(ComputerDto computerDto) {
 		int id = computerDto.getId();
 		String name = computerDto.getName();
@@ -72,6 +77,77 @@ public class ComputerMapper {
 		Company companyId = convertCompanyId(computerDto.getCompanyId());
 		ComputerBuilder computer = new Computer.ComputerBuilder().id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
 		return computer.build();
+=======
+	public Computer computerDtoToComputer(ComputerDto computer) {
+		Computer c = new Computer();
+		if(computer.getCompany_id()!=null) {
+			if(computer.getIntroduced()==null && computer.getDiscontinued()!=null) {
+				c =new Computer(computer.getName(),null, convert(computer.getDiscontinued()), convertCompanyId(computer.getCompany_id()));
+			}
+			else if(computer.getIntroduced()!=null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getName(),convert(computer.getIntroduced()), null, convertCompanyId(computer.getCompany_id()));
+			}
+			else if(computer.getIntroduced()==null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getName(),null, null, convertCompanyId(computer.getCompany_id()));
+			}
+			else {
+				c =new Computer(computer.getName(),convert(computer.getIntroduced()), convert(computer.getDiscontinued()), convertCompanyId(computer.getCompany_id()));
+			}
+		}
+		else {
+			if(computer.getIntroduced()==null && computer.getDiscontinued()!=null) {
+				c =new Computer(computer.getName(),null, convert(computer.getDiscontinued()), null);
+			}
+			else if(computer.getIntroduced()!=null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getName(),convert(computer.getIntroduced()), null, null);
+			}
+			else if(computer.getIntroduced()==null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getName(),null, null, null);
+			}
+			else {
+				c =new Computer(computer.getName(),convert(computer.getIntroduced()), convert(computer.getDiscontinued()), null);
+			}
+		}
+		return c;
+	}
+	
+	/**
+	 * Transforme un ComputerDto(avec le constructeur sans id) en Computer(avec le constructeur sans id).
+	 * @param computer
+	 * @return un Computer(avec le constructeur sans id).
+	 */
+	public Computer computerDtoToComputerWithId(ComputerDto computer) {
+		Computer c = new Computer();
+		if(computer.getCompany_id()!=null) {
+			if(computer.getIntroduced()==null && computer.getDiscontinued()!=null) {
+				c =new Computer(computer.getId(),computer.getName(),null, convert(computer.getDiscontinued()), convertCompanyId(computer.getCompany_id()));
+			}
+			else if(computer.getIntroduced()!=null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getId(),computer.getName(),convert(computer.getIntroduced()), null, convertCompanyId(computer.getCompany_id()));
+			}
+			else if(computer.getIntroduced()==null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getId(),computer.getName(),null, null, convertCompanyId(computer.getCompany_id()));
+			}
+			else {
+				c =new Computer(computer.getId(),computer.getName(),convert(computer.getIntroduced()), convert(computer.getDiscontinued()), convertCompanyId(computer.getCompany_id()));
+			}
+		}
+		else {
+			if(computer.getIntroduced()==null && computer.getDiscontinued()!=null) {
+				c =new Computer(computer.getId(),computer.getName(),null, convert(computer.getDiscontinued()), null);
+			}
+			else if(computer.getIntroduced()!=null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getId(),computer.getName(),convert(computer.getIntroduced()), null, null);
+			}
+			else if(computer.getIntroduced()==null && computer.getDiscontinued()==null) {
+				c =new Computer(computer.getId(),computer.getName(),null, null, null);
+			}
+			else {
+				c =new Computer(computer.getName(),convert(computer.getIntroduced()), convert(computer.getDiscontinued()), null);
+			}
+		}
+		return c;
+>>>>>>> develop
 	}
 	
 	

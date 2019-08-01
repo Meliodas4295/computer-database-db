@@ -6,6 +6,7 @@ public class Company {
 	/**
 	 * l'id de la company.
 	 */
+<<<<<<< HEAD
 	private final int id;
 	/**
 	 * le nom de la company
@@ -13,14 +14,35 @@ public class Company {
 	private final String name;
 	
 	/**
+=======
+	private int id;
+	/**
+	 * le nom de la company
+	 */
+	private String name;
+	
+	/**
+	 * Constructeur vide.
+	 */
+	public Company() {}
+	
+	/**
+>>>>>>> develop
 	 * Constructeur de la class company. 
 	 * Retourne une instance de type Company.
 	 * @param id
 	 * @param name
 	 */
+<<<<<<< HEAD
 	private Company(CompanyBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;
+=======
+	public Company(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+>>>>>>> develop
 	}
 	
 	/**
@@ -32,6 +54,17 @@ public class Company {
 	}
 	
 	/**
+<<<<<<< HEAD
+=======
+	 * Écrit un id.
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	/**
+>>>>>>> develop
 	 * 
 	 * @return le nom de la company.(String name)
 	 */
@@ -39,6 +72,7 @@ public class Company {
 		return name;
 	}
 	
+<<<<<<< HEAD
 	public static class CompanyBuilder {
 		private String name;
 		private final int id;
@@ -56,6 +90,16 @@ public class Company {
 		}
 		
 	}
+=======
+	/**
+	 * Écrit un nom.
+	 * @param name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+>>>>>>> develop
 	@Override
 	/**
 	 * Renvoie une chaine de caractère constituée des paramètres de la company.
@@ -64,6 +108,7 @@ public class Company {
 		return "Company [getId()=" + getId() + ", getName()=" + getName() + "]";
 	}
 	@Override
+<<<<<<< HEAD
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -75,6 +120,14 @@ public class Company {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
+=======
+	/**
+	 * Renvoie True si les deux objets sont des Company 
+	 * et s'ils ont le même id et name.
+	 */
+	public boolean equals(Object o) {
+		if(this == o) {
+>>>>>>> develop
 			return true;
 		if (obj == null)
 			return false;

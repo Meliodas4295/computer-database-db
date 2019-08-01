@@ -18,11 +18,16 @@ import com.excilys.training.model.Computer.ComputerBuilder;
 
 public class ComputerDao{
 	
+<<<<<<< HEAD
 	private Connection connect;
 	
 	private ComputerDao() throws SQLException {
 		super();
 		this.connect = ConnectionMySQL.getInstance();
+=======
+	public ComputerDao() throws SQLException {
+		super();
+>>>>>>> develop
 		// TODO Auto-generated constructor stub
 	}
 
@@ -31,6 +36,7 @@ public class ComputerDao{
 	 */
 	private static ComputerDao instance;
 	/**
+<<<<<<< HEAD
 	 * Requête permettant de supprimer les Computer en fonction de la Company. 
 	 */
 	private static final String SQL_DELETE_COMPUTER_WHERE_COMPANY_ID = "DELETE FROM  computer  WHERE  company_id  = ?";
@@ -83,6 +89,33 @@ public class ComputerDao{
 	 */
 	private static final String SQL_PAGE_COMPANY = "SELECT  computer.id , computer.name , introduced , discontinued , company_id , company.name   FROM `computer` LEFT JOIN company ON computer.company_id = company.id WHERE computer.name LIKE ? OR company.name LIKE ? ORDER BY ISNULL(company.name), company.name ASC limit ? offset ?";
 	/**
+=======
+	 * Requête SQL permettant de sélectionner tout les éléments de la table computer.
+	 */
+	private final String SQL_FIND_ALL = "SELECT * FROM computer LEFT JOIN company ON computer.company_id=company.id";
+	/**
+	 * Requête SQL permettant de sélectionner des éléments compris entre deux valeurs de la table computer.
+	 */
+	private final String SQL_FIND_ALL_PAGINATION = "SELECT * FROM computer LIMIT ? OFFSET ?";
+	/**
+	 * Requête SQL permettant de sélectionner un élément la table computer.
+	 */
+	private final String SQL_FIND_BY_ID = "SELECT * FROM computer WHERE id = ? ";
+	/**
+	 * Requête SQL permettant de créer un élément la table computer.
+	 */
+	private final String SQL_CREATE = "INSERT INTO computer (name, introduced,discontinued,company_id) VALUES (?,?,?,?)";
+	/**
+	 * Requête SQL permettant de supprimer un élément la table computer.
+	 */
+	private final String SQL_DELETE = "DELETE FROM computer WHERE id = ?";
+	/**
+	 * Requête SQL permettant de modifier un élément la table computer.
+	 */
+	private final String SQL_UPDATE = "UPDATE computer SET name = ?, introduced = ?,discontinued = ?,company_id = ? WHERE id = ? ";
+	
+	/**
+>>>>>>> develop
 	 * 
 	 * @return l'instance de la classe ComputerDao.
 	 * Si l'instance est null, créer une nouvelle instance.
@@ -95,6 +128,7 @@ public class ComputerDao{
 	    return instance;
 	  }
 	
+<<<<<<< HEAD
 	public void deleteByCompany(Company company) {
 		try {
 			PreparedStatement stmt = this.connect.prepareStatement(SQL_DELETE_COMPUTER_WHERE_COMPANY_ID);
@@ -105,6 +139,8 @@ public class ComputerDao{
 			}
 	}
 	
+=======
+>>>>>>> develop
 	/**
 	 * Permet de trouver un Computer dans la base de données.
 	 * @param id
@@ -134,7 +170,11 @@ public class ComputerDao{
 	/**
 	 * Permet de créer un nouveau Computer dans la base de données.
 	 * @param obj (Computer)
+<<<<<<< HEAD
 	 * @return le Computer créer.
+=======
+	 * @return la Computer créer.
+>>>>>>> develop
 	 */
 	public Computer create(Computer obj) {
 		try {
