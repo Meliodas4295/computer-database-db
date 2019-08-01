@@ -9,47 +9,37 @@ import com.excilys.training.web.controller.dto.CompanyDto;
 
 public class CompanyDtoTest extends TestCase {
 	
-	private CompanyDto c;
+	private CompanyDto companyDto;
 
 	@Before
 	protected void setUp() throws Exception {
-		c = new CompanyDto(30,"Sanyo");
+		companyDto = new CompanyDto.CompanyDtoBuilder(30).name("Sanyo").build();
 		super.setUp();
 	}
 
 	@After
 	protected void tearDown() throws Exception {
-		c = null;
+		companyDto = null;
 		super.tearDown();
 	}
 
 	@Test
 	public void testCompanyDto() {
-		assertNotNull("L'instance n'est pas créée", c);
+		assertNotNull("L'instance n'est pas créée", companyDto);
 	}
 
 	@Test
 	public void testGetId() {
 		int resultatth = 30;
-		int resultatpr = c.getId();
+		int resultatpr = companyDto.getId();
 		assertEquals(resultatth, resultatpr);
 	}
 
-	@Test
-	public void testSetId() {
-		c.setId(40);
-		assertEquals(40 ,c.getId());
-	}
 
 	@Test
 	public void testGetName() {
-		assertEquals("Le nom est incorrect", "Sanyo", c.getName());
+		assertEquals("Le nom est incorrect", "Sanyo", companyDto.getName());
 	}
 
-	@Test
-	public void testSetName() {
-		c.setName("Lego");
-		assertEquals("Le nom est incorrect", "Lego", c.getName());
-	}
 
 }

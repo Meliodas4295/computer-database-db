@@ -24,6 +24,9 @@ public class ConnectionMySQL {
     }
  
 	//private static String url = "jdbc:mysql://localhost:3306/computer-database-db";
+	private static String url = "jdbc:mysql://localhost:3306/computer-database-db";
+ 
+	//private static String url = "jdbc:mysql://localhost:3306/computer-database-db";
 	/**
 	 * Nom du user
 	 */
@@ -39,6 +42,10 @@ public class ConnectionMySQL {
 	/**
 	 * Objet Connection
 	 */
+
+    private ConnectionMySQL() {}
+	private static Connection connect;
+
 	//private static Connection connect;
     private ConnectionMySQL() {}
 	/**
@@ -47,7 +54,50 @@ public class ConnectionMySQL {
 	 * @return 
 	 * @throws SQLException 
 	 */
+	}
+	/*
+	public static Connection getInstance2() throws SQLException{
+		try {
+			Class.forName("org.h2.Driver").newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Connection connexion = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test;DB_CLOSE_ON_EXIT=FALSE", "root",  "YourName3014");
+		return connexion;
+	}
+	**/
+	public static void close() throws SQLException  {
+        if(ds.getConnection()!=null) {
+         
+            try {
+                ds.getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+ 
+        }
+    }
+	public static Connection getInstance(){
+		if(connect == null){
+			try {
+				Class.forName(driver);
+				connect = DriverManager.getConnection(url, user, passwd);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}		
+		return connect;	
 	public static Connection getInstance() throws SQLException{
 		return ds.getConnection();	
-	}	
+	}
 }

@@ -2,6 +2,7 @@ package com.excilys.training.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.excilys.training.model.Computer;
 import com.excilys.training.persistence.ComputerDao;
@@ -13,6 +14,25 @@ public class ComputerService {
 	 * objet de type ComputerDao
 	 */
 	private ComputerDao computerDao;
+
+	/**
+
+	 * objet de type ComputerMapper
+	 */
+	private ComputerMapper computerMapper;
+
+	/**
+
+	 * Constructeur de la classe ComputerService, 
+	 * instanciant le singleton de la classe ComputerDao et ComputerMapper.
+	 * @throws SQLException 
+	 */
+	public ComputerService() throws SQLException {
+
+	private ComputerMapper computerMapper;
+
+	public ComputerService() {
+
 	/**
 	 * objet de type ComputerMapper
 	 */
@@ -26,8 +46,8 @@ public class ComputerService {
 	public ComputerService() throws SQLException {
 		super();
 		this.computerDao = ComputerDao.getInstance();
-		this.computerMapper = ComputerMapper.getInstance();
 	}
+
 	
 	/**
 	 * Permet de récupérer un Computer de la BDD.
@@ -35,6 +55,11 @@ public class ComputerService {
 	 * @return le Computer ayant pour id la valeur de l'id mis en paramètre.
 	 */
 	public Computer displayComputer(String name) {
+
+		List<Computer> listComputer = computerDao.displayAll();
+		List<Computer> computers = listComputer.stream().filter(x->x.getName().equals(name)).collect(Collectors.toList());
+		return computers.get(0);
+
 		int id=0;
 		List<Computer> listComputer = computerDao.displayAll();
 		for(int i = 0;i<listComputer.size();i++) {
@@ -43,7 +68,11 @@ public class ComputerService {
 				System.out.print(id);
 			}
 		}
+
+	public Computer displayComputer(int id) {
+
 		return this.getComputerDao().find(id);
+
 	}
 	
 	/**
@@ -51,7 +80,7 @@ public class ComputerService {
 	 * @return la liste des Computer.
 	 */
 	public List<Computer> displayAllcomputer() {
-		return this.getComputerDao().displayAll();
+		return this.computerDao.displayAll();
 	}
 	
 	/**
@@ -61,15 +90,21 @@ public class ComputerService {
 	 * @return une liste paginée des Computer.
 	 */
 	public List<Computer> displayComputersPagination(int limit, int offset){
-		return this.getComputerDao().displayPagination(limit, offset);
+		return this.computerDao.displayPagination(limit, offset);
 	}
 	
+
 	/**
 	 * Permet de créer un Computer dans la BDD.
 	 * @param c
 	 */
+
+	public void createNewComputer(Computer c) {
+		this.computerDao.create(c);
+
 	public void createNewComputer(ComputerDto c) {
 		this.getComputerDao().create(this.getComputerMapper().computerDtoToComputer(c));
+
 	}
 	
 	/**
@@ -77,13 +112,17 @@ public class ComputerService {
 	 * @param id
 	 */
 	public void deleteComputer(int id) {
-		this.getComputerDao().delete(id);
+		this.computerDao.delete(id);
 	}
 	
 	/**
 	 * Permet de modifier un Computer dans la BDD.
 	 * @param c
 	 */
+
+	public void updateComputer(Computer c) {
+		this.computerDao.update(c);
+
 	public void updateComputer(ComputerDto c) {
 		this.getComputerDao().update(this.getComputerMapper().computerDtoToComputerWithId(c));
 	}

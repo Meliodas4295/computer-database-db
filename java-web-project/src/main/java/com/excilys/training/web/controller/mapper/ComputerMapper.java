@@ -3,7 +3,10 @@ package com.excilys.training.web.controller.mapper;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.excilys.training.model.Company;
+import com.excilys.training.model.Company.CompanyBuilder;
 import com.excilys.training.model.Computer;
+import com.excilys.training.model.Computer.ComputerBuilder;
 import com.excilys.training.persistence.CompanyDao;
 import com.excilys.training.web.controller.dto.ComputerDto;
 
@@ -42,25 +45,40 @@ public class ComputerMapper {
 		}
 		
 	}
+
 	
 	/**
 	 * Transforme un String en Integer.
 	 * @param s
 	 * @return un Integer.
 	 */
+
+	public Company convertCompanyId(String s) {
+
 	public Integer convertCompanyId(String s) {
 		if(s.equals("NULL")) {
 			return null;
 		}
-		Integer i = Integer.valueOf(s);
-		return i;
+		CompanyBuilder companyId = new Company.CompanyBuilder(Integer.parseInt(s)); 
+		return companyId.build();
 	}
 	
+
 	/**
 	 * Transforme un ComputerDto en Computer.
 	 * @param computer (ComputerDto)
 	 * @return un Computer
 	 */
+
+	public Computer computerDtoToComputer(ComputerDto computerDto) {
+		int id = computerDto.getId();
+		String name = computerDto.getName();
+		LocalDateTime introduced = convert(computerDto.getIntroduced());
+		LocalDateTime discontinued = convert(computerDto.getDiscontinued());
+		Company companyId = convertCompanyId(computerDto.getCompanyId());
+		ComputerBuilder computer = new Computer.ComputerBuilder().id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
+		return computer.build();
+
 	public Computer computerDtoToComputer(ComputerDto computer) {
 		Computer c = new Computer();
 		if(computer.getCompany_id()!=null) {
@@ -131,5 +149,7 @@ public class ComputerMapper {
 		}
 		return c;
 	}
+	
+	
 	
 }

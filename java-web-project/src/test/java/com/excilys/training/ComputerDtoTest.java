@@ -12,79 +12,48 @@ import com.excilys.training.web.controller.dto.ComputerDto;
 
 public class ComputerDtoTest extends TestCase {
 	
-	private ComputerDto c;
+	private ComputerDto computerDto;
 
 	@Before
 	protected void setUp() throws Exception {
-		c = new ComputerDto(507, "English Electric DEUCE", "NULL","NULL", "NULL");
+		computerDto = new ComputerDto.ComputerDtoBuilder("English Electric DEUCE", "NULL","NULL", "NULL").id(507).build();
 		super.setUp();
 	}
 
 	@After
 	protected void tearDown() throws Exception {
-		c = null;
+		computerDto = null;
 		super.tearDown();
 	}
 
 	@Test
 	public void testComputerDto() {
-		assertNotNull("L'instance n'est pas créée", c);
+		assertNotNull("L'instance n'est pas créée", computerDto);
 	}
 
 	@Test
 	public void testGetId() {
-		assertEquals(507, c.getId());
-	}
-
-	@Test
-	public void testSetId() {
-		c.setId(600);
-		assertEquals(600 ,c.getId());
+		assertEquals(507, computerDto.getId());
 	}
 
 	@Test
 	public void testGetName() {
-		assertEquals("Le nom est incorrect", "English Electric DEUCE", c.getName());
-	}
-
-	@Test
-	public void testSetName() {
-		c.setName("Kentucky Linux Athlon Testbed");
-		assertEquals("Le nom est incorrect", "Kentucky Linux Athlon Testbed", c.getName());
+		assertEquals("Le nom est incorrect", "English Electric DEUCE", computerDto.getName());
 	}
 
 	@Test
 	public void testGetIntroduced() {
-		assertEquals("Le nom est incorrect", "NULL", c.getIntroduced());
-	}
-
-	@Test
-	public void testSetIntroduced() {
-		c.setIntroduced("2018-12-11 17:30");
-		assertEquals("Le nom est incorrect", "2018-12-11 17:30", c.getIntroduced());
+		assertEquals("Le nom est incorrect", "NULL", computerDto.getIntroduced());
 	}
 
 	@Test
 	public void testGetDiscontinued() {
-		assertEquals("Le nom est incorrect", "NULL", c.getDiscontinued());
+		assertEquals("Le nom est incorrect", "NULL", computerDto.getDiscontinued());
 	}
 
 	@Test
-	public void testSetDiscontinued() {
-		String dateTime = "2018-12-11 17:30";
-        c.setDiscontinued(dateTime);
-		assertEquals("Le nom est incorrect", dateTime, c.getDiscontinued());
-	}
-
-	@Test
-	public void testGetCompany_id() {
-		assertEquals("Le nom est incorrect", "NULL", c.getCompany_id());
-	}
-
-	@Test
-	public void testSetCompany_id() {
-		c.setCompany_id("12");
-		assertEquals("Le nom est incorrect", "12", c.getCompany_id());
+	public void testGetCompanyId() {
+		assertEquals("Le nom est incorrect", "NULL", computerDto.getCompanyId());
 	}
 
 }
