@@ -5,9 +5,7 @@ import java.util.Objects;
 import com.excilys.training.model.Company;
 
 public class CompanyDto {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 	/**
 	 * l'id de la classe CompanyDto.
@@ -17,54 +15,47 @@ public class CompanyDto {
 	 * le nom de la classe CompanyDto
 	 */
 	private final String name;
-=======
-=======
->>>>>>> develop
+
 	/**
 	 * l'id de la classe CompanyDto.
 	 */
-=======
->>>>>>> parent of 09d7b74... Add HikariCP
+
+	/**
+	 * l'id de la classe CompanyDto.
+	 */
 	int id;
+	/**
+	 * le nom de la classe CompanyDto
+	 */
 	String name;
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 	
 	/**
 	 * Constructeur de la classe CompanyDto.
 	 * @param id
 	 * @param name
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	private CompanyDto(CompanyDtoBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;
-=======
-=======
->>>>>>> develop
-=======
->>>>>>> parent of 09d7b74... Add HikariCP
+
 	public CompanyDto(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
->>>>>>> develop
 	}
+	
+	/**
+	 * 
+	 * @return l'id de la CompanyDto.
+	 */
 	public int getId() {
 		return id;
 	}
-<<<<<<< HEAD
+
 	
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
 	 * Écrit l'id de la CompanyDto.
 	 * @param id
 	 */
@@ -73,10 +64,6 @@ public class CompanyDto {
 	}
 	
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
 	 * 
 	 * @return le nom de la CompanyDto.
 	 */
@@ -84,8 +71,7 @@ public class CompanyDto {
 		return name;
 	}
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	public static class CompanyDtoBuilder{
 		private final int id;
 		private String name;
@@ -113,28 +99,43 @@ public class CompanyDto {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
-=======
-=======
->>>>>>> develop
+
 	/**
 	 * Écrit le nom de la CompanyDto.
 	 * @param name
 	 */
-=======
+
+	/**
+	 * Écrit l'id de la CompanyDto.
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	/**
+	 * 
+	 * @return le nom de la CompanyDto.
+	 */
 	public String getName() {
 		return name;
 	}
->>>>>>> parent of 09d7b74... Add HikariCP
+
+	
+	/**
+	 * Écrit le nom de la CompanyDto.
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	@Override
+	/**
+	 * Renvoie True si les deux objets sont des CompanyDto 
+	 * et s'ils ont le même id et name.
+	 */
 	public boolean equals(Object o) {
 		if(this == o) {
->>>>>>> develop
 			return true;
 		if (obj == null)
 			return false;

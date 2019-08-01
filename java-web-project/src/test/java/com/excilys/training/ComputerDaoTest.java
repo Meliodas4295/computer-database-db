@@ -3,6 +3,7 @@ package com.excilys.training;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -32,29 +33,20 @@ public class ComputerDaoTest extends TestCase {
 
 	@Test
 	public void testDisplayAll() {
-<<<<<<< HEAD
 		LocalDateTime introduced = null;
 		LocalDateTime discontinued = null;
-<<<<<<< HEAD
-<<<<<<< HEAD
 		Company companyId = null;
 		List<Computer> listComputreTh = new ArrayList<Computer>();
 		listComputreTh.add(new Computer.ComputerBuilder().id(507).name("English Electric DEUCE").introduced(introduced).discontinued(discontinued).companyId(companyId).build());
 		List<Computer> listComputrePr = computerDao.displayAll();
 		assertTrue(listComputrePr.contains(listComputreTh.get(0)));
-=======
-=======
->>>>>>> develop
+
 		Integer companyId = null;
 		List<Computer> th = new ArrayList<Computer>();
 		th.add(new Computer(507,"English Electric DEUCE", introduced,discontinued, companyId));
 		List<Computer> pr = c.displayAll();
 		assertTrue(pr.contains(th.get(0)));
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
-=======
+
 		StringBuffer th = new StringBuffer("1 MacBook Pro 15.4 inch null null 1 \n" + 
 				"2 CM-2a null null 2 \n" + 
 				"3 CM-200 null null 2 \n" + 
@@ -608,7 +600,14 @@ public class ComputerDaoTest extends TestCase {
 				"574 iPhone 4S 2011-10-14 01:00:00 null 1 \n");
 		List<Computer> pr = c.displayAll();
 		assertTrue(th.toString().compareTo(pr.toString())==0);
->>>>>>> parent of 09d7b74... Add HikariCP
+
+		LocalDateTime introduced = null;
+		LocalDateTime discontinued = null;
+		Integer companyId = null;
+		List<Computer> th = new ArrayList<Computer>();
+		th.add(new Computer(507,"English Electric DEUCE", introduced,discontinued, companyId));
+		List<Computer> pr = c.displayAll();
+		assertTrue(pr.contains(th.get(0)));
 	}
 
 	@Test
@@ -632,50 +631,39 @@ public class ComputerDaoTest extends TestCase {
 	public void testCreateComputer() {
 		LocalDateTime introduced = null;
 		LocalDateTime discontinued = null;
-<<<<<<< HEAD
 		Company companyId = null;
 		Computer computerTh = new Computer.ComputerBuilder().id(507).name("English Electric DEUCE").introduced(introduced).discontinued(discontinued).companyId(companyId).build();
 		List<Computer> firstList = computerDao.displayAll();
 		computerDao.create(computerTh);
 		List<Computer> listc = computerDao.displayAll();
-=======
 		Integer companyId = null;
-		Computer computerTh = new Computer(575,"CX", introduced,discontinued, companyId);
+		Computer computerTh = new Computer("CX", introduced,discontinued, companyId);
+		List<Computer> firstList = c.displayAll();
 		c.create(computerTh);
 		List<Computer> listc = c.displayAll();
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 		assertTrue(listc.size()>firstList.size());
-=======
+
 		assertTrue(listc.contains(computerTh));
->>>>>>> parent of 09d7b74... Add HikariCP
+
+		assertTrue(listc.size()>firstList.size());
 	}
 	
 	@Test
 	public void testDeleteComputer() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		List<Computer> computer = computerDao.displayAll();
 		Computer newComputer = computer.get(computer.size()-1);
 		computerDao.delete(newComputer.getId());
 		List<Computer> listc = computerDao.displayAll();
-=======
-=======
->>>>>>> develop
+
 		List<Computer> computer = c.displayAll();
 		Computer newComputer = computer.get(computer.size()-1);
 		c.delete(newComputer.getId());
 		List<Computer> listc = c.displayAll();
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 		assertFalse(listc.contains(newComputer));
-=======
+
 		LocalDateTime introduced = null;
 		LocalDateTime discontinued = null;
 		Integer companyId = null;
@@ -683,7 +671,12 @@ public class ComputerDaoTest extends TestCase {
 		c.delete(computerTh.getId());
 		List<Computer> listc = c.displayAll();
 		assertFalse(listc.contains(computerTh));
->>>>>>> parent of 09d7b74... Add HikariCP
+
+		List<Computer> computer = c.displayAll();
+		Computer newComputer = computer.get(computer.size()-1);
+		c.delete(newComputer.getId());
+		List<Computer> listc = c.displayAll();
+		assertFalse(listc.contains(newComputer));
 	}
 
 	@Test

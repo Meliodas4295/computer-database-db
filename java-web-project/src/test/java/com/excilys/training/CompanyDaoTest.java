@@ -2,6 +2,7 @@ package com.excilys.training;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -29,22 +30,18 @@ public class CompanyDaoTest extends TestCase {
 
 	@Test
 	public void testDisplayAll() {
-<<<<<<< HEAD
+
 		List<Company> th = new ArrayList<Company>();
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		th.add(new Company.CompanyBuilder(30).name("Sanyo").build());
 		List<Company> pr = companyDao.displayAll();
-=======
 		th.add(new Company(30,"Sanyo"));
 		List<Company> pr = c.displayAll();
->>>>>>> develop
-=======
+
 		th.add(new Company(30,"Sanyo"));
 		List<Company> pr = c.displayAll();
->>>>>>> develop
 		assertTrue(pr.contains(th.get(0)));
-=======
+
 		StringBuffer th = new StringBuffer( "1 Apple Inc. \n" + 
 				"2 Thinking Machines \n" + 
 				"3 RCA \n" + 
@@ -89,7 +86,10 @@ public class CompanyDaoTest extends TestCase {
 				"43 Samsung Electronics \n");
 		List<Company> pr = c.displayAll();
 		assertEquals(th.toString(), pr.toString());
->>>>>>> parent of 09d7b74... Add HikariCP
+		List<Company> th = new ArrayList<Company>();
+		th.add(new Company(30,"Sanyo"));
+		List<Company> pr = c.displayAll();
+		assertTrue(pr.contains(th.get(0)));
 	}
 
 	@Test

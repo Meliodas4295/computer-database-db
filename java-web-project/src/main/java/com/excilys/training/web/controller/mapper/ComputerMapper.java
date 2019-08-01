@@ -11,8 +11,16 @@ import com.excilys.training.persistence.CompanyDao;
 import com.excilys.training.web.controller.dto.ComputerDto;
 
 public class ComputerMapper {
+	/**
+	 * instance de la classe ComputerMapper.
+	 */
 	private static ComputerMapper instance;
 	
+	/**
+	 * 
+	 * @return l'instance de la classe ComputerMapper.
+	 * Si l'instance est null, créer une nouvelle instance.
+	 */
 	public static ComputerMapper getInstance() {
 	    if (instance == null) {
 	      instance = new ComputerMapper();
@@ -20,7 +28,11 @@ public class ComputerMapper {
 	    return instance;
 	  }
 	
-
+	/**
+	 * Transforme un String en LocalDateTime.
+	 * @param s
+	 * @return un LocalDateTime.
+	 */
 	public LocalDateTime convert(String s) {
 		
 		if(s.equals("NULL")) {
@@ -33,23 +45,17 @@ public class ComputerMapper {
 		}
 		
 	}
-<<<<<<< HEAD
+
 	
 	/**
 	 * Transforme un String en Integer.
 	 * @param s
 	 * @return un Integer.
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	public Company convertCompanyId(String s) {
-=======
-=======
->>>>>>> develop
-=======
->>>>>>> parent of 09d7b74... Add HikariCP
+
 	public Integer convertCompanyId(String s) {
->>>>>>> develop
 		if(s.equals("NULL")) {
 			return null;
 		}
@@ -57,14 +63,13 @@ public class ComputerMapper {
 		return companyId.build();
 	}
 	
-<<<<<<< HEAD
+
 	/**
 	 * Transforme un ComputerDto en Computer.
 	 * @param computer (ComputerDto)
 	 * @return un Computer
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	public Computer computerDtoToComputer(ComputerDto computerDto) {
 		int id = computerDto.getId();
 		String name = computerDto.getName();
@@ -73,11 +78,7 @@ public class ComputerMapper {
 		Company companyId = convertCompanyId(computerDto.getCompanyId());
 		ComputerBuilder computer = new Computer.ComputerBuilder().id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
 		return computer.build();
-=======
-=======
->>>>>>> develop
-=======
->>>>>>> parent of 09d7b74... Add HikariCP
+
 	public Computer computerDtoToComputer(ComputerDto computer) {
 		Computer c = new Computer();
 		if(computer.getCompany_id()!=null) {
@@ -110,6 +111,12 @@ public class ComputerMapper {
 		}
 		return c;
 	}
+	
+	/**
+	 * Transforme un ComputerDto(avec le constructeur sans id) en Computer(avec le constructeur sans id).
+	 * @param computer
+	 * @return un Computer(avec le constructeur sans id).
+	 */
 	public Computer computerDtoToComputerWithId(ComputerDto computer) {
 		Computer c = new Computer();
 		if(computer.getCompany_id()!=null) {
@@ -141,7 +148,6 @@ public class ComputerMapper {
 			}
 		}
 		return c;
->>>>>>> develop
 	}
 	
 	

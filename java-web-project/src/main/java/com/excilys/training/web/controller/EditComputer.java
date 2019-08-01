@@ -1,6 +1,7 @@
 package com.excilys.training.web.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -19,9 +20,7 @@ import com.excilys.training.web.controller.mapper.ComputerMapper;
 
 public class EditComputer extends HttpServlet {
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	/**
 	 * 
 	 */
@@ -29,33 +28,29 @@ public class EditComputer extends HttpServlet {
 	private CompanyService companyService;
 	private ComputerService computerService;
 	private ComputerMapper computerMapper;
-=======
 	private CompanyService companyService;
 	private ComputerService computerService;
->>>>>>> develop
-=======
+
 	private CompanyService companyService;
 	private ComputerService computerService;
->>>>>>> develop
+
+	private CompanyService companyService;
+	private ComputerService computerService;
 	
 	public EditComputer() throws SQLException {
 		super();
 		this.companyService = new CompanyService();
 		this.computerService = new ComputerService();
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		this.computerMapper = ComputerMapper.getInstance();
-=======
+
 		// TODO Auto-generated constructor stub
->>>>>>> develop
-=======
 		// TODO Auto-generated constructor stub
->>>>>>> develop
 	}
-=======
 	private CompanyService companyService = new CompanyService();
 	private ComputerService computerService = new ComputerService();
->>>>>>> parent of 09d7b74... Add HikariCP
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -73,21 +68,18 @@ public class EditComputer extends HttpServlet {
 	    String introduced = req.getParameter("introduced");
 	    String discontinued = req.getParameter("discontinued");
 	    String companyId = req.getParameter("companyId");
-<<<<<<< HEAD
 	    ComputerDtoBuilder computerDto = new ComputerDto.ComputerDtoBuilder(name, introduced, discontinued, companyId ).id(Integer.parseInt(id));
   		computerService.updateComputer(this.computerMapper.computerDtoToComputer(computerDto.build()));
-=======
 	    ComputerDto computerDto = new ComputerDto(Integer.parseInt(id),name, introduced, discontinued, companyId );
-<<<<<<< HEAD
+
   		computerService.updateComputer(computerDto);
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
-=======
+
+
 	    ComputerService computer = new ComputerService();
   		computer.updateComputer(computerDto);
->>>>>>> parent of 09d7b74... Add HikariCP
+
+  		computerService.updateComputer(computerDto);
+
   		ServletContext context = getServletContext();
   	    RequestDispatcher rd = context.getRequestDispatcher("/DashboardServlet");
   	    rd.forward(req, resp);

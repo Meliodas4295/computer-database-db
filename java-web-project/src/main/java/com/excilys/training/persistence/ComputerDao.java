@@ -18,22 +18,21 @@ import com.excilys.training.model.Computer.ComputerBuilder;
 
 public class ComputerDao{
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	private Connection connect;
 	
-<<<<<<< HEAD
 	private ComputerDao() throws SQLException {
 		super();
 		this.connect = ConnectionMySQL.getInstance();
-=======
 	public ComputerDao() throws SQLException {
 		super();
->>>>>>> develop
-=======
+
 	public ComputerDao() throws SQLException {
 		super();
->>>>>>> develop
+
+	public ComputerDao() throws SQLException {
+		super();
+
 		// TODO Auto-generated constructor stub
 	}
 
@@ -42,8 +41,7 @@ public class ComputerDao{
 	 */
 	private static ComputerDao instance;
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	 * Requête permettant de supprimer les Computer en fonction de la Company. 
 	 */
 	private static final String SQL_DELETE_COMPUTER_WHERE_COMPANY_ID = "DELETE FROM  computer  WHERE  company_id  = ?";
@@ -96,50 +94,62 @@ public class ComputerDao{
 	 */
 	private static final String SQL_PAGE_COMPANY = "SELECT  computer.id , computer.name , introduced , discontinued , company_id , company.name   FROM `computer` LEFT JOIN company ON computer.company_id = company.id WHERE computer.name LIKE ? OR company.name LIKE ? ORDER BY ISNULL(company.name), company.name ASC limit ? offset ?";
 	/**
-=======
-=======
->>>>>>> develop
+
 	 * Requête SQL permettant de sélectionner tout les éléments de la table computer.
 	 */
 	private final String SQL_FIND_ALL = "SELECT * FROM computer LEFT JOIN company ON computer.company_id=company.id";
 	/**
 	 * Requête SQL permettant de sélectionner des éléments compris entre deux valeurs de la table computer.
 	 */
-=======
+
 	
 	private static ComputerDao instance;
 	private final String SQL_FIND_ALL = "SELECT * FROM computer";
->>>>>>> parent of 09d7b74... Add HikariCP
+
+	private static ComputerDao instance;
+	/**
+	 * Requête SQL permettant de sélectionner tout les éléments de la table computer.
+	 */
+	private final String SQL_FIND_ALL = "SELECT * FROM computer LEFT JOIN company ON computer.company_id=company.id";
+	/**
+	 * Requête SQL permettant de sélectionner des éléments compris entre deux valeurs de la table computer.
+	 */
 	private final String SQL_FIND_ALL_PAGINATION = "SELECT * FROM computer LIMIT ? OFFSET ?";
+	/**
+	 * Requête SQL permettant de sélectionner un élément la table computer.
+	 */
 	private final String SQL_FIND_BY_ID = "SELECT * FROM computer WHERE id = ? ";
+	/**
+	 * Requête SQL permettant de créer un élément la table computer.
+	 */
 	private final String SQL_CREATE = "INSERT INTO computer (name, introduced,discontinued,company_id) VALUES (?,?,?,?)";
+	/**
+	 * Requête SQL permettant de supprimer un élément la table computer.
+	 */
 	private final String SQL_DELETE = "DELETE FROM computer WHERE id = ?";
+	/**
+	 * Requête SQL permettant de modifier un élément la table computer.
+	 */
 	private final String SQL_UPDATE = "UPDATE computer SET name = ?, introduced = ?,discontinued = ?,company_id = ? WHERE id = ? ";
 	
-<<<<<<< HEAD
+
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+	/**
 	 * 
 	 * @return l'instance de la classe ComputerDao.
 	 * Si l'instance est null, créer une nouvelle instance.
 	 * @throws SQLException 
 	 */
 	public static ComputerDao getInstance() throws SQLException {
-=======
+
 	public static ComputerDao getInstance() {
->>>>>>> parent of 09d7b74... Add HikariCP
+
 	    if (instance == null) {
 	      instance = new ComputerDao();
 	    }
 	    return instance;
 	  }
-<<<<<<< HEAD
-	
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	public void deleteByCompany(Company company) {
 		try {
 			PreparedStatement stmt = this.connect.prepareStatement(SQL_DELETE_COMPUTER_WHERE_COMPANY_ID);
@@ -150,17 +160,14 @@ public class ComputerDao{
 			}
 	}
 	
-=======
->>>>>>> develop
-=======
->>>>>>> develop
+
 	/**
 	 * Permet de trouver un Computer dans la base de données.
 	 * @param id
 	 * @return le Computer trouver.
 	 */
-=======
->>>>>>> parent of 09d7b74... Add HikariCP
+
+
 	public Computer find(int id) {
 		ComputerBuilder computer= new Computer.ComputerBuilder();
 		try {
@@ -182,22 +189,25 @@ public class ComputerDao{
 		return computer.build();
 	}
 
-<<<<<<< HEAD
+
 	/**
 	 * Permet de créer un nouveau Computer dans la base de données.
 	 * @param obj (Computer)
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	 * @return le Computer créer.
-=======
+
 	 * @return la Computer créer.
->>>>>>> develop
-=======
+
 	 * @return la Computer créer.
->>>>>>> develop
+
 	 */
-=======
->>>>>>> parent of 09d7b74... Add HikariCP
+
+	/**
+	 * Permet de créer un nouveau Computer dans la base de données.
+	 * @param obj (Computer)
+	 * @return la Computer créer.
+	 */
+
 	public Computer create(Computer obj) {
 		try {
 			PreparedStatement stmt = connect.prepareStatement(SQL_CREATE);
@@ -219,6 +229,10 @@ public class ComputerDao{
 		
 	}
 
+	/**
+	 * Permet d'effacer une Computer de la base de données.
+	 * @param id
+	 */
 	public void delete(int id) {
 		try {
 			PreparedStatement stmt = this.connect.prepareStatement(SQL_DELETE);
@@ -230,6 +244,11 @@ public class ComputerDao{
 		
 	}
 
+	/**
+	 * Permet de modifier une Computer de la base de données.
+	 * @param obj (Computer)
+	 * @return la Computer modifier.
+	 */
 	public Computer update(Computer obj) {
 		try {
 			PreparedStatement stmt = this.connect.prepareStatement(SQL_UPDATE);
@@ -251,6 +270,11 @@ public class ComputerDao{
 		return obj;
 		
 	}
+	
+	/**
+	 * Permet de visualiser les Computer de la base de données.
+	 * @return liste des Computer de la base de données.
+	 */
 	public List<Computer> displayAll(){
 		List<Computer> computerList = new ArrayList<Computer>();
 		try {
@@ -272,6 +296,13 @@ public class ComputerDao{
 		return computerList;
 		
 	}
+	
+	/**
+	 * Permet de visualiser les Computer paginer de la base de données.
+	 * @param limit (int) nombre de valeur dans la page paginée. 
+	 * @param offset (int) valeur de départ de la pagination.
+	 * @return la liste des Computer paginée.
+	 */
 	public List<Computer> displayPagination(int limit, int offset) {
 		List<Computer> computerList = new ArrayList<Computer>();
 		ResultSet resultats = null;

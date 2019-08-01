@@ -5,12 +5,10 @@ import java.time.LocalDateTime;
 import com.excilys.training.model.Company;
 
 public class ComputerDto {
-<<<<<<< HEAD
 	/**
 	 * l'id du ComputerDto.
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	private final int id;
 	/**
 	 * le nom du ComputerDto.
@@ -28,21 +26,28 @@ public class ComputerDto {
 	 * la Company qui détient le ComputerDto.
 	 */
 	private final String companyId;
-=======
-=======
->>>>>>> develop
-=======
->>>>>>> parent of 09d7b74... Add HikariCP
+
+	/**
+	 * l'id du ComputerDto.
+	 */
 	private int id;
+	/**
+	 * le nom du ComputerDto.
+	 */
 	private String name;
+	/**
+	 * la date d'introduction du ComputerDto sur le marché.
+	 */
 	private String introduced;
+	/**
+	 * la date d'arrêt du ComputerDto
+	 */
 	private String discontinued;
+	/**
+	 * la Company qui détient le ComputerDto.
+	 */
 	private String company_id;
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 	
 	/**
 	 * Constructeur de la classe ComputerDto.
@@ -52,19 +57,14 @@ public class ComputerDto {
 	 * @param discontinued
 	 * @param company_id
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	private ComputerDto(ComputerDtoBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;
 		this.introduced = builder.introduced;
 		this.discontinued = builder.discontinued;
 		this.companyId = builder.companyId;
-=======
-=======
->>>>>>> develop
-=======
->>>>>>> parent of 09d7b74... Add HikariCP
+
 	public ComputerDto(int id, String name, String introduced, String discontinued, String company_id) {
 		super();
 		this.id = id;
@@ -73,24 +73,32 @@ public class ComputerDto {
 		this.discontinued = discontinued;
 		this.company_id = company_id;
 	}
+	
+	/**
+	 * Constructeur sans la composante id.
+	 * @param name
+	 * @param introduced
+	 * @param discontinued
+	 * @param company_id
+	 */
 	public ComputerDto(String name, String introduced, String discontinued, String company_id) {
 		super();
 		this.name = name;
 		this.introduced = introduced;
 		this.discontinued = discontinued;
 		this.company_id = company_id;
->>>>>>> develop
 	}
+	/**
+	 * 
+	 * @return l'id du ComputerDto.
+	 */
 	public int getId() {
 		return id;
 	}
-<<<<<<< HEAD
+
+	
+
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
 	 * Écrit l'id du ComputerDto.
 	 * @param id
 	 */
@@ -98,10 +106,7 @@ public class ComputerDto {
 		this.id = id;
 	}
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 	 * 
 	 * @return le nom du ComputerDto.
 	 */
@@ -109,11 +114,7 @@ public class ComputerDto {
 		return name;
 	}
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
+
 	 * Écrit le nom du ComputerDto.
 	 * @param id
 	 */
@@ -121,10 +122,7 @@ public class ComputerDto {
 		this.name = name;
 	}
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 	 * 
 	 * @return la date d'introduction du ComputerDto (String introduced).
 	 */
@@ -132,11 +130,7 @@ public class ComputerDto {
 		return introduced;
 	}
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
+
 	 * Écrit la date d'introduction du ComputerDto.
 	 * @param id
 	 */
@@ -144,10 +138,7 @@ public class ComputerDto {
 		this.introduced = introduced;
 	}
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 	 * 
 	 * @return la date d'arrêt du ComputerDto (String discontinued).
 	 */
@@ -155,8 +146,6 @@ public class ComputerDto {
 		return discontinued;
 	}
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
 	 * 
 	 * @return l'id de la Company possédant le ComputerDto (String company_id).
 	 */
@@ -196,13 +185,10 @@ public class ComputerDto {
 		result = prime * result + ((introduced == null) ? 0 : introduced.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
-=======
-=======
->>>>>>> develop
+/**
 	 * Écrit la date d'arrêt du ComputerDto.
 	 * @param id
 	 */
-=======
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -221,16 +207,26 @@ public class ComputerDto {
 	public String getDiscontinued() {
 		return discontinued;
 	}
->>>>>>> parent of 09d7b74... Add HikariCP
+/**
+	 * Écrit la date d'arrêt du ComputerDto.
+	 * @param id
+	 */
 	public void setDiscontinued(String discontinued) {
 		this.discontinued = discontinued;
 	}
+	/**
+	 * 
+	 * @return l'id de la Company possédant le ComputerDto (String company_id).
+	 */
 	public String getCompany_id() {
 		return company_id;
 	}
+	/**
+	 * Écrit l'id de la Company possédant le ComputerDto.
+	 * @param id
+	 */
 	public void setCompany_id(String company_id) {
 		this.company_id = company_id;
->>>>>>> develop
 	}
 	@Override
 	public boolean equals(Object obj) {

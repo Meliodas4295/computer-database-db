@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 public class ConnectionMySQL {
-<<<<<<< HEAD
 	
 	private static HikariConfig config = new HikariConfig();
     private static HikariDataSource ds;
@@ -20,52 +22,38 @@ public class ConnectionMySQL {
         config.addDataSourceProperty( "prepStmtCacheSqlLimit" , "2048" );
         ds = new HikariDataSource( config );
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
  
 	//private static String url = "jdbc:mysql://localhost:3306/computer-database-db";
-=======
 	private static String url = "jdbc:mysql://localhost:3306/computer-database-db";
->>>>>>> parent of 09d7b74... Add HikariCP
+ 
+	//private static String url = "jdbc:mysql://localhost:3306/computer-database-db";
 	/**
 	 * Nom du user
 	 */
-	private static String user = "admincdb";
+	//private static String user = "admincdb";
 	/**
 	 * Mot de passe du user
 	 */
-	private static String passwd = "qwerty1234";
+	//private static String passwd = "qwerty1234";
 	/**
 	 * Driver
 	 */
-	private static String driver = "com.mysql.cj.jdbc.Driver";
+	//private static String driver = "com.mysql.cj.jdbc.Driver";
 	/**
 	 * Objet Connection
 	 */
-<<<<<<< HEAD
-	//private static Connection connect;
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
     private ConnectionMySQL() {}
-=======
 	private static Connection connect;
-	
->>>>>>> parent of 09d7b74... Add HikariCP
+
+	//private static Connection connect;
+    private ConnectionMySQL() {}
 	/**
 	 * Méthode qui va nous retourner notre instance
-	 * et la créer si elle n'existe pas...
+	 * et la créer si elle n'existe pas.
 	 * @return 
+	 * @throws SQLException 
 	 */
-<<<<<<< HEAD
-	public static Connection getInstance() throws SQLException{
-		return ds.getConnection();	
-<<<<<<< HEAD
-<<<<<<< HEAD
 	}
 	/*
 	public static Connection getInstance2() throws SQLException{
@@ -96,10 +84,6 @@ public class ConnectionMySQL {
  
         }
     }
-=======
-=======
->>>>>>> develop
-=======
 	public static Connection getInstance(){
 		if(connect == null){
 			try {
@@ -113,7 +97,7 @@ public class ConnectionMySQL {
 			}
 		}		
 		return connect;	
->>>>>>> parent of 09d7b74... Add HikariCP
-	}	
->>>>>>> develop
+	public static Connection getInstance() throws SQLException{
+		return ds.getConnection();	
+	}
 }
