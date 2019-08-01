@@ -1,6 +1,5 @@
 package com.excilys.training.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.excilys.training.model.Company;
@@ -9,6 +8,7 @@ import com.excilys.training.web.controller.dto.CompanyDto;
 import com.excilys.training.web.controller.mapper.CompanyMapper;
 
 public class CompanyService {
+<<<<<<< HEAD
 	/**
 	 * objet de type CompanyDao
 	 */
@@ -34,23 +34,18 @@ public class CompanyService {
 =======
 =======
 >>>>>>> develop
+=======
+	private CompanyDao company;
+
+	public CompanyService() {
+>>>>>>> parent of 09d7b74... Add HikariCP
 		super();
 		this.company = CompanyDao.getInstance();
 >>>>>>> develop
 	}
-	
-	/**
-	 * Permet de récupérer une Company de la BDD.
-	 * @param id
-	 * @return la Company ayant pour id la valeur de l'id mis en paramètre.
-	 */
 	public Company displayCompany(int id) {
 		return this.companyDao.find(id);
 	}
-	/**
-	 * Permet de récupérer toutes les Company de la BDD.
-	 * @return la liste des Company.
-	 */
 	public List<Company> displayAllCompany() {
 <<<<<<< HEAD
 		return this.companyDao.displayAll();
@@ -61,19 +56,10 @@ public class CompanyService {
 =======
 		return this.getCompany().displayAll();
 	}
-	
-	/**
-	 * 
-	 * @return la CompanyDao.  
-	 */
 	public CompanyDao getCompany() {
 		return company;
 	}
 
-	/**
-	 * Écrit une CompanyDao.
-	 * @param company
-	 */
 	public void setCompany(CompanyDao company) {
 		this.company = company;
 >>>>>>> develop

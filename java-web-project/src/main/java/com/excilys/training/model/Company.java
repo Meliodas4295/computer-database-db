@@ -3,6 +3,7 @@ package com.excilys.training.model;
 import java.util.Objects;
 
 public class Company {
+<<<<<<< HEAD
 	/**
 	 * l'id de la company.
 	 */
@@ -18,16 +19,13 @@ public class Company {
 =======
 =======
 >>>>>>> develop
+=======
+>>>>>>> parent of 09d7b74... Add HikariCP
 	private int id;
-	/**
-	 * le nom de la company
-	 */
 	private String name;
 	
-	/**
-	 * Constructeur vide.
-	 */
 	public Company() {}
+<<<<<<< HEAD
 	
 	/**
 <<<<<<< HEAD
@@ -47,20 +45,19 @@ public class Company {
 =======
 =======
 >>>>>>> develop
+=======
+>>>>>>> parent of 09d7b74... Add HikariCP
 	public Company(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 >>>>>>> develop
 	}
-	
-	/**
-	 * 
-	 * @return l'id de la company (int id)
-	 */
+
 	public int getId() {
 		return id;
 	}
+<<<<<<< HEAD
 	
 	/**
 <<<<<<< HEAD
@@ -121,14 +118,27 @@ public class Company {
 >>>>>>> develop
 =======
 >>>>>>> develop
+=======
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+>>>>>>> parent of 09d7b74... Add HikariCP
 	@Override
-	/**
-	 * Renvoie une chaine de caractère constituée des paramètres de la company.
-	 */
 	public String toString() {
 		return "Company [getId()=" + getId() + ", getName()=" + getName() + "]";
 	}
 	@Override
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	public int hashCode() {
@@ -149,6 +159,8 @@ public class Company {
 	 * Renvoie True si les deux objets sont des Company 
 	 * et s'ils ont le même id et name.
 	 */
+=======
+>>>>>>> parent of 09d7b74... Add HikariCP
 	public boolean equals(Object o) {
 		if(this == o) {
 >>>>>>> develop

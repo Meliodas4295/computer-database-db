@@ -1,7 +1,6 @@
 package com.excilys.training.web.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -21,6 +20,7 @@ import com.excilys.training.web.controller.mapper.ComputerMapper;
 
 public class AddComputer extends HttpServlet {
 	
+<<<<<<< HEAD
 	private CompanyService companyService;
 	private ComputerService computerService;
 <<<<<<< HEAD
@@ -43,6 +43,11 @@ public class AddComputer extends HttpServlet {
 =======
 >>>>>>> develop
 	}
+=======
+	private CompanyService companyService = new CompanyService();
+	private ComputerService computerService = new ComputerService();
+	
+>>>>>>> parent of 09d7b74... Add HikariCP
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		      throws ServletException, IOException {
 		
@@ -55,11 +60,16 @@ public class AddComputer extends HttpServlet {
 	    computerService.createNewComputer(this.computerMapper.computerDtoToComputer(computerDto.build()));
 =======
 	    ComputerDto computerDto = new ComputerDto(name, introduced, discontinued, companyId );
+<<<<<<< HEAD
   		computerService.createNewComputer(computerDto);
 <<<<<<< HEAD
 >>>>>>> develop
 =======
 >>>>>>> develop
+=======
+  		ComputerService computer = new ComputerService();
+  		computer.createNewComputer(computerDto);
+>>>>>>> parent of 09d7b74... Add HikariCP
   		ServletContext context = getServletContext();
   	    RequestDispatcher rd = context.getRequestDispatcher("/DashboardServlet");
   	    rd.forward(request, response);

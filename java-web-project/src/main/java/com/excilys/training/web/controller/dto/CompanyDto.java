@@ -7,6 +7,7 @@ import com.excilys.training.model.Company;
 public class CompanyDto {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/**
 	 * l'id de la classe CompanyDto.
@@ -22,11 +23,11 @@ public class CompanyDto {
 	/**
 	 * l'id de la classe CompanyDto.
 	 */
+=======
+>>>>>>> parent of 09d7b74... Add HikariCP
 	int id;
-	/**
-	 * le nom de la classe CompanyDto
-	 */
 	String name;
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> develop
 =======
@@ -45,20 +46,18 @@ public class CompanyDto {
 =======
 =======
 >>>>>>> develop
+=======
+>>>>>>> parent of 09d7b74... Add HikariCP
 	public CompanyDto(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 >>>>>>> develop
 	}
-	
-	/**
-	 * 
-	 * @return l'id de la CompanyDto.
-	 */
 	public int getId() {
 		return id;
 	}
+<<<<<<< HEAD
 	
 	/**
 <<<<<<< HEAD
@@ -121,14 +120,18 @@ public class CompanyDto {
 	 * Écrit le nom de la CompanyDto.
 	 * @param name
 	 */
+=======
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+>>>>>>> parent of 09d7b74... Add HikariCP
 	public void setName(String name) {
 		this.name = name;
 	}
 	@Override
-	/**
-	 * Renvoie True si les deux objets sont des CompanyDto 
-	 * et s'ils ont le même id et name.
-	 */
 	public boolean equals(Object o) {
 		if(this == o) {
 >>>>>>> develop

@@ -1,7 +1,6 @@
 package com.excilys.training.web.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -20,6 +19,7 @@ import com.excilys.training.web.controller.mapper.ComputerMapper;
 
 public class EditComputer extends HttpServlet {
 	
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	/**
@@ -52,6 +52,10 @@ public class EditComputer extends HttpServlet {
 		// TODO Auto-generated constructor stub
 >>>>>>> develop
 	}
+=======
+	private CompanyService companyService = new CompanyService();
+	private ComputerService computerService = new ComputerService();
+>>>>>>> parent of 09d7b74... Add HikariCP
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -74,11 +78,16 @@ public class EditComputer extends HttpServlet {
   		computerService.updateComputer(this.computerMapper.computerDtoToComputer(computerDto.build()));
 =======
 	    ComputerDto computerDto = new ComputerDto(Integer.parseInt(id),name, introduced, discontinued, companyId );
+<<<<<<< HEAD
   		computerService.updateComputer(computerDto);
 <<<<<<< HEAD
 >>>>>>> develop
 =======
 >>>>>>> develop
+=======
+	    ComputerService computer = new ComputerService();
+  		computer.updateComputer(computerDto);
+>>>>>>> parent of 09d7b74... Add HikariCP
   		ServletContext context = getServletContext();
   	    RequestDispatcher rd = context.getRequestDispatcher("/DashboardServlet");
   	    rd.forward(req, resp);

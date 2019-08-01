@@ -1,7 +1,6 @@
 package com.excilys.training.persistence;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 
@@ -9,14 +8,8 @@ import com.excilys.training.jdbc.ConnectionMySQL;
 
 public abstract class Dao<T> {
 	
-	public Connection connect;
+	public Connection connect = ConnectionMySQL.getInstance();
 	
-	
-	public Dao() throws SQLException{
-		super();
-		this.connect = ConnectionMySQL.getInstance();
-	}
-
 	public abstract T find(int id);
 	
 	public abstract List<T> displayPagination(int limit, int offset);

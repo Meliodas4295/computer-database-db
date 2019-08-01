@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Computer {
+<<<<<<< HEAD
 	/**
 	 * Id du Computer
 	 */
@@ -33,28 +34,16 @@ public class Computer {
 =======
 =======
 >>>>>>> develop
+=======
+>>>>>>> parent of 09d7b74... Add HikariCP
 	private int id;
-	/**
-	 * Nom du Computer
-	 */
 	private String name;
-	/**
-	 * La date d'introduction du Computer sur le marché.
-	 */
 	private LocalDateTime introduced;
-	/**
-	 * La date où le Computer a été arrêté.
-	 */
 	private LocalDateTime discontinued;
-	/**
-	 * L'id de la Company qui possède le Computer.
-	 */
 	private Integer company_id;
 	
-	/**
-	 * Constructeur vide.
-	 */
 	public Computer() {}
+<<<<<<< HEAD
 	/**
 	 * Constructeur ne dépendant pas de l'id.
 <<<<<<< HEAD
@@ -79,20 +68,14 @@ public class Computer {
 =======
 =======
 >>>>>>> develop
+=======
+>>>>>>> parent of 09d7b74... Add HikariCP
 	public Computer(String name, LocalDateTime introduced, LocalDateTime discontinued, Integer company_id) {
 		this.name = name;
 		this.introduced = introduced;
 		this.discontinued = discontinued;
 		this.company_id = company_id;
 	}
-	/**
-	 * Constructeur de la class Computer.
-	 * @param id
-	 * @param name
-	 * @param introduced
-	 * @param discontinued
-	 * @param company_id
-	 */
 	public Computer(int id, String name, LocalDateTime introduced, LocalDateTime discontinued, Integer company_id) {
 		super();
 		this.id = id;
@@ -101,6 +84,7 @@ public class Computer {
 		this.discontinued = discontinued;
 		this.company_id = company_id;
 	}
+<<<<<<< HEAD
 	/**
 <<<<<<< HEAD
 >>>>>>> develop
@@ -246,37 +230,55 @@ public class Computer {
 	 * Écrit la date d'arrêt du Computer.
 	 * @param id
 	 */
+=======
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public LocalDateTime getIntroduced() {
+		return introduced;
+	}
+
+	public void setIntroduced(LocalDateTime introduced) {
+		this.introduced = introduced;
+	}
+
+	public LocalDateTime getDiscontinued() {
+		return discontinued;
+	}
+
+>>>>>>> parent of 09d7b74... Add HikariCP
 	public void setDiscontinued(LocalDateTime discontinued) {
 		this.discontinued = discontinued;
 	}
-	/**
-	 * 
-	 * @return l'id de la Company possédant le Computer (Integer company_id).
-	 */
+
 	public Integer getCompany_id() {
 		return company_id;
 	}
-	/**
-	 * Écrit l'id de la Company possédant le Computer.
-	 * @param id
-	 */
+
 	public void setCompany_id(Integer company_id) {
 		this.company_id = company_id;
 	}
 
 	@Override
-	/**
-	 * Retourne une chaîne de caractère composée des paramètres du Computer.
-	 */
 	public String toString() {
 		return "Computer [getId()=" + getId() + ", getName()=" + getName() + ", getIntroduced()=" + getIntroduced()
 				+ ", getDiscontinued()=" + getDiscontinued() + ", getCompany_id()=" + getCompany_id() + "]";
 	}
 	@Override
-	/**
-	 * Renvoie True si les deux objets sont des Company 
-	 * et s'ils ont le même id, name, introduced, discontinued et company_id.
-	 */
 	public boolean equals(Object o) {
 		if(this == o) {
 >>>>>>> develop

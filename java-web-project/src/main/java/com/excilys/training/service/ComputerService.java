@@ -1,6 +1,5 @@
 package com.excilys.training.service;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,10 +9,8 @@ import com.excilys.training.web.controller.dto.ComputerDto;
 import com.excilys.training.web.controller.mapper.ComputerMapper;
 
 public class ComputerService {
-	/**
-	 * objet de type ComputerDao
-	 */
 	private ComputerDao computerDao;
+<<<<<<< HEAD
 	/**
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -34,9 +31,15 @@ public class ComputerService {
 	 * @throws SQLException 
 	 */
 	public ComputerService() throws SQLException {
+=======
+	private ComputerMapper computerMapper;
+
+	public ComputerService() {
+>>>>>>> parent of 09d7b74... Add HikariCP
 		super();
 		this.computerDao = ComputerDao.getInstance();
 	}
+<<<<<<< HEAD
 	
 	/**
 	 * Permet de récupérer un Computer de la BDD.
@@ -60,28 +63,22 @@ public class ComputerService {
 				System.out.print(id);
 			}
 		}
+=======
+	public Computer displayComputer(int id) {
+>>>>>>> parent of 09d7b74... Add HikariCP
 		return this.getComputerDao().find(id);
 >>>>>>> develop
 	}
 	
-	/**
-	 * Permet de récupérer toutes les Computer de la BDD.
-	 * @return la liste des Computer.
-	 */
 	public List<Computer> displayAllcomputer() {
 		return this.computerDao.displayAll();
 	}
 	
-	/**
-	 * Permet de récupérer toutes les Computer paginées de la BDD.
-	 * @param limit
-	 * @param offset
-	 * @return une liste paginée des Computer.
-	 */
 	public List<Computer> displayComputersPagination(int limit, int offset){
 		return this.computerDao.displayPagination(limit, offset);
 	}
 	
+<<<<<<< HEAD
 	/**
 	 * Permet de créer un Computer dans la BDD.
 	 * @param c
@@ -93,19 +90,18 @@ public class ComputerService {
 =======
 =======
 >>>>>>> develop
+=======
+>>>>>>> parent of 09d7b74... Add HikariCP
 	public void createNewComputer(ComputerDto c) {
 		this.getComputerDao().create(this.getComputerMapper().computerDtoToComputer(c));
 >>>>>>> develop
 	}
 	
-	/**
-	 * Permet d'effacer un Computer dans la BDD.
-	 * @param id
-	 */
 	public void deleteComputer(int id) {
 		this.computerDao.delete(id);
 	}
 	
+<<<<<<< HEAD
 	/**
 	 * Permet de modifier un Computer dans la BDD.
 	 * @param c
@@ -117,38 +113,22 @@ public class ComputerService {
 =======
 =======
 >>>>>>> develop
+=======
+>>>>>>> parent of 09d7b74... Add HikariCP
 	public void updateComputer(ComputerDto c) {
 		this.getComputerDao().update(this.getComputerMapper().computerDtoToComputerWithId(c));
 	}
 
-	/**
-	 * 
-	 * @return la ComputerDao.
-	 */
 	public ComputerDao getComputerDao() {
 		return computerDao;
 	}
 
-	/**
-	 * Écrit un ComputerDao.
-	 * @param computer
-	 */
 	public void setComputerDao(ComputerDao computer) {
 		this.computerDao = computer;
 	}
-	
-	/**
-	 * 
-	 * @return Le ComputerMapper.
-	 */
 	public ComputerMapper getComputerMapper() {
 		return computerMapper;
 	}
-	
-	/**
-	 * Écrit une ComputerDao.
-	 * @param computerMapper
-	 */
 	public void setComputerMapper(ComputerMapper computerMapper) {
 		this.computerMapper = computerMapper;
 >>>>>>> develop
