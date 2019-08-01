@@ -92,7 +92,7 @@
                         	</td>
                         	<td><c:out value= "${item.introduced}"/></td>
                         	<td><c:out value= "${item.discontinued}"/></td>
-                        	<td><c:out value= "${item.company_id}"/></td>
+                        	<td><c:out value= "${item.companyId.id}"/></td>
                     	</tr>
       				</c:forEach>
                 </tbody>
@@ -109,11 +109,6 @@
                       <span aria-hidden="true">&laquo;</span>
                   </a>
               </li>
-              <!--li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li-->
               <c:forEach var = "i" begin = "1" end = "${nbPages}">
          			<li><a href="${pageContext.request.contextPath}/DashboardServlet?&page=${i}"><c:out value="${i}">${i}</c:out></a></li>
       			</c:forEach>

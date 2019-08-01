@@ -3,92 +3,145 @@ package com.excilys.training.persistence;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.excilys.training.jdbc.ConnectionMySQL;
 import com.excilys.training.model.Company;
+import com.excilys.training.model.Company.CompanyBuilder;
 
-public class CompanyDao extends Dao<Company>{
+public class CompanyDao{
+	private Connection connect;
+	private ComputerDao computerDao;
 	
-	private static CompanyDao instance;
-	private final String SQL_FIND_ALL = "SELECT * FROM company";
-	private final String SQL_FIND_ALL_PAGINATION = "SELECT * FROM company LIMIT ? OFFSET ?";
-	private final String SQL_FIND_BY_ID = "SELECT * FROM company WHERE id = ? ";
+	private CompanyDao() throws SQLException {
+		super();
+		this.connect = ConnectionMySQL.getInstance();
+		this.computerDao = ComputerDao.getInstance();
+	}
 
-	public static CompanyDao getInstance() {
+	/**
+	 * Instance de la classe CompanyDao.
+	 */
+	private static CompanyDao instance;
+	
+	private static final String SQL_DELETE = "DELETE FROM company WHERE id = ?";
+	/**
+	 * Requête SQL permettant de sélectionner tout les éléments de la table company.
+	 */
+	private static final String SQL_FIND_ALL = "SELECT id, name FROM company";
+	/**
+	 * Requête SQL permettant de sélectionner des éléments compris entre deux valeurs de la table company.
+	 */
+	private static final String SQL_FIND_ALL_PAGINATION = "SELECT id, name FROM company LIMIT ? OFFSET ?";
+	/**
+	 * Requête SQL permettant de sélectionner un élément la table company.
+	 */
+	private static final String SQL_FIND_BY_ID = "SELECT id, name FROM company WHERE id = ? ";
+	/**
+	 * 
+	 * @return l'instance de la classe CompanyDao.
+	 * Si l'instance est null, créer une nouvelle instance.
+	 * @throws SQLException 
+	 */
+	public static CompanyDao getInstance() throws SQLException {
 	    if (instance == null) {
 	      instance = new CompanyDao();
 	    }
 	    return instance;
 	  }
-
+	
+	/**
+	 * Permet de trouver une Company dans la base de données.
+	 * @param id
+	 * @return la Company trouver.
+	 */
 	public Company find(int id) {
-		// TODO Auto-generated method stub
-		Company c= new Company();
-		ResultSet résultats = null;
+		CompanyBuilder company= new Company.CompanyBuilder(id);
+		ResultSet resultats = null;
 		try {
 			PreparedStatement stmt = this.connect.prepareStatement(SQL_FIND_BY_ID);
 			stmt.setInt(1, id);
-			résultats = stmt.executeQuery();
-			ResultSetMetaData rsmd;
-			rsmd = résultats.getMetaData();
-			int nbCols = rsmd.getColumnCount();
-			while(résultats.next()) {
-				c = new Company(id, résultats.getString("name"));
-				//for(int i = 1;i<=nbCols;i++) {
-				//	System.out.print(résultats.getString(i) + "\n");
-				//}
+			resultats = stmt.executeQuery();
+			while(resultats.next()) {
+				company.name(resultats.getString("name"));
 			}
-			résultats.close();
+			resultats.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			//traitement de l'exception
 			}
-		return c;
+		return company.build();
 	}
 
 	
-
+	/**
+	 * Permet de créer une nouvelle company dans la base de données.
+	 * (PS: Classe non implémenter)
+	 * @param obj (Company)
+	 * @return la Company créer.
+	 */
 	public Company create(Company obj) {
 		return obj;
-		// TODO Auto-generated method stub
 		
 	}
-
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public Company update(Company obj) {
-		return obj;
-		// TODO Auto-generated method stub
-		
-	}
-	public List<Company> displayAll(){
-		List<Company> c = new ArrayList<Company>();
-		ResultSet résultats = null;
+	/**
+	 * Permet d'effacer une Company de la base de données.
+	 * @param id
+	 */
+	public void delete(Company company) {
 		try {
-			Statement stmt = this.connect.createStatement();
-			résultats = stmt.executeQuery(SQL_FIND_ALL);
-			while(résultats.next()) {
-				Company company = new Company(résultats.getInt("id"), résultats.getString("name"));
-				c.add(company);
-			}
-			résultats.close();
+			this.computerDao.deleteByCompany(company);
+			PreparedStatement stmt = this.connect.prepareStatement(SQL_DELETE);
+			stmt.setInt(1, company.getId());
+			stmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			//traitement de l'exception
 			}
-		return c;
+	}
+	/**
+	 * Permet de modifier une Company de la base de données.
+	 * (PS: Classe non implémenter)
+	 * @param obj (Company)
+	 * @return la Company modifier.
+	 */
+	public Company update(Company obj) {
+		return obj;
+		
 	}
 	
+	/**
+	 * Permet de visualiser les Company de la base de données.
+	 * @return liste des Company de la base de données.
+	 */
+	public List<Company> displayAll(){
+		List<Company> companyList = new ArrayList<Company>();
+		ResultSet resultats = null;
+		try {
+			Statement stmt = this.connect.createStatement();
+			resultats = stmt.executeQuery(SQL_FIND_ALL);
+			while(resultats.next()) {
+				CompanyBuilder company = new Company.CompanyBuilder(resultats.getInt("id")).name(resultats.getString("name"));
+				companyList.add(company.build());
+			}
+			resultats.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return companyList;
+	}
+	
+	/**
+	 * Permet de visualiser les Company paginer de la base de données.
+	 * (PS: Classe non implémenter)
+	 * @param limit (int) nombre de valeur dans la page paginée. 
+	 * @param offset (int) valeur de départ de la pagination.
+	 * @return la liste des Company paginée.
+	 */
 	public List<Company> displayPagination(int limit, int offset) {
-		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 }

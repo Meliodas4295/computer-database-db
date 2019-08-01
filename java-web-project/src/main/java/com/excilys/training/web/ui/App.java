@@ -7,34 +7,27 @@ import java.time.Month;
 import java.util.List;
 import java.util.Scanner;
 
+import com.excilys.training.model.Company;
 import com.excilys.training.model.Computer;
+import com.excilys.training.model.Computer.ComputerBuilder;
 import com.excilys.training.persistence.CompanyDao;
 import com.excilys.training.persistence.ComputerDao;
 import com.excilys.training.service.CompanyService;
 import com.excilys.training.service.ComputerService;
+import com.excilys.training.web.controller.dto.CompanyDto;
+import com.excilys.training.web.controller.dto.CompanyDto.CompanyDtoBuilder;
 import com.excilys.training.web.controller.dto.ComputerDto;
+import com.excilys.training.web.controller.dto.ComputerDto.ComputerDtoBuilder;
+import com.excilys.training.web.controller.mapper.CompanyMapper;
 import com.excilys.training.web.controller.mapper.ComputerMapper;
 
 
 public class App{
 	
-	
 
 	public static void main(String[] args) {
-		
-		String url = "jdbc:mysql://localhost:3306/computer-database-db";
-		String user = "admincdb";
-		String passwd = "qwerty1234";
-		String driver = "com.mysql.cj.jdbc.Driver";
-		Connection conn;
-		
-		
-	
+
 		try {
-		      Class.forName(driver);
-		      System.out.println("Driver O.K.");
-		      conn = DriverManager.getConnection(url, user, passwd);
-		      System.out.println("Connexion effective !");
 		      String choix;
 		      do {
 			      System.out.println("-------------------------------");
@@ -45,19 +38,22 @@ public class App{
 			      System.out.println("3- Créer un nouvel ordinateur");
 			      System.out.println("4- Effacer un ordinateur");
 			      System.out.println("5- Modifier un ordinateur");
+			      System.out.println("6- Effacer une entreprise");
 			      Scanner sc = new Scanner(System.in);
 			      System.out.print("Veuillez choisir une action (un nombre entre 1 et 5) :");
 			      int action = sc.nextInt();
 			      if(action==1) {
 			      	  CompanyService companyService = new CompanyService();
-			      	  companyService.displayAllCompany();
+			      	  List<Company> companyList =companyService.displayAllCompany();
+			      	  for(int i = 0;i<companyList.size();i++) {
+			      		  System.out.println(companyList.get(i));
+			      	  }
 			      }
 			      else if(action==2) {
-			    	  ComputerDao computerDao = new ComputerDao();
 			      	  ComputerService computerService = new ComputerService();
-			      	  List<Computer> comp = computerService.displayAllcomputer();
-			      	  for(int i = 0;i<comp.size();i++) {
-			      		  System.out.println(comp.get(i));
+			      	  List<Computer> computerList = computerService.displayAllcomputer();
+			      	  for(int i = 0;i<computerList.size();i++) {
+			      		  System.out.println(computerList.get(i));
 			      	  }
 			      }
 			      else {
@@ -77,30 +73,31 @@ public class App{
 			      	  System.out.print("Veuillez insérer l'id de l'entreprise:");
 			      	  String company_id = sc50.nextLine();
 			      	  
-			      	ComputerDto computerDto = new ComputerDto(id, name, introduced, discontinued, company_id );
-		      		ComputerMapper computerMapper = new ComputerMapper();
-		      		Computer computer = new Computer(computerDto.getId(), computerDto.getName(),computerMapper.convert(computerDto.getIntroduced()), computerMapper.convert(computerDto.getDiscontinued()), computerMapper.convertCompanyId(computerDto.getCompany_id()));
+			      	ComputerDtoBuilder computerDto = new ComputerDto.ComputerDtoBuilder(name, introduced, discontinued, company_id ).id(id);
+			      	CompanyDto company = new CompanyDto.CompanyDtoBuilder(Integer.parseInt(company_id)).build();
+			      	ComputerMapper computerMapper = ComputerMapper.getInstance();
+			      	CompanyMapper companyMapper = CompanyMapper.getInstance();
 				      switch(action) {
 				      	
 				      	case 3:
-				      		
-				      		ComputerDao computerDaoCreate = new ComputerDao();
 				      		ComputerService computerServiceCreate = new ComputerService();
-				      		computerServiceCreate.createNewComputer(computerDto);
+				      		computerServiceCreate.createNewComputer(computerMapper.computerDtoToComputer(computerDto.build()));
 				      		break;
 				      	case 4:
-				      		ComputerDao computerDaoDelete = new ComputerDao();
 				      		ComputerService computerServiceDelete = new ComputerService();
-				      		computerServiceDelete.deleteComputer(computer.getId());
+				      		computerServiceDelete.deleteComputer(computerDto.build().getId());
 				      		break;
 				      		
 				      	case 5:
-				      		ComputerDao computerDaoUpdate = new ComputerDao();
 				      		ComputerService computerServiceUpdate = new ComputerService();
-				      		computerServiceUpdate.updateComputer(computerDto);
+				      		computerServiceUpdate.updateComputer(computerMapper.computerDtoToComputer(computerDto.build()));
 				      		break;
+				      	case 6:
+				      		CompanyService companyServiceDelete = new CompanyService();
+				      		companyServiceDelete.deleteCompany(companyMapper.convertCompanyDtoToCompany(company));
 				      		
 				      }
+				      
 			      
 			      }
 		      Scanner scan = new Scanner(System.in);

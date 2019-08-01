@@ -1,6 +1,7 @@
 package com.excilys.training.web.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,16 +15,28 @@ import com.excilys.training.model.Company;
 import com.excilys.training.service.CompanyService;
 import com.excilys.training.service.ComputerService;
 import com.excilys.training.web.controller.dto.ComputerDto;
+import com.excilys.training.web.controller.dto.ComputerDto.ComputerDtoBuilder;
+import com.excilys.training.web.controller.mapper.ComputerMapper;
 
 public class EditComputer extends HttpServlet {
 	
-	private CompanyService companyService = new CompanyService();
-	private ComputerService computerService = new ComputerService();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private CompanyService companyService;
+	private ComputerService computerService;
+	private ComputerMapper computerMapper;
+	
+	public EditComputer() throws SQLException {
+		super();
+		this.companyService = new CompanyService();
+		this.computerService = new ComputerService();
+		this.computerMapper = ComputerMapper.getInstance();
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//super.doGet(req, resp);
 		List<Company> companies = companyService.displayAllCompany();
 		req.setAttribute("companies", companies);
 		String id  = req.getParameter("computerId");
@@ -33,16 +46,13 @@ public class EditComputer extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//super.doPost(req, resp);
 		String id  = req.getParameter("computerId");
 		String name = req.getParameter("computerName");
 	    String introduced = req.getParameter("introduced");
 	    String discontinued = req.getParameter("discontinued");
 	    String companyId = req.getParameter("companyId");
-	    ComputerDto computerDto = new ComputerDto(Integer.parseInt(id),name, introduced, discontinued, companyId );
-	    ComputerService computer = new ComputerService();
-  		computer.updateComputer(computerDto);
+	    ComputerDtoBuilder computerDto = new ComputerDto.ComputerDtoBuilder(name, introduced, discontinued, companyId ).id(Integer.parseInt(id));
+  		computerService.updateComputer(this.computerMapper.computerDtoToComputer(computerDto.build()));
   		ServletContext context = getServletContext();
   	    RequestDispatcher rd = context.getRequestDispatcher("/DashboardServlet");
   	    rd.forward(req, resp);
