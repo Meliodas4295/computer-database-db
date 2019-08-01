@@ -15,5 +15,7 @@ public interface ComputerService {
 	List<Computer> displayComputersPagination(int limit, int offset);
 
 	List<Computer> displayAllcomputer();
+	
+	List<Computer> SearchComputerByName(String searchName, String lettre, int limit, int offset);
 
 }

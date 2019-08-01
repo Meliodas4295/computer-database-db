@@ -28,22 +28,43 @@ public class DashboardServlet extends HttpServlet {
 		    		AbstractServlet.getServiceFactory().getComputerService().deleteComputer(Integer.parseInt(valeurs[i]));
 		    	}
 		    }
-		    int nombreValeurParPage = 50;
-			List<Computer> computers = AbstractServlet.getServiceFactory().getComputerService().displayAllcomputer();
-			int queryPage = req.getParameter("page") != null ? Integer.parseInt(req.getParameter("page")) : 1;
-			List<Computer> computerPage = AbstractServlet.getServiceFactory().getComputerService().displayComputersPagination(nombreValeurParPage, (queryPage-1)*nombreValeurParPage);
-		    req.setAttribute("list", computerPage);
-		    int nbPc = computers.size();
-		    int pageSize = nombreValeurParPage;
-			int divider = pageSize != 0 ? pageSize : 1;
-		    int nbPage = nbPc / divider;
-		    req.setAttribute("size", nbPc);
-		    if(nbPc%divider==0) {
-		    	req.setAttribute("nbPages", nbPage);
-		    }
-		    else {
-		    	req.setAttribute("nbPages", nbPage+1);
-		    }
+		    String search = req.getParameter("search");
+			List<Computer> searchComputer = new ArrayList<Computer>();
+			if(search!=null && search!=""){
+				int nombreValeurParPage = 1;
+		    	int queryPage = req.getParameter("page") != null ? Integer.parseInt(req.getParameter("page")) : 1;
+		    	searchComputer = AbstractServlet.getServiceFactory().getComputerService().SearchComputerByName(search, search ,nombreValeurParPage, (queryPage-1)*nombreValeurParPage);
+		    	req.setAttribute("list", searchComputer);
+		    	int nbPc = searchComputer.size();
+			    int pageSize = searchComputer.size();
+			    int divider = pageSize != 0 ? pageSize : 1;
+			    int nbPage = nbPc / divider;
+			    req.setAttribute("size", nbPc);
+			    if(nbPc%divider==0) {
+			    	req.setAttribute("nbPages", nbPage);
+			    }
+			    else {
+			    	req.setAttribute("nbPages", nbPage+1);
+			    }
+			}
+			else {
+			    int nombreValeurParPage = 50;
+				List<Computer> computers = AbstractServlet.getServiceFactory().getComputerService().displayAllcomputer();
+				int queryPage = req.getParameter("page") != null ? Integer.parseInt(req.getParameter("page")) : 1;
+				List<Computer> computerPage = AbstractServlet.getServiceFactory().getComputerService().displayComputersPagination(nombreValeurParPage, (queryPage-1)*nombreValeurParPage);
+			    req.setAttribute("list", computerPage);
+			    int nbPc = computers.size();
+			    int pageSize = nombreValeurParPage;
+				int divider = pageSize != 0 ? pageSize : 1;
+			    int nbPage = nbPc / divider;
+			    req.setAttribute("size", nbPc);
+			    if(nbPc%divider==0) {
+			    	req.setAttribute("nbPages", nbPage);
+			    }
+			    else {
+			    	req.setAttribute("nbPages", nbPage+1);
+			    }
+			}
 		    this.getServletContext().getRequestDispatcher("/dashboard.jsp").forward(req, resp);
 			
 	   }

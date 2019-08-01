@@ -48,4 +48,8 @@ public class ComputerServiceImpl extends AbstractService implements ComputerServ
 	public void updateComputer(Computer c) {
 		getDaoFactory().getComputerDao().update(c);
 	}
+	
+	public List<Computer> SearchComputerByName(String searchName, String lettre, int limit, int offset) {
+		return getDaoFactory().getComputerDao().SearchByNameAsc(searchName, lettre, limit, offset);
+	}
 }

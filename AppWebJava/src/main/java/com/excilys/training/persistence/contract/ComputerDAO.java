@@ -1,6 +1,5 @@
 package com.excilys.training.persistence.contract;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.excilys.training.model.Company;
@@ -21,6 +20,8 @@ public interface ComputerDAO {
 	Computer find(int id);
 
 	void deleteByCompany(Company company);
+	
+	List<Computer> SearchByNameAsc(String searchName, String lettre, int limit, int offset);
 	
 
 }

@@ -262,6 +262,34 @@ public class ComputerDAOImpl implements ComputerDAO{
 			}
 		return computerList;
 	}
+	
+	public List<Computer> SearchByNameAsc(String searchByName, String searchByCompany, int limit, int offset) {
+		List<Computer> computerList = new ArrayList<Computer>();
+		ResultSet resultats = null;
+		try {
+			PreparedStatement stmt = connection.prepareStatement(SQL_PAGE_NAME_ASC);
+			stmt.setString(1, '%'+searchByName+'%');
+			stmt.setString(2, '%'+searchByCompany+'%');
+			stmt.setInt(3, limit);
+			stmt.setInt(4, offset);
+			resultats = stmt.executeQuery();
+			while(resultats.next()) {
+				int id = resultats.getInt("id");
+				String name = resultats.getString("name");
+				LocalDateTime introduced = resultats.getTimestamp("introduced")!=null?resultats.getTimestamp("introduced").toLocalDateTime():null;
+				LocalDateTime discontinued = resultats.getTimestamp("discontinued")!=null?resultats.getTimestamp("discontinued").toLocalDateTime():null;
+				Company companyId = resultats.getInt("company_id")!=0?new Company.CompanyBuilder(resultats.getInt("company_id")).name(resultats.getString("company.name")).build():null;
+				ComputerBuilder computer= new Computer.ComputerBuilder().id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
+				computerList.add(computer.build());
+			}
+			resultats.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return computerList;
+	}
+	
+	
 
 
 }
