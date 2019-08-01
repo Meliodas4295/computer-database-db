@@ -32,8 +32,13 @@ public class CompanyDaoTest extends TestCase {
 	public void testDisplayAll() {
 		List<Company> th = new ArrayList<Company>();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		th.add(new Company.CompanyBuilder(30).name("Sanyo").build());
 		List<Company> pr = companyDao.displayAll();
+=======
+		th.add(new Company(30,"Sanyo"));
+		List<Company> pr = c.displayAll();
+>>>>>>> develop
 =======
 		th.add(new Company(30,"Sanyo"));
 		List<Company> pr = c.displayAll();

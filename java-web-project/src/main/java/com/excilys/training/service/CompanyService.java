@@ -13,7 +13,11 @@ public class CompanyService {
 	 * objet de type CompanyDao
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private CompanyDao companyDao;
+=======
+	private CompanyDao company;
+>>>>>>> develop
 =======
 	private CompanyDao company;
 >>>>>>> develop
@@ -25,8 +29,11 @@ public class CompanyService {
 	 */
 	public CompanyService() throws SQLException {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		this.companyDao = CompanyDao.getInstance();
 =======
+=======
+>>>>>>> develop
 		super();
 		this.company = CompanyDao.getInstance();
 >>>>>>> develop

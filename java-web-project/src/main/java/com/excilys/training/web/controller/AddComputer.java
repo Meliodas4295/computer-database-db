@@ -24,7 +24,10 @@ public class AddComputer extends HttpServlet {
 	private CompanyService companyService;
 	private ComputerService computerService;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private ComputerMapper computerMapper;
+=======
+>>>>>>> develop
 =======
 >>>>>>> develop
 	
@@ -33,7 +36,10 @@ public class AddComputer extends HttpServlet {
 		this.companyService = new CompanyService();
 		this.computerService = new ComputerService();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		this.computerMapper = ComputerMapper.getInstance();
+=======
+>>>>>>> develop
 =======
 >>>>>>> develop
 	}
@@ -50,6 +56,9 @@ public class AddComputer extends HttpServlet {
 =======
 	    ComputerDto computerDto = new ComputerDto(name, introduced, discontinued, companyId );
   		computerService.createNewComputer(computerDto);
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
   		ServletContext context = getServletContext();
   	    RequestDispatcher rd = context.getRequestDispatcher("/DashboardServlet");

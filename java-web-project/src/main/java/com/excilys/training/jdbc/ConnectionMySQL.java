@@ -23,7 +23,10 @@ public class ConnectionMySQL {
         ds = new HikariDataSource( config );
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> develop
  
 	//private static String url = "jdbc:mysql://localhost:3306/computer-database-db";
 	/**
@@ -42,6 +45,9 @@ public class ConnectionMySQL {
 	 * Objet Connection
 	 */
 	//private static Connection connect;
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
     private ConnectionMySQL() {}
 	/**
@@ -52,6 +58,7 @@ public class ConnectionMySQL {
 	 */
 	public static Connection getInstance() throws SQLException{
 		return ds.getConnection();	
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 	/*
@@ -84,6 +91,8 @@ public class ConnectionMySQL {
         }
     }
 =======
+=======
+>>>>>>> develop
 	}	
 >>>>>>> develop
 }

@@ -24,6 +24,10 @@ public class DashboardServlet extends HttpServlet {
 		super();
 		this.computerService = new ComputerService();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		// TODO Auto-generated constructor stub
+>>>>>>> develop
 =======
 		// TODO Auto-generated constructor stub
 >>>>>>> develop
@@ -42,6 +46,10 @@ public class DashboardServlet extends HttpServlet {
 		    	searchComputer.add(computerService.displayComputer(search));
 		    	req.setAttribute("list", searchComputer);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		    	System.out.println(search);
+>>>>>>> develop
 =======
 		    	System.out.println(search);
 >>>>>>> develop
@@ -60,6 +68,7 @@ public class DashboardServlet extends HttpServlet {
 		    }
 		    else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    	int nombreValeurParPage = 50;
 				List<Computer> computers = computerService.displayAllcomputer();
 				int queryPage = req.getParameter("page") != null ? Integer.parseInt(req.getParameter("page")) : 1;
@@ -68,12 +77,17 @@ public class DashboardServlet extends HttpServlet {
 			    int nbPc = computers.size();
 			    int pageSize = nombreValeurParPage;
 =======
+=======
+>>>>>>> develop
 				List<Computer> computers = computerService.displayAllcomputer();
 				int queryPage = req.getParameter("page") != null ? Integer.parseInt(req.getParameter("page")) : 1;
 				List<Computer> computerPage = computerService.displayComputersPagination(25, (queryPage-1)*25);
 			    req.setAttribute("list", computerPage);
 			    int nbPc = computers.size();
 			    int pageSize = computerPage.size();
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 			    int divider = pageSize != 0 ? pageSize : 1;
 			    int nbPage = nbPc / divider;

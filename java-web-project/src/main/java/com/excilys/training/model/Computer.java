@@ -8,6 +8,7 @@ public class Computer {
 	 * Id du Computer
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final int id;
 	/**
 	 * Nom du Computer
@@ -30,6 +31,8 @@ public class Computer {
 	 * Constructeur de la class Computer.
 	 * @param id
 =======
+=======
+>>>>>>> develop
 	private int id;
 	/**
 	 * Nom du Computer
@@ -54,12 +57,16 @@ public class Computer {
 	public Computer() {}
 	/**
 	 * Constructeur ne dépendant pas de l'id.
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 	 * @param name
 	 * @param introduced
 	 * @param discontinued
 	 * @param company_id
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	private Computer(ComputerBuilder builder) {
 		this.id = builder.id;
@@ -70,6 +77,8 @@ public class Computer {
 	}
 	/**
 =======
+=======
+>>>>>>> develop
 	public Computer(String name, LocalDateTime introduced, LocalDateTime discontinued, Integer company_id) {
 		this.name = name;
 		this.introduced = introduced;
@@ -93,6 +102,9 @@ public class Computer {
 		this.company_id = company_id;
 	}
 	/**
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 	 * 
 	 * @return l'id du computer (int id).
@@ -102,7 +114,10 @@ public class Computer {
 	}
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> develop
 	 * Écrit l'id du Computer.
 	 * @param id
 	 */
@@ -110,6 +125,9 @@ public class Computer {
 		this.id = id;
 	}
 	/**
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 	 * 
 	 * @return le nom du computer (String name).
@@ -119,7 +137,10 @@ public class Computer {
 	}
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> develop
 	 * Écrit le nom du Computer.
 	 * @param id
 	 */
@@ -127,6 +148,9 @@ public class Computer {
 		this.name = name;
 	}
 	/**
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 	 * 
 	 * @return la date d'introduction du computer (LocalDateTime introduced).
@@ -136,7 +160,10 @@ public class Computer {
 	}
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> develop
 	 * Écrit la date d'introduction du Computer.
 	 * @param id
 	 */
@@ -144,6 +171,9 @@ public class Computer {
 		this.introduced = introduced;
 	}
 	/**
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 	 * 
 	 * @return la date d'arrêt du Computer (LocalDateTime discontinued).
@@ -152,6 +182,7 @@ public class Computer {
 		return discontinued;
 	}
 	/**
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * 
 	 * @return l'id de la Company possédant le Computer (Integer company_id).
@@ -210,6 +241,8 @@ public class Computer {
 	public boolean equals(Object obj) {
 		if (this == obj)
 =======
+=======
+>>>>>>> develop
 	 * Écrit la date d'arrêt du Computer.
 	 * @param id
 	 */

@@ -9,6 +9,7 @@ public class ComputerDto {
 	 * l'id du ComputerDto.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final int id;
 	/**
 	 * le nom du ComputerDto.
@@ -27,6 +28,8 @@ public class ComputerDto {
 	 */
 	private final String companyId;
 =======
+=======
+>>>>>>> develop
 	private int id;
 	/**
 	 * le nom du ComputerDto.
@@ -44,6 +47,9 @@ public class ComputerDto {
 	 * la Company qui détient le ComputerDto.
 	 */
 	private String company_id;
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 	
 	/**
@@ -55,6 +61,7 @@ public class ComputerDto {
 	 * @param company_id
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private ComputerDto(ComputerDtoBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;
@@ -62,6 +69,8 @@ public class ComputerDto {
 		this.discontinued = builder.discontinued;
 		this.companyId = builder.companyId;
 =======
+=======
+>>>>>>> develop
 	public ComputerDto(int id, String name, String introduced, String discontinued, String company_id) {
 		super();
 		this.id = id;
@@ -95,7 +104,10 @@ public class ComputerDto {
 	}
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> develop
 	 * Écrit l'id du ComputerDto.
 	 * @param id
 	 */
@@ -103,6 +115,9 @@ public class ComputerDto {
 		this.id = id;
 	}
 	/**
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 	 * 
 	 * @return le nom du ComputerDto.
@@ -112,7 +127,10 @@ public class ComputerDto {
 	}
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> develop
 	 * Écrit le nom du ComputerDto.
 	 * @param id
 	 */
@@ -120,6 +138,9 @@ public class ComputerDto {
 		this.name = name;
 	}
 	/**
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 	 * 
 	 * @return la date d'introduction du ComputerDto (String introduced).
@@ -129,7 +150,10 @@ public class ComputerDto {
 	}
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> develop
 	 * Écrit la date d'introduction du ComputerDto.
 	 * @param id
 	 */
@@ -137,6 +161,9 @@ public class ComputerDto {
 		this.introduced = introduced;
 	}
 	/**
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 	 * 
 	 * @return la date d'arrêt du ComputerDto (String discontinued).
@@ -145,6 +172,7 @@ public class ComputerDto {
 		return discontinued;
 	}
 	/**
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * 
 	 * @return l'id de la Company possédant le ComputerDto (String company_id).
@@ -186,6 +214,8 @@ public class ComputerDto {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 =======
+=======
+>>>>>>> develop
 	 * Écrit la date d'arrêt du ComputerDto.
 	 * @param id
 	 */

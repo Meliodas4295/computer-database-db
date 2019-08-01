@@ -6,6 +6,7 @@ import com.excilys.training.model.Company;
 
 public class CompanyDto {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/**
 	 * l'id de la classe CompanyDto.
@@ -16,6 +17,8 @@ public class CompanyDto {
 	 */
 	private final String name;
 =======
+=======
+>>>>>>> develop
 	/**
 	 * l'id de la classe CompanyDto.
 	 */
@@ -24,6 +27,9 @@ public class CompanyDto {
 	 * le nom de la classe CompanyDto
 	 */
 	String name;
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 	
 	/**
@@ -32,10 +38,13 @@ public class CompanyDto {
 	 * @param name
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private CompanyDto(CompanyDtoBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;
 =======
+=======
+>>>>>>> develop
 	public CompanyDto(int id, String name) {
 		super();
 		this.id = id;
@@ -53,7 +62,10 @@ public class CompanyDto {
 	
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> develop
 	 * Écrit l'id de la CompanyDto.
 	 * @param id
 	 */
@@ -62,6 +74,9 @@ public class CompanyDto {
 	}
 	
 	/**
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
 	 * 
 	 * @return le nom de la CompanyDto.
@@ -70,6 +85,7 @@ public class CompanyDto {
 		return name;
 	}
 	
+<<<<<<< HEAD
 <<<<<<< HEAD
 	public static class CompanyDtoBuilder{
 		private final int id;
@@ -99,6 +115,8 @@ public class CompanyDto {
 	public boolean equals(Object obj) {
 		if (this == obj)
 =======
+=======
+>>>>>>> develop
 	/**
 	 * Écrit le nom de la CompanyDto.
 	 * @param name

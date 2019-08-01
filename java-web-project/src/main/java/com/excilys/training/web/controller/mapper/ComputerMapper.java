@@ -52,8 +52,11 @@ public class ComputerMapper {
 	 * @return un Integer.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public Company convertCompanyId(String s) {
 =======
+=======
+>>>>>>> develop
 	public Integer convertCompanyId(String s) {
 >>>>>>> develop
 		if(s.equals("NULL")) {
@@ -69,6 +72,7 @@ public class ComputerMapper {
 	 * @return un Computer
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public Computer computerDtoToComputer(ComputerDto computerDto) {
 		int id = computerDto.getId();
 		String name = computerDto.getName();
@@ -78,6 +82,8 @@ public class ComputerMapper {
 		ComputerBuilder computer = new Computer.ComputerBuilder().id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
 		return computer.build();
 =======
+=======
+>>>>>>> develop
 	public Computer computerDtoToComputer(ComputerDto computer) {
 		Computer c = new Computer();
 		if(computer.getCompany_id()!=null) {

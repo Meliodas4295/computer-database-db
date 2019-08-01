@@ -21,6 +21,7 @@ import com.excilys.training.web.controller.mapper.ComputerMapper;
 public class EditComputer extends HttpServlet {
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/**
 	 * 
 	 */
@@ -32,13 +33,21 @@ public class EditComputer extends HttpServlet {
 	private CompanyService companyService;
 	private ComputerService computerService;
 >>>>>>> develop
+=======
+	private CompanyService companyService;
+	private ComputerService computerService;
+>>>>>>> develop
 	
 	public EditComputer() throws SQLException {
 		super();
 		this.companyService = new CompanyService();
 		this.computerService = new ComputerService();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		this.computerMapper = ComputerMapper.getInstance();
+=======
+		// TODO Auto-generated constructor stub
+>>>>>>> develop
 =======
 		// TODO Auto-generated constructor stub
 >>>>>>> develop
@@ -66,6 +75,9 @@ public class EditComputer extends HttpServlet {
 =======
 	    ComputerDto computerDto = new ComputerDto(Integer.parseInt(id),name, introduced, discontinued, companyId );
   		computerService.updateComputer(computerDto);
+<<<<<<< HEAD
+>>>>>>> develop
+=======
 >>>>>>> develop
   		ServletContext context = getServletContext();
   	    RequestDispatcher rd = context.getRequestDispatcher("/DashboardServlet");
