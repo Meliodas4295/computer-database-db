@@ -5,8 +5,7 @@ import java.util.Objects;
 import com.excilys.training.model.Company;
 
 public class CompanyDto {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 	/**
 	 * l'id de la classe CompanyDto.
@@ -16,9 +15,11 @@ public class CompanyDto {
 	 * le nom de la classe CompanyDto
 	 */
 	private final String name;
-=======
-=======
->>>>>>> develop
+
+	/**
+	 * l'id de la classe CompanyDto.
+	 */
+
 	/**
 	 * l'id de la classe CompanyDto.
 	 */
@@ -27,29 +28,22 @@ public class CompanyDto {
 	 * le nom de la classe CompanyDto
 	 */
 	String name;
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 	
 	/**
 	 * Constructeur de la classe CompanyDto.
 	 * @param id
 	 * @param name
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	private CompanyDto(CompanyDtoBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;
-=======
-=======
->>>>>>> develop
+
 	public CompanyDto(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
->>>>>>> develop
 	}
 	
 	/**
@@ -59,13 +53,9 @@ public class CompanyDto {
 	public int getId() {
 		return id;
 	}
+
 	
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
 	 * Écrit l'id de la CompanyDto.
 	 * @param id
 	 */
@@ -74,10 +64,6 @@ public class CompanyDto {
 	}
 	
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
 	 * 
 	 * @return le nom de la CompanyDto.
 	 */
@@ -85,8 +71,7 @@ public class CompanyDto {
 		return name;
 	}
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	public static class CompanyDtoBuilder{
 		private final int id;
 		private String name;
@@ -114,9 +99,29 @@ public class CompanyDto {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
-=======
-=======
->>>>>>> develop
+
+	/**
+	 * Écrit le nom de la CompanyDto.
+	 * @param name
+	 */
+
+	/**
+	 * Écrit l'id de la CompanyDto.
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	/**
+	 * 
+	 * @return le nom de la CompanyDto.
+	 */
+	public String getName() {
+		return name;
+	}
+
+	
 	/**
 	 * Écrit le nom de la CompanyDto.
 	 * @param name
@@ -131,7 +136,6 @@ public class CompanyDto {
 	 */
 	public boolean equals(Object o) {
 		if(this == o) {
->>>>>>> develop
 			return true;
 		if (obj == null)
 			return false;

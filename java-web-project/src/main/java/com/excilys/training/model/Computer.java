@@ -7,8 +7,6 @@ public class Computer {
 	/**
 	 * Id du Computer
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
 	private final int id;
 	/**
 	 * Nom du Computer
@@ -30,9 +28,9 @@ public class Computer {
 	/**
 	 * Constructeur de la class Computer.
 	 * @param id
-=======
-=======
->>>>>>> develop
+	/**
+	 * Id du Computer
+	 */
 	private int id;
 	/**
 	 * Nom du Computer
@@ -57,17 +55,13 @@ public class Computer {
 	public Computer() {}
 	/**
 	 * Constructeur ne dépendant pas de l'id.
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+	/**
+	 * Constructeur ne dépendant pas de l'id.
 	 * @param name
 	 * @param introduced
 	 * @param discontinued
 	 * @param company_id
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
 	private Computer(ComputerBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;
@@ -76,9 +70,6 @@ public class Computer {
 		this.companyId = builder.companyId;
 	}
 	/**
-=======
-=======
->>>>>>> develop
 	public Computer(String name, LocalDateTime introduced, LocalDateTime discontinued, Integer company_id) {
 		this.name = name;
 		this.introduced = introduced;
@@ -101,11 +92,7 @@ public class Computer {
 		this.discontinued = discontinued;
 		this.company_id = company_id;
 	}
-	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+/**
 	 * 
 	 * @return l'id du computer (int id).
 	 */
@@ -113,11 +100,6 @@ public class Computer {
 		return id;
 	}
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
 	 * Écrit l'id du Computer.
 	 * @param id
 	 */
@@ -125,10 +107,6 @@ public class Computer {
 		this.id = id;
 	}
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
 	 * 
 	 * @return le nom du computer (String name).
 	 */
@@ -136,11 +114,6 @@ public class Computer {
 		return name;
 	}
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
 	 * Écrit le nom du Computer.
 	 * @param id
 	 */
@@ -148,10 +121,6 @@ public class Computer {
 		this.name = name;
 	}
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
 	 * 
 	 * @return la date d'introduction du computer (LocalDateTime introduced).
 	 */
@@ -159,11 +128,6 @@ public class Computer {
 		return introduced;
 	}
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
 	 * Écrit la date d'introduction du Computer.
 	 * @param id
 	 */
@@ -171,10 +135,6 @@ public class Computer {
 		this.introduced = introduced;
 	}
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
 	 * 
 	 * @return la date d'arrêt du Computer (LocalDateTime discontinued).
 	 */
@@ -182,8 +142,6 @@ public class Computer {
 		return discontinued;
 	}
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
 	 * 
 	 * @return l'id de la Company possédant le Computer (Integer company_id).
 	 */
@@ -240,12 +198,66 @@ public class Computer {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
-=======
-=======
->>>>>>> develop
+      
+   /**
 	 * Écrit la date d'arrêt du Computer.
 	 * @param id
 	 */
+
+	/**
+	 * 
+	 * @return l'id du computer (int id).
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * Écrit l'id du Computer.
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	/**
+	 * 
+	 * @return le nom du computer (String name).
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * Écrit le nom du Computer.
+	 * @param id
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * 
+	 * @return la date d'introduction du computer (LocalDateTime introduced).
+	 */
+	public LocalDateTime getIntroduced() {
+		return introduced;
+	}
+	/**
+	 * Écrit la date d'introduction du Computer.
+	 * @param id
+	 */
+	public void setIntroduced(LocalDateTime introduced) {
+		this.introduced = introduced;
+	}
+	/**
+	 * 
+	 * @return la date d'arrêt du Computer (LocalDateTime discontinued).
+	 */
+	public LocalDateTime getDiscontinued() {
+		return discontinued;
+	}
+	/**
+	 * Écrit la date d'arrêt du Computer.
+	 * @param id
+	 */
+
 	public void setDiscontinued(LocalDateTime discontinued) {
 		this.discontinued = discontinued;
 	}
@@ -279,7 +291,6 @@ public class Computer {
 	 */
 	public boolean equals(Object o) {
 		if(this == o) {
->>>>>>> develop
 			return true;
 		if (obj == null)
 			return false;

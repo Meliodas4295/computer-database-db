@@ -12,8 +12,6 @@ import com.excilys.training.jdbc.ConnectionMySQL;
 import com.excilys.training.model.Company;
 import com.excilys.training.model.Company.CompanyBuilder;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 public class CompanyDao{
 	private Connection connect;
 	private ComputerDao computerDao;
@@ -22,25 +20,24 @@ public class CompanyDao{
 		super();
 		this.connect = ConnectionMySQL.getInstance();
 		this.computerDao = ComputerDao.getInstance();
-=======
-=======
->>>>>>> develop
+
 public class CompanyDao extends Dao<Company>{
+
 	public CompanyDao() throws SQLException {
 		super();
 		// TODO Auto-generated constructor stub
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
+	public CompanyDao() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * Instance de la classe CompanyDao.
 	 */
+
 	private static CompanyDao instance;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	
 	private static final String SQL_DELETE = "DELETE FROM company WHERE id = ?";
 	/**
@@ -55,9 +52,14 @@ public class CompanyDao extends Dao<Company>{
 	 * Requête SQL permettant de sélectionner un élément la table company.
 	 */
 	private static final String SQL_FIND_BY_ID = "SELECT id, name FROM company WHERE id = ? ";
-=======
-=======
->>>>>>> develop
+
+	/**
+	 * Requête SQL permettant de sélectionner tout les éléments de la table company.
+	 */
+
+	
+	private static CompanyDao instance;
+	private static CompanyDao instance;
 	/**
 	 * Requête SQL permettant de sélectionner tout les éléments de la table company.
 	 */
@@ -70,10 +72,7 @@ public class CompanyDao extends Dao<Company>{
 	 * Requête SQL permettant de sélectionner un élément la table company.
 	 */
 	private final String SQL_FIND_BY_ID = "SELECT * FROM company WHERE id = ? ";
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 	/**
 	 * 
 	 * @return l'instance de la classe CompanyDao.
@@ -81,6 +80,12 @@ public class CompanyDao extends Dao<Company>{
 	 * @throws SQLException 
 	 */
 	public static CompanyDao getInstance() throws SQLException {
+
+
+
+	public static CompanyDao getInstance() {
+
+  
 	    if (instance == null) {
 	      instance = new CompanyDao();
 	    }
@@ -120,10 +125,10 @@ public class CompanyDao extends Dao<Company>{
 		return obj;
 		
 	}
+
 	/**
 	 * Permet d'effacer une Company de la base de données.
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	 * @param id
 	 */
 	public void delete(Company company) {
@@ -135,16 +140,16 @@ public class CompanyDao extends Dao<Company>{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-=======
-=======
->>>>>>> develop
+
+
+	/**
+	 * Permet d'effacer une Company de la base de données.
 	 * (PS: Classe non implémenter)
 	 * @param id
 	 */
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		
->>>>>>> develop
 	}
 	/**
 	 * Permet de modifier une Company de la base de données.

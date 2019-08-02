@@ -18,21 +18,21 @@ import com.excilys.training.model.Computer.ComputerBuilder;
 
 public class ComputerDao{
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	private Connection connect;
 	
 	private ComputerDao() throws SQLException {
 		super();
 		this.connect = ConnectionMySQL.getInstance();
-=======
 	public ComputerDao() throws SQLException {
 		super();
->>>>>>> develop
-=======
+
 	public ComputerDao() throws SQLException {
 		super();
->>>>>>> develop
+
+	public ComputerDao() throws SQLException {
+		super();
+
 		// TODO Auto-generated constructor stub
 	}
 
@@ -41,8 +41,7 @@ public class ComputerDao{
 	 */
 	private static ComputerDao instance;
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	 * Requête permettant de supprimer les Computer en fonction de la Company. 
 	 */
 	private static final String SQL_DELETE_COMPUTER_WHERE_COMPANY_ID = "DELETE FROM  computer  WHERE  company_id  = ?";
@@ -95,9 +94,20 @@ public class ComputerDao{
 	 */
 	private static final String SQL_PAGE_COMPANY = "SELECT  computer.id , computer.name , introduced , discontinued , company_id , company.name   FROM `computer` LEFT JOIN company ON computer.company_id = company.id WHERE computer.name LIKE ? OR company.name LIKE ? ORDER BY ISNULL(company.name), company.name ASC limit ? offset ?";
 	/**
-=======
-=======
->>>>>>> develop
+
+	 * Requête SQL permettant de sélectionner tout les éléments de la table computer.
+	 */
+	private final String SQL_FIND_ALL = "SELECT * FROM computer LEFT JOIN company ON computer.company_id=company.id";
+	/**
+	 * Requête SQL permettant de sélectionner des éléments compris entre deux valeurs de la table computer.
+	 */
+
+	
+	private static ComputerDao instance;
+	private final String SQL_FIND_ALL = "SELECT * FROM computer";
+
+	private static ComputerDao instance;
+	/**
 	 * Requête SQL permettant de sélectionner tout les éléments de la table computer.
 	 */
 	private final String SQL_FIND_ALL = "SELECT * FROM computer LEFT JOIN company ON computer.company_id=company.id";
@@ -122,25 +132,24 @@ public class ComputerDao{
 	 */
 	private final String SQL_UPDATE = "UPDATE computer SET name = ?, introduced = ?,discontinued = ?,company_id = ? WHERE id = ? ";
 	
+
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+	/**
 	 * 
 	 * @return l'instance de la classe ComputerDao.
 	 * Si l'instance est null, créer une nouvelle instance.
 	 * @throws SQLException 
 	 */
 	public static ComputerDao getInstance() throws SQLException {
+
+	public static ComputerDao getInstance() {
+
 	    if (instance == null) {
 	      instance = new ComputerDao();
 	    }
 	    return instance;
 	  }
-	
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	public void deleteByCompany(Company company) {
 		try {
 			PreparedStatement stmt = this.connect.prepareStatement(SQL_DELETE_COMPUTER_WHERE_COMPANY_ID);
@@ -151,15 +160,14 @@ public class ComputerDao{
 			}
 	}
 	
-=======
->>>>>>> develop
-=======
->>>>>>> develop
+
 	/**
 	 * Permet de trouver un Computer dans la base de données.
 	 * @param id
 	 * @return le Computer trouver.
 	 */
+
+
 	public Computer find(int id) {
 		ComputerBuilder computer= new Computer.ComputerBuilder();
 		try {
@@ -181,19 +189,25 @@ public class ComputerDao{
 		return computer.build();
 	}
 
+
 	/**
 	 * Permet de créer un nouveau Computer dans la base de données.
 	 * @param obj (Computer)
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	 * @return le Computer créer.
-=======
+
 	 * @return la Computer créer.
->>>>>>> develop
-=======
+
 	 * @return la Computer créer.
->>>>>>> develop
+
 	 */
+
+	/**
+	 * Permet de créer un nouveau Computer dans la base de données.
+	 * @param obj (Computer)
+	 * @return la Computer créer.
+	 */
+
 	public Computer create(Computer obj) {
 		try {
 			PreparedStatement stmt = connect.prepareStatement(SQL_CREATE);

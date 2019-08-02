@@ -14,21 +14,31 @@ public class ComputerService {
 	 * objet de type ComputerDao
 	 */
 	private ComputerDao computerDao;
+
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
+
 	 * objet de type ComputerMapper
 	 */
 	private ComputerMapper computerMapper;
 
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
+	 * Constructeur de la classe ComputerService, 
+	 * instanciant le singleton de la classe ComputerDao et ComputerMapper.
+	 * @throws SQLException 
+	 */
+	public ComputerService() throws SQLException {
+
+	private ComputerMapper computerMapper;
+
+	public ComputerService() {
+
+	/**
+	 * objet de type ComputerMapper
+	 */
+	private ComputerMapper computerMapper;
+
+	/**
 	 * Constructeur de la classe ComputerService, 
 	 * instanciant le singleton de la classe ComputerDao et ComputerMapper.
 	 * @throws SQLException 
@@ -37,6 +47,7 @@ public class ComputerService {
 		super();
 		this.computerDao = ComputerDao.getInstance();
 	}
+
 	
 	/**
 	 * Permet de récupérer un Computer de la BDD.
@@ -44,14 +55,11 @@ public class ComputerService {
 	 * @return le Computer ayant pour id la valeur de l'id mis en paramètre.
 	 */
 	public Computer displayComputer(String name) {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		List<Computer> listComputer = computerDao.displayAll();
 		List<Computer> computers = listComputer.stream().filter(x->x.getName().equals(name)).collect(Collectors.toList());
 		return computers.get(0);
-=======
-=======
->>>>>>> develop
+
 		int id=0;
 		List<Computer> listComputer = computerDao.displayAll();
 		for(int i = 0;i<listComputer.size();i++) {
@@ -60,8 +68,11 @@ public class ComputerService {
 				System.out.print(id);
 			}
 		}
+
+	public Computer displayComputer(int id) {
+
 		return this.getComputerDao().find(id);
->>>>>>> develop
+
 	}
 	
 	/**
@@ -82,20 +93,18 @@ public class ComputerService {
 		return this.computerDao.displayPagination(limit, offset);
 	}
 	
+
 	/**
 	 * Permet de créer un Computer dans la BDD.
 	 * @param c
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	public void createNewComputer(Computer c) {
 		this.computerDao.create(c);
-=======
-=======
->>>>>>> develop
+
 	public void createNewComputer(ComputerDto c) {
 		this.getComputerDao().create(this.getComputerMapper().computerDtoToComputer(c));
->>>>>>> develop
+
 	}
 	
 	/**
@@ -110,13 +119,10 @@ public class ComputerService {
 	 * Permet de modifier un Computer dans la BDD.
 	 * @param c
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	public void updateComputer(Computer c) {
 		this.computerDao.update(c);
-=======
-=======
->>>>>>> develop
+
 	public void updateComputer(ComputerDto c) {
 		this.getComputerDao().update(this.getComputerMapper().computerDtoToComputerWithId(c));
 	}
@@ -151,7 +157,6 @@ public class ComputerService {
 	 */
 	public void setComputerMapper(ComputerMapper computerMapper) {
 		this.computerMapper = computerMapper;
->>>>>>> develop
 	}
 	
 

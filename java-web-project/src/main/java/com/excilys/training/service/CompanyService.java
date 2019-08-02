@@ -9,18 +9,17 @@ import com.excilys.training.web.controller.dto.CompanyDto;
 import com.excilys.training.web.controller.mapper.CompanyMapper;
 
 public class CompanyService {
+
 	/**
 	 * objet de type CompanyDao
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	private CompanyDao companyDao;
-=======
+
 	private CompanyDao company;
->>>>>>> develop
-=======
+
 	private CompanyDao company;
->>>>>>> develop
+
 	
 	/**
 	 * Constructeur de la classe CompanyService, 
@@ -28,15 +27,26 @@ public class CompanyService {
 	 * @throws SQLException 
 	 */
 	public CompanyService() throws SQLException {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		this.companyDao = CompanyDao.getInstance();
-=======
-=======
->>>>>>> develop
+
+	private CompanyDao company;
+
+	public CompanyService() {
+
+	/**
+	 * objet de type CompanyDao
+	 */
+	private CompanyDao company;
+	
+	/**
+	 * Constructeur de la classe CompanyService, 
+	 * instanciant le singleton de la classe CompanyDao
+	 * @throws SQLException 
+	 */
+	public CompanyService() throws SQLException {
 		super();
 		this.company = CompanyDao.getInstance();
->>>>>>> develop
 	}
 	
 	/**
@@ -52,13 +62,11 @@ public class CompanyService {
 	 * @return la liste des Company.
 	 */
 	public List<Company> displayAllCompany() {
-<<<<<<< HEAD
 		return this.companyDao.displayAll();
 	}
 	
 	public void deleteCompany(Company company) {
 		this.companyDao.delete(company);
-=======
 		return this.getCompany().displayAll();
 	}
 	
@@ -76,7 +84,6 @@ public class CompanyService {
 	 */
 	public void setCompany(CompanyDao company) {
 		this.company = company;
->>>>>>> develop
 	}
 	
 	

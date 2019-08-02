@@ -8,8 +8,7 @@ public class ComputerDto {
 	/**
 	 * l'id du ComputerDto.
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	private final int id;
 	/**
 	 * le nom du ComputerDto.
@@ -27,9 +26,10 @@ public class ComputerDto {
 	 * la Company qui détient le ComputerDto.
 	 */
 	private final String companyId;
-=======
-=======
->>>>>>> develop
+
+	/**
+	 * l'id du ComputerDto.
+	 */
 	private int id;
 	/**
 	 * le nom du ComputerDto.
@@ -47,10 +47,7 @@ public class ComputerDto {
 	 * la Company qui détient le ComputerDto.
 	 */
 	private String company_id;
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 	
 	/**
 	 * Constructeur de la classe ComputerDto.
@@ -60,17 +57,14 @@ public class ComputerDto {
 	 * @param discontinued
 	 * @param company_id
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	private ComputerDto(ComputerDtoBuilder builder) {
 		this.id = builder.id;
 		this.name = builder.name;
 		this.introduced = builder.introduced;
 		this.discontinued = builder.discontinued;
 		this.companyId = builder.companyId;
-=======
-=======
->>>>>>> develop
+
 	public ComputerDto(int id, String name, String introduced, String discontinued, String company_id) {
 		super();
 		this.id = id;
@@ -93,7 +87,6 @@ public class ComputerDto {
 		this.introduced = introduced;
 		this.discontinued = discontinued;
 		this.company_id = company_id;
->>>>>>> develop
 	}
 	/**
 	 * 
@@ -102,12 +95,10 @@ public class ComputerDto {
 	public int getId() {
 		return id;
 	}
+
+	
+
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
 	 * Écrit l'id du ComputerDto.
 	 * @param id
 	 */
@@ -115,10 +106,7 @@ public class ComputerDto {
 		this.id = id;
 	}
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 	 * 
 	 * @return le nom du ComputerDto.
 	 */
@@ -126,11 +114,7 @@ public class ComputerDto {
 		return name;
 	}
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
+
 	 * Écrit le nom du ComputerDto.
 	 * @param id
 	 */
@@ -138,10 +122,7 @@ public class ComputerDto {
 		this.name = name;
 	}
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 	 * 
 	 * @return la date d'introduction du ComputerDto (String introduced).
 	 */
@@ -149,11 +130,7 @@ public class ComputerDto {
 		return introduced;
 	}
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
+
 	 * Écrit la date d'introduction du ComputerDto.
 	 * @param id
 	 */
@@ -161,10 +138,7 @@ public class ComputerDto {
 		this.introduced = introduced;
 	}
 	/**
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
 	 * 
 	 * @return la date d'arrêt du ComputerDto (String discontinued).
 	 */
@@ -172,8 +146,6 @@ public class ComputerDto {
 		return discontinued;
 	}
 	/**
-<<<<<<< HEAD
-<<<<<<< HEAD
 	 * 
 	 * @return l'id de la Company possédant le ComputerDto (String company_id).
 	 */
@@ -213,9 +185,29 @@ public class ComputerDto {
 		result = prime * result + ((introduced == null) ? 0 : introduced.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
-=======
-=======
->>>>>>> develop
+/**
+	 * Écrit la date d'arrêt du ComputerDto.
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getIntroduced() {
+		return introduced;
+	}
+	public void setIntroduced(String introduced) {
+		this.introduced = introduced;
+	}
+	public String getDiscontinued() {
+		return discontinued;
+	}
+/**
 	 * Écrit la date d'arrêt du ComputerDto.
 	 * @param id
 	 */
@@ -235,7 +227,6 @@ public class ComputerDto {
 	 */
 	public void setCompany_id(String company_id) {
 		this.company_id = company_id;
->>>>>>> develop
 	}
 	@Override
 	public boolean equals(Object obj) {

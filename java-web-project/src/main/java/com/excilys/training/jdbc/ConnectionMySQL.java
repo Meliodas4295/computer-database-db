@@ -22,11 +22,9 @@ public class ConnectionMySQL {
         config.addDataSourceProperty( "prepStmtCacheSqlLimit" , "2048" );
         ds = new HikariDataSource( config );
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> develop
+ 
+	//private static String url = "jdbc:mysql://localhost:3306/computer-database-db";
+	private static String url = "jdbc:mysql://localhost:3306/computer-database-db";
  
 	//private static String url = "jdbc:mysql://localhost:3306/computer-database-db";
 	/**
@@ -44,11 +42,11 @@ public class ConnectionMySQL {
 	/**
 	 * Objet Connection
 	 */
+
+    private ConnectionMySQL() {}
+	private static Connection connect;
+
 	//private static Connection connect;
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
     private ConnectionMySQL() {}
 	/**
 	 * Méthode qui va nous retourner notre instance
@@ -56,10 +54,6 @@ public class ConnectionMySQL {
 	 * @return 
 	 * @throws SQLException 
 	 */
-	public static Connection getInstance() throws SQLException{
-		return ds.getConnection();	
-<<<<<<< HEAD
-<<<<<<< HEAD
 	}
 	/*
 	public static Connection getInstance2() throws SQLException{
@@ -90,9 +84,20 @@ public class ConnectionMySQL {
  
         }
     }
-=======
-=======
->>>>>>> develop
-	}	
->>>>>>> develop
+	public static Connection getInstance(){
+		if(connect == null){
+			try {
+				Class.forName(driver);
+				connect = DriverManager.getConnection(url, user, passwd);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}		
+		return connect;	
+	public static Connection getInstance() throws SQLException{
+		return ds.getConnection();	
+	}
 }

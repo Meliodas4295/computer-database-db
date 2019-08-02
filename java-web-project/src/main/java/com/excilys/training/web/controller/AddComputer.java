@@ -21,27 +21,31 @@ import com.excilys.training.web.controller.mapper.ComputerMapper;
 
 public class AddComputer extends HttpServlet {
 	
+
 	private CompanyService companyService;
 	private ComputerService computerService;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	private ComputerMapper computerMapper;
-=======
->>>>>>> develop
-=======
->>>>>>> develop
+
 	
 	public AddComputer() throws SQLException {
 		super();
 		this.companyService = new CompanyService();
 		this.computerService = new ComputerService();
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		this.computerMapper = ComputerMapper.getInstance();
-=======
->>>>>>> develop
-=======
->>>>>>> develop
+
+	}
+	private CompanyService companyService = new CompanyService();
+	private ComputerService computerService = new ComputerService();
+	
+	private CompanyService companyService;
+	private ComputerService computerService;
+	
+	public AddComputer() throws SQLException {
+		super();
+		this.companyService = new CompanyService();
+		this.computerService = new ComputerService();
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		      throws ServletException, IOException {
@@ -50,16 +54,18 @@ public class AddComputer extends HttpServlet {
 	    String introduced = request.getParameter("introduced");
 	    String discontinued = request.getParameter("discontinued");
 	    String companyId = request.getParameter("companyId");
-<<<<<<< HEAD
 	    ComputerDtoBuilder computerDto = new ComputerDto.ComputerDtoBuilder(name, introduced, discontinued, companyId );
 	    computerService.createNewComputer(this.computerMapper.computerDtoToComputer(computerDto.build()));
-=======
+
 	    ComputerDto computerDto = new ComputerDto(name, introduced, discontinued, companyId );
+
   		computerService.createNewComputer(computerDto);
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> develop
+
+  		ComputerService computer = new ComputerService();
+  		computer.createNewComputer(computerDto);
+
+  		computerService.createNewComputer(computerDto);
+
   		ServletContext context = getServletContext();
   	    RequestDispatcher rd = context.getRequestDispatcher("/DashboardServlet");
   	    rd.forward(request, response);
