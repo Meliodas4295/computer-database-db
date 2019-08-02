@@ -24,8 +24,17 @@ public class DashboardServlet extends HttpServlet {
 	         throws ServletException, IOException {
 		   String[] valeurs = req.getParameterValues("selection");
 		    if(valeurs!=null) {
+		    	System.out.println(valeurs[0]);
 		    	for(int i = 0; i<valeurs.length;i++) {
-		    		AbstractServlet.getServiceFactory().getComputerService().deleteComputer(Integer.parseInt(valeurs[i]));
+		    		try {
+						AbstractServlet.getServiceFactory().getComputerService().deleteComputer(Integer.parseInt(valeurs[i]));
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 		    	}
 		    }
 		    String search = req.getParameter("search");
@@ -33,7 +42,12 @@ public class DashboardServlet extends HttpServlet {
 			if(search!=null && search!=""){
 				int nombreValeurParPage = 1;
 		    	int queryPage = req.getParameter("page") != null ? Integer.parseInt(req.getParameter("page")) : 1;
-		    	searchComputer = AbstractServlet.getServiceFactory().getComputerService().SearchComputerByName(search, search ,nombreValeurParPage, (queryPage-1)*nombreValeurParPage);
+		    	try {
+					searchComputer = AbstractServlet.getServiceFactory().getComputerService().SearchComputerByName(search, search ,nombreValeurParPage, (queryPage-1)*nombreValeurParPage);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		    	req.setAttribute("list", searchComputer);
 		    	int nbPc = searchComputer.size();
 			    int pageSize = searchComputer.size();
@@ -49,9 +63,21 @@ public class DashboardServlet extends HttpServlet {
 			}
 			else {
 			    int nombreValeurParPage = 50;
-				List<Computer> computers = AbstractServlet.getServiceFactory().getComputerService().displayAllcomputer();
+				List<Computer> computers = new ArrayList<Computer>();
+				try {
+					computers = AbstractServlet.getServiceFactory().getComputerService().displayAllcomputer();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				int queryPage = req.getParameter("page") != null ? Integer.parseInt(req.getParameter("page")) : 1;
-				List<Computer> computerPage = AbstractServlet.getServiceFactory().getComputerService().displayComputersPagination(nombreValeurParPage, (queryPage-1)*nombreValeurParPage);
+				List<Computer> computerPage = new ArrayList<Computer>();
+				try {
+					computerPage = AbstractServlet.getServiceFactory().getComputerService().displayComputersPagination(nombreValeurParPage, (queryPage-1)*nombreValeurParPage);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			    req.setAttribute("list", computerPage);
 			    int nbPc = computers.size();
 			    int pageSize = nombreValeurParPage;

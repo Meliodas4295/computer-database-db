@@ -10,21 +10,18 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.excilys.training.jdbc.ConnectionMySQL;
 import com.excilys.training.model.Company;
 import com.excilys.training.model.Computer;
 import com.excilys.training.model.Computer.ComputerBuilder;
+import com.excilys.training.persistence.AbstractDao;
 import com.excilys.training.persistence.contract.ComputerDAO;
 import com.excilys.training.persistence.impl.ComputerDAOImpl;
 
-public class ComputerDAOImpl implements ComputerDAO{
+public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 	
-	private Connection connection;
-	
+
 	private ComputerDAOImpl() throws SQLException {
 		super();
-		this.connection = ConnectionMySQL.getInstance();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -97,26 +94,37 @@ public class ComputerDAOImpl implements ComputerDAO{
 	  }
 	
 	@Override
-	public void deleteByCompany(Company company) {
+	public void deleteByCompany(Company company) throws SQLException {
+		Connection connection = getDataSource().getConnection();
+		connection.setAutoCommit(false);
+		PreparedStatement stmt = connection.prepareStatement(SQL_DELETE_COMPUTER_WHERE_COMPANY_ID);
 		try {
-			PreparedStatement stmt = connection.prepareStatement(SQL_DELETE_COMPUTER_WHERE_COMPANY_ID);
 			stmt.setInt(1, company.getId());
 			stmt.executeUpdate();
+			connection.commit();
 			} catch (SQLException e) {
+				connection.rollback();
 				e.printStackTrace();
 			}
+		finally {
+			stmt.close();
+			connection.close();
+		}
 	}
 	
 	/**
 	 * Permet de trouver un Computer dans la base de données.
 	 * @param id
 	 * @return le Computer trouver.
+	 * @throws SQLException 
 	 */
 	@Override
-	public Computer find(int id) {
+	public Computer find(int id) throws SQLException {
 		ComputerBuilder computer= new Computer.ComputerBuilder();
+		Connection connection = getDataSource().getConnection();
+		connection.setAutoCommit(false);
+		PreparedStatement stmt = connection.prepareStatement(SQL_FIND_BY_ID);
 		try {
-			PreparedStatement stmt = connection.prepareStatement(SQL_FIND_BY_ID);
 			stmt.setInt(1, id);
 			ResultSet resultats = stmt.executeQuery();
 			while(resultats.next()) {
@@ -128,9 +136,15 @@ public class ComputerDAOImpl implements ComputerDAO{
 		
 			}
 			resultats.close();
+			connection.commit();
 			} catch (SQLException e) {
+				connection.rollback();
 				e.printStackTrace();
 			}
+		finally {
+			stmt.close();
+			connection.close();
+		}
 		return computer.build();
 	}
 
@@ -138,11 +152,14 @@ public class ComputerDAOImpl implements ComputerDAO{
 	 * Permet de créer un nouveau Computer dans la base de données.
 	 * @param obj (Computer)
 	 * @return le Computer créer.
+	 * @throws SQLException 
 	 */
 	@Override
-	public Computer create(Computer obj) {
+	public Computer create(Computer obj) throws SQLException {
+		Connection connection = getDataSource().getConnection();
+		connection.setAutoCommit(false);
+		PreparedStatement stmt = connection.prepareStatement(SQL_CREATE);
 		try {
-			PreparedStatement stmt = connection.prepareStatement(SQL_CREATE);
 			stmt.setString(1, obj.getName());
 			stmt.setTimestamp(2, obj.getIntroduced()!=null?Timestamp.valueOf(obj.getIntroduced().minusHours(2)):null);
 			stmt.setTimestamp(3, obj.getDiscontinued()!=null?Timestamp.valueOf(obj.getDiscontinued().minusHours(2)):null);
@@ -153,10 +170,16 @@ public class ComputerDAOImpl implements ComputerDAO{
 				stmt.setInt(4, obj.getCompanyId().getId());
 			}
 			stmt.executeUpdate();
+			connection.commit();
 			obj = this.find(obj.getId());
 			} catch (SQLException e) {
+				connection.rollback();
 				e.printStackTrace();
 			}
+		finally {
+			stmt.close();
+			connection.close();
+		}
 		return obj;
 		
 	}
@@ -164,16 +187,25 @@ public class ComputerDAOImpl implements ComputerDAO{
 	/**
 	 * Permet d'effacer une Computer de la base de données.
 	 * @param id
+	 * @throws SQLException 
 	 */
 	@Override
-	public void delete(int id) {
+	public void delete(int id) throws SQLException {
+		Connection connection = getDataSource().getConnection();
+		connection.setAutoCommit(false);
+		PreparedStatement stmt = connection.prepareStatement(SQL_DELETE);
 		try {
-			PreparedStatement stmt = connection.prepareStatement(SQL_DELETE);
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
+			connection.commit();
 			} catch (SQLException e) {
+				connection.rollback();
 				e.printStackTrace();
 			}
+		finally {
+			stmt.close();
+			connection.close();
+		}
 		
 	}
 
@@ -181,11 +213,14 @@ public class ComputerDAOImpl implements ComputerDAO{
 	 * Permet de modifier une Computer de la base de données.
 	 * @param obj (Computer)
 	 * @return la Computer modifier.
+	 * @throws SQLException 
 	 */
 	@Override
-	public Computer update(Computer obj) {
+	public Computer update(Computer obj) throws SQLException {
+		Connection connection = getDataSource().getConnection();
+		connection.setAutoCommit(false);
+		PreparedStatement stmt = connection.prepareStatement(SQL_UPDATE);
 		try {
-			PreparedStatement stmt = connection.prepareStatement(SQL_UPDATE);
 			stmt.setInt(5, obj.getId());
 			stmt.setString(1, obj.getName());
 			stmt.setTimestamp(2, obj.getIntroduced()!=null?Timestamp.valueOf(obj.getIntroduced().minusHours(2)):null);
@@ -197,10 +232,16 @@ public class ComputerDAOImpl implements ComputerDAO{
 				stmt.setInt(4, obj.getCompanyId().getId());
 			}
 			stmt.executeUpdate();
+			connection.commit();
 			obj = this.find(obj.getId());
 			} catch (SQLException e) {
+				connection.rollback();
 				e.printStackTrace();
 			}
+		finally {
+			stmt.close();
+			connection.close();
+		}
 		return obj;
 		
 	}
@@ -208,12 +249,14 @@ public class ComputerDAOImpl implements ComputerDAO{
 	/**
 	 * Permet de visualiser les Computer de la base de données.
 	 * @return liste des Computer de la base de données.
+	 * @throws SQLException 
 	 */
 	@Override
-	public List<Computer> displayAll(){
+	public List<Computer> displayAll() throws SQLException{
 		List<Computer> computerList = new ArrayList<Computer>();
+		Connection connection = getDataSource().getConnection();
+		Statement stmt = connection.createStatement();
 		try {
-			Statement stmt = connection.createStatement();
 			ResultSet resultats = stmt.executeQuery(SQL_FIND_ALL);
 			while(resultats.next()) {
 				int id = resultats.getInt("id");
@@ -228,6 +271,10 @@ public class ComputerDAOImpl implements ComputerDAO{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		finally {
+			stmt.close();
+			connection.close();
+		}
 		return computerList;
 		
 	}
@@ -237,16 +284,17 @@ public class ComputerDAOImpl implements ComputerDAO{
 	 * @param limit (int) nombre de valeur dans la page paginée. 
 	 * @param offset (int) valeur de départ de la pagination.
 	 * @return la liste des Computer paginée.
+	 * @throws SQLException 
 	 */
 	@Override
-	public List<Computer> displayPagination(int limit, int offset) {
+	public List<Computer> displayPagination(int limit, int offset) throws SQLException {
 		List<Computer> computerList = new ArrayList<Computer>();
-		ResultSet resultats = null;
+		Connection connection = getDataSource().getConnection();
+		PreparedStatement stmt = connection.prepareStatement(SQL_FIND_ALL_PAGINATION);
 		try {
-			PreparedStatement stmt = connection.prepareStatement(SQL_FIND_ALL_PAGINATION);
 			stmt.setInt(1, limit);
 			stmt.setInt(2, offset);
-			resultats = stmt.executeQuery();
+			ResultSet resultats = stmt.executeQuery();
 			while(resultats.next()) {
 				int id = resultats.getInt("id");
 				String name = resultats.getString("name");
@@ -260,19 +308,23 @@ public class ComputerDAOImpl implements ComputerDAO{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		finally {
+			stmt.close();
+			connection.close();
+		}
 		return computerList;
 	}
 	
-	public List<Computer> SearchByNameAsc(String searchByName, String searchByCompany, int limit, int offset) {
+	public List<Computer> SearchByNameAsc(String searchByName, String searchByCompany, int limit, int offset) throws SQLException {
 		List<Computer> computerList = new ArrayList<Computer>();
-		ResultSet resultats = null;
+		Connection connection = getDataSource().getConnection();
+		PreparedStatement stmt = connection.prepareStatement(SQL_PAGE_NAME_ASC);
 		try {
-			PreparedStatement stmt = connection.prepareStatement(SQL_PAGE_NAME_ASC);
 			stmt.setString(1, '%'+searchByName+'%');
 			stmt.setString(2, '%'+searchByCompany+'%');
 			stmt.setInt(3, limit);
 			stmt.setInt(4, offset);
-			resultats = stmt.executeQuery();
+			ResultSet resultats = stmt.executeQuery();
 			while(resultats.next()) {
 				int id = resultats.getInt("id");
 				String name = resultats.getString("name");
@@ -286,6 +338,10 @@ public class ComputerDAOImpl implements ComputerDAO{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		finally {
+			stmt.close();
+			connection.close();
+		}
 		return computerList;
 	}
 	
