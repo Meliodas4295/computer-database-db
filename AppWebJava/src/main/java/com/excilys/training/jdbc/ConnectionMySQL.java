@@ -9,7 +9,6 @@ public class ConnectionMySQL {
 		
 		private static HikariConfig config = new HikariConfig();
 	    private static HikariDataSource ds;
-	 
 	    static {
 	        config.setJdbcUrl( "jdbc:mysql://localhost:3306/computer-database-db" );
 	        config.setUsername( "admincdb" );

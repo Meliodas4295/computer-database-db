@@ -1,21 +1,22 @@
 package com.excilys.training.service.contract;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.excilys.training.model.Computer;
 
 public interface ComputerService {
 
-	void updateComputer(Computer c);
+	void updateComputer(Computer c) throws SQLException;
 
-	void deleteComputer(int id);
+	void deleteComputer(int id) throws SQLException;
 
-	void createNewComputer(Computer c);
+	void createNewComputer(Computer c) throws SQLException;
 
-	List<Computer> displayComputersPagination(int limit, int offset);
+	List<Computer> displayComputersPagination(int limit, int offset) throws SQLException;
 
-	List<Computer> displayAllcomputer();
+	List<Computer> displayAllcomputer() throws SQLException;
 	
-	List<Computer> SearchComputerByName(String searchName, String lettre, int limit, int offset);
+	List<Computer> SearchComputerByName(String searchName, String lettre, int limit, int offset) throws SQLException;
 
 }
