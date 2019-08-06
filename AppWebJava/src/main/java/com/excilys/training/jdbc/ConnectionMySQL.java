@@ -2,6 +2,8 @@ package com.excilys.training.jdbc;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -20,7 +22,12 @@ public class ConnectionMySQL {
 	        ds = new HikariDataSource( config );
 	    }
 	    private ConnectionMySQL() {}
-		/**
+	    public static DataSource getDataSource() {
+	    	return ds;
+	    }
+	    
+	    
+	    /**
 		 * Méthode qui va nous retourner notre instance
 		 * et la créer si elle n'existe pas.
 		 * @return 

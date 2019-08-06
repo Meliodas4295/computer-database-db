@@ -4,14 +4,15 @@ import javax.sql.DataSource;
 
 public abstract class AbstractDao {
 	
-	private DataSource dataSource;
+	private static DataSource dataSource;
 
-	protected DataSource getDataSource() {
+	public static DataSource getDataSource() {
 		return dataSource;
 	}
 
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
+	public static void setDataSource(DataSource dataSource) {
+		AbstractDao.dataSource = dataSource;
 	}
+
 
 }

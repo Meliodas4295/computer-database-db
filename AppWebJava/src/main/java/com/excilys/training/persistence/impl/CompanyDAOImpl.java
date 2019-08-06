@@ -8,6 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.excilys.training.jdbc.ConnectionMySQL;
 import com.excilys.training.model.Company;
 import com.excilys.training.model.Company.CompanyBuilder;
@@ -19,7 +22,7 @@ import com.excilys.training.persistence.impl.ComputerDAOImpl;
 
 public class CompanyDAOImpl extends AbstractDao implements CompanyDAO{
 	private ComputerDAO computerDao;
-
+	private final static Logger logger = LoggerFactory.getLogger(CompanyDAOImpl.class);
 	/**
 	 * Instance de la classe CompanyDao.
 	 */
@@ -78,8 +81,7 @@ public class CompanyDAOImpl extends AbstractDao implements CompanyDAO{
 			connection.commit();
 			} catch (SQLException e) {
 				connection.rollback();
-				e.printStackTrace();
-			}
+				logger.error("Votre requête SQL est incorrect");			}
 		finally {
 			stmt.close();
 			connection.close();
@@ -116,8 +118,7 @@ public class CompanyDAOImpl extends AbstractDao implements CompanyDAO{
 			connection.commit();
 			} catch (SQLException e) {
 				connection.rollback();
-				e.printStackTrace();
-			}
+				logger.error("Votre requête SQL est incorrect");			}
 		finally {
 			stmt.close();
 			connection.close();
@@ -157,8 +158,7 @@ public class CompanyDAOImpl extends AbstractDao implements CompanyDAO{
 			connection.commit();
 			} catch (SQLException e) {
 				connection.rollback();
-				e.printStackTrace();
-			}
+				logger.error("Votre requête SQL est incorrect");			}
 		finally {
 			stmt.close();
 			connection.close();
@@ -175,7 +175,7 @@ public class CompanyDAOImpl extends AbstractDao implements CompanyDAO{
 	 */
 	@Override
 	public List<Company> displayPagination(int limit, int offset) {
-		return null;
+		return new ArrayList<Company>();
 	}
 	
 

@@ -2,6 +2,7 @@ package com.excilys.training.persistence.contract;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 import com.excilys.training.model.Company;
 import com.excilys.training.model.Computer;
