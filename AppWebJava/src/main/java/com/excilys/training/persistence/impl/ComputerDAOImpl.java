@@ -6,9 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.excilys.training.model.Company;
 import com.excilys.training.model.Computer;
@@ -24,6 +28,7 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 		super();
 	}
 
+	private final static Logger logger = LoggerFactory.getLogger(ComputerDAOImpl.class);
 	/**
 	 * Instance de la classe ComputerDao.
 	 */
@@ -104,7 +109,7 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 			connection.commit();
 			} catch (SQLException e) {
 				connection.rollback();
-				e.printStackTrace();
+				logger.error("Votre requête SQL est incorrect");
 			}
 		finally {
 			stmt.close();
@@ -139,13 +144,13 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 			connection.commit();
 			} catch (SQLException e) {
 				connection.rollback();
-				e.printStackTrace();
+				logger.error("Votre requête SQL est incorrect");
 			}
 		finally {
 			stmt.close();
 			connection.close();
 		}
-		return computer.build();
+		return computer.build()!=null?computer.build():new Computer.ComputerBuilder().id(0).name("").introduced(null).discontinued(null).companyId(null).build();
 	}
 
 	/**
@@ -174,7 +179,7 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 			obj = this.find(obj.getId());
 			} catch (SQLException e) {
 				connection.rollback();
-				e.printStackTrace();
+				logger.error("Votre requête SQL est incorrect");
 			}
 		finally {
 			stmt.close();
@@ -200,7 +205,7 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 			connection.commit();
 			} catch (SQLException e) {
 				connection.rollback();
-				e.printStackTrace();
+				logger.error("Votre requête SQL est incorrect");
 			}
 		finally {
 			stmt.close();
@@ -236,7 +241,7 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 			obj = this.find(obj.getId());
 			} catch (SQLException e) {
 				connection.rollback();
-				e.printStackTrace();
+				logger.error("Votre requête SQL est incorrect");
 			}
 		finally {
 			stmt.close();
@@ -269,7 +274,7 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 			}
 			resultats.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("Votre requête SQL est incorrect");
 			}
 		finally {
 			stmt.close();
@@ -306,7 +311,7 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 			}
 			resultats.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("Votre requête SQL est incorrect");
 			}
 		finally {
 			stmt.close();
@@ -336,7 +341,7 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 			}
 			resultats.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("Votre requête SQL est incorrect");
 			}
 		finally {
 			stmt.close();

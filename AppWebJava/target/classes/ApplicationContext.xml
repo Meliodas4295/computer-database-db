@@ -50,4 +50,14 @@
         <property name="targetMethod" value="setServiceFactory"/>
         <property name="arguments" ref="serviceFactory"/>
     </bean>
+    
+    <!-- ==== ComputerMapper ==== -->
+    <bean id="computerMapper" class="com.excilys.training.web.mapper.ComputerMapper"/>
+    
+    <!-- ==== AbstractValidator ==== -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.excilys.training.web.validator.AbstractValidator"/>
+        <property name="targetMethod" value="setComputerMapper"/>
+        <property name="arguments" ref="computerMapper"/>
+    </bean>
 </beans>

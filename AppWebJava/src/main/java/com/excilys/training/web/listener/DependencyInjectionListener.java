@@ -29,19 +29,16 @@ public class DependencyInjectionListener implements ServletContextListener{
 			serviceFactory.setCompanyService(new CompanyServiceImpl());
 			serviceFactory.setComputerService(new ComputerServiceImpl());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		AbstractService.setDaoFactory(daoFactory);
 		AbstractServlet.setServiceFactory(serviceFactory);
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		// TODO Auto-generated method stub
 		
 	}
 

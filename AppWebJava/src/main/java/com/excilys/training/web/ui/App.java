@@ -7,6 +7,7 @@ import java.util.Scanner;
 import com.excilys.training.jdbc.ConnectionMySQL;
 import com.excilys.training.model.Company;
 import com.excilys.training.model.Computer;
+import com.excilys.training.persistence.AbstractDao;
 import com.excilys.training.persistence.DAOFactory;
 import com.excilys.training.persistence.impl.CompanyDAOImpl;
 import com.excilys.training.persistence.impl.ComputerDAOImpl;
@@ -14,8 +15,10 @@ import com.excilys.training.service.AbstractService;
 import com.excilys.training.service.ServiceFactory;
 import com.excilys.training.service.impl.CompanyServiceImpl;
 import com.excilys.training.service.impl.ComputerServiceImpl;
+import com.excilys.training.web.dto.CompanyDTO;
 import com.excilys.training.web.dto.ComputerDTO;
 import com.excilys.training.web.dto.ComputerDTO.ComputerDTOBuilder;
+import com.excilys.training.web.mapper.CompanyMapper;
 import com.excilys.training.web.mapper.ComputerMapper;
 
 public class App extends AbstractUi{
@@ -34,6 +37,7 @@ public class App extends AbstractUi{
 			e.printStackTrace();
 		}
 		
+		AbstractDao.setDataSource(ConnectionMySQL.getDataSource());
 		AbstractService.setDaoFactory(daoFactory);
 		AbstractUi.setServiceFactory(serviceFactory);
 
@@ -82,9 +86,9 @@ public class App extends AbstractUi{
 			      	  String company_id = sc50.nextLine();
 			      	  
 			      	ComputerDTOBuilder computerDto = new ComputerDTO.ComputerDTOBuilder(name, introduced, discontinued, company_id ).id(id);
-			      	//CompanyDTO company = new CompanyDTO.CompanyDtoBuilder(Integer.parseInt(company_id)).build();
-			      	ComputerMapper computerMapper = ComputerMapper.getInstance();
-			      	//CompanyMapper companyMapper = CompanyMapper.getInstance();
+			      	CompanyDTO company = new CompanyDTO.CompanyDtoBuilder(Integer.parseInt(company_id)).build();
+			      	ComputerMapper computerMapper = new ComputerMapper();
+			      	CompanyMapper companyMapper = CompanyMapper.getInstance();
 				      switch(action) {
 				      	
 				      	case 3:
@@ -97,15 +101,15 @@ public class App extends AbstractUi{
 				      	case 5:
 				      		getServiceFactory().getComputerService().updateComputer(computerMapper.computerDtoToComputer(computerDto.build()));
 				      		break;
-				      	//case 6:
-				      	//	getServiceFactory().getComputerService().deleteCompany(companyMapper.convertCompanyDtoToCompany(company));
+				      	case 6:
+				      		getServiceFactory().getCompanyService().deleteCompany(companyMapper.convertCompanyDtoToCompany(company));
 				      		
 				      }
 				      
 			      
 			      }
 		      Scanner scan = new Scanner(System.in);
-		      System.out.println("Voulez-vous effecter une autre action?(oui/non):");
+		      System.out.println("Voulez-vous effectuer une autre action?(oui/non):");
 		      choix = scan.nextLine();
 		      }while(choix.equals("oui"));
 			      

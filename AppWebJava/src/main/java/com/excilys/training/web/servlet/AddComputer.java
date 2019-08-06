@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.excilys.training.model.Company;
 import com.excilys.training.web.dto.ComputerDTO;
 import com.excilys.training.web.dto.ComputerDTO.ComputerDTOBuilder;
+import com.excilys.training.web.exception.ComputerException;
 import com.excilys.training.web.mapper.ComputerMapper;
+import com.excilys.training.web.validator.Validator;
 
 public class AddComputer extends HttpServlet {
 	
@@ -35,8 +37,13 @@ public class AddComputer extends HttpServlet {
 	    String companyId = request.getParameter("companyId");
 	    ComputerDTOBuilder computerDto = new ComputerDTO.ComputerDTOBuilder(name, introduced, discontinued, companyId );
 	    ComputerMapper computerMapper = new ComputerMapper();
+	    Validator validator = new Validator();
 	    try {
+			validator.Validate(computerDto.build());
 			AbstractServlet.getServiceFactory().getComputerService().createNewComputer(computerMapper.computerDtoToComputer(computerDto.build()));
+		} catch (ComputerException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

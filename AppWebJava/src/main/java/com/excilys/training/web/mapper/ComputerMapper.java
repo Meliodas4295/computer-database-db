@@ -10,22 +10,6 @@ import com.excilys.training.model.Computer.ComputerBuilder;
 import com.excilys.training.web.dto.ComputerDTO;
 
 public class ComputerMapper {
-	/**
-	 * instance de la classe ComputerMapper.
-	 */
-	private static ComputerMapper instance;
-	
-	/**
-	 * 
-	 * @return l'instance de la classe ComputerMapper.
-	 * Si l'instance est null, créer une nouvelle instance.
-	 */
-	public static ComputerMapper getInstance() {
-	    if (instance == null) {
-	      instance = new ComputerMapper();
-	    }
-	    return instance;
-	  }
 	
 	/**
 	 * Transforme un String en LocalDateTime.
