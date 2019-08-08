@@ -11,11 +11,11 @@ public interface CompanyDAO {
 
 	List<Company> displayAll() throws SQLException;
 
-	Company update(Company obj);
+	void update(Company obj);
 
 	void delete(Company company) throws SQLException;
 
-	Company create(Company obj);
+	void create(Company obj);
 
 	Company find(int id) throws SQLException;
 

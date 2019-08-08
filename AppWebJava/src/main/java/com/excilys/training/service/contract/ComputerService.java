@@ -17,6 +17,8 @@ public interface ComputerService {
 
 	List<Computer> displayAllcomputer() throws SQLException;
 	
-	List<Computer> SearchComputerByName(String searchName, String lettre, int limit, int offset) throws SQLException;
+	List<Computer> searchComputerByName(String searchName, String lettre, int limit, int offset) throws SQLException;
+	
+	int countAllComputers() throws SQLException;
 
 }

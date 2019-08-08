@@ -13,6 +13,9 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SqlParameterValue;
 
 import com.excilys.training.model.Company;
 import com.excilys.training.model.Computer;
@@ -48,7 +51,9 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 	/**
 	 * Requête SQL permettant de sélectionner un élément la table computer.
 	 */
-	private static final String SQL_FIND_BY_ID = "SELECT id, name, introduced, discontinued, company_id FROM computer WHERE id = ? ";
+	private static final String SQL_FIND_BY_ID = "SELECT  computer.id , computer.name , introduced , discontinued , company_id , company.name  FROM  computer LEFT JOIN company ON computer.company_id = company.id WHERE  computer.id  = ?";
+	
+	private static final String SQL_COUNT_ALL = "SELECT COUNT(*) FROM computer ";
 	
 	
 	/**
@@ -100,21 +105,12 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 	
 	@Override
 	public void deleteByCompany(Company company) throws SQLException {
-		Connection connection = getDataSource().getConnection();
-		connection.setAutoCommit(false);
-		PreparedStatement stmt = connection.prepareStatement(SQL_DELETE_COMPUTER_WHERE_COMPANY_ID);
-		try {
-			stmt.setInt(1, company.getId());
-			stmt.executeUpdate();
-			connection.commit();
-			} catch (SQLException e) {
-				connection.rollback();
-				logger.error("Votre requête SQL est incorrect");
-			}
-		finally {
-			stmt.close();
-			connection.close();
-		}
+		Object[] vParams = {
+	            new SqlParameterValue(Types.BIGINT, company.getId()),
+	        };
+
+	        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+	        vJdbcTemplate.update(SQL_DELETE_COMPUTER_WHERE_COMPANY_ID, vParams);
 	}
 	
 	/**
@@ -125,32 +121,13 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 	 */
 	@Override
 	public Computer find(int id) throws SQLException {
-		ComputerBuilder computer= new Computer.ComputerBuilder();
-		Connection connection = getDataSource().getConnection();
-		connection.setAutoCommit(false);
-		PreparedStatement stmt = connection.prepareStatement(SQL_FIND_BY_ID);
-		try {
-			stmt.setInt(1, id);
-			ResultSet resultats = stmt.executeQuery();
-			while(resultats.next()) {
-				String name = resultats.getString("name");
-				LocalDateTime introduced = resultats.getTimestamp("introduced")!=null?resultats.getTimestamp("introduced").toLocalDateTime():null;
-				LocalDateTime discontinued = resultats.getTimestamp("discontinued")!=null?resultats.getTimestamp("discontinued").toLocalDateTime():null;
-				Company companyId = resultats.getInt("company_id")!=0?new Company.CompanyBuilder(resultats.getInt("company_id")).name(resultats.getString("company.name")).build():null;
-				computer.id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
-		
-			}
-			resultats.close();
-			connection.commit();
-			} catch (SQLException e) {
-				connection.rollback();
-				logger.error("Votre requête SQL est incorrect");
-			}
-		finally {
-			stmt.close();
-			connection.close();
-		}
-		return computer.build()!=null?computer.build():new Computer.ComputerBuilder().id(0).name("").introduced(null).discontinued(null).companyId(null).build();
+		Object[] vParams = {
+	            new SqlParameterValue(Types.INTEGER, id),
+	        };
+
+	        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+	        Computer vFindComputer = vJdbcTemplate.queryForObject(SQL_FIND_BY_ID, vParams, Computer.class);
+	        return vFindComputer;
 	}
 
 	/**
@@ -160,32 +137,17 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 	 * @throws SQLException 
 	 */
 	@Override
-	public Computer create(Computer obj) throws SQLException {
-		Connection connection = getDataSource().getConnection();
-		connection.setAutoCommit(false);
-		PreparedStatement stmt = connection.prepareStatement(SQL_CREATE);
-		try {
-			stmt.setString(1, obj.getName());
-			stmt.setTimestamp(2, obj.getIntroduced()!=null?Timestamp.valueOf(obj.getIntroduced().minusHours(2)):null);
-			stmt.setTimestamp(3, obj.getDiscontinued()!=null?Timestamp.valueOf(obj.getDiscontinued().minusHours(2)):null);
-			if(obj.getCompanyId()==null) {
-				stmt.setNull(4, java.sql.Types.INTEGER);
-			}
-			else {
-				stmt.setInt(4, obj.getCompanyId().getId());
-			}
-			stmt.executeUpdate();
-			connection.commit();
-			obj = this.find(obj.getId());
-			} catch (SQLException e) {
-				connection.rollback();
-				logger.error("Votre requête SQL est incorrect");
-			}
-		finally {
-			stmt.close();
-			connection.close();
-		}
-		return obj;
+	public void create(Computer obj) throws SQLException {
+		Object[] vParams = {
+	            new SqlParameterValue(Types.VARCHAR, obj.getName()),
+	            new SqlParameterValue(Types.TIMESTAMP, obj.getIntroduced()!=null?Timestamp.valueOf(obj.getIntroduced().minusHours(2)):null),
+	            new SqlParameterValue(Types.TIMESTAMP, obj.getDiscontinued()!=null?Timestamp.valueOf(obj.getDiscontinued().minusHours(2)):null),
+	            new SqlParameterValue(Types.BIGINT, obj.getCompanyId().getId())
+	            
+	        };
+
+	        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+	        vJdbcTemplate.update(SQL_CREATE, vParams);
 		
 	}
 
@@ -196,21 +158,12 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 	 */
 	@Override
 	public void delete(int id) throws SQLException {
-		Connection connection = getDataSource().getConnection();
-		connection.setAutoCommit(false);
-		PreparedStatement stmt = connection.prepareStatement(SQL_DELETE);
-		try {
-			stmt.setInt(1, id);
-			stmt.executeUpdate();
-			connection.commit();
-			} catch (SQLException e) {
-				connection.rollback();
-				logger.error("Votre requête SQL est incorrect");
-			}
-		finally {
-			stmt.close();
-			connection.close();
-		}
+		Object[] vParams = {
+	            new SqlParameterValue(Types.BIGINT, id),
+	        };
+
+	        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+	        vJdbcTemplate.update(SQL_DELETE, vParams);
 		
 	}
 
@@ -221,34 +174,27 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 	 * @throws SQLException 
 	 */
 	@Override
-	public Computer update(Computer obj) throws SQLException {
-		Connection connection = getDataSource().getConnection();
-		connection.setAutoCommit(false);
-		PreparedStatement stmt = connection.prepareStatement(SQL_UPDATE);
-		try {
-			stmt.setInt(5, obj.getId());
-			stmt.setString(1, obj.getName());
-			stmt.setTimestamp(2, obj.getIntroduced()!=null?Timestamp.valueOf(obj.getIntroduced().minusHours(2)):null);
-			stmt.setTimestamp(3, obj.getDiscontinued()!=null?Timestamp.valueOf(obj.getDiscontinued().minusHours(2)):null);
-			if(obj.getCompanyId()==null) {
-				stmt.setNull(4, java.sql.Types.INTEGER);
-			}
-			else {
-				stmt.setInt(4, obj.getCompanyId().getId());
-			}
-			stmt.executeUpdate();
-			connection.commit();
-			obj = this.find(obj.getId());
-			} catch (SQLException e) {
-				connection.rollback();
-				logger.error("Votre requête SQL est incorrect");
-			}
-		finally {
-			stmt.close();
-			connection.close();
-		}
-		return obj;
+	public void update(Computer obj) throws SQLException {
 		
+		Object[] vParams = {
+	            new SqlParameterValue(Types.VARCHAR, obj.getName()),
+	            new SqlParameterValue(Types.TIMESTAMP, obj.getIntroduced()!=null?Timestamp.valueOf(obj.getIntroduced().minusHours(2)):null),
+	            new SqlParameterValue(Types.TIMESTAMP, obj.getDiscontinued()!=null?Timestamp.valueOf(obj.getDiscontinued().minusHours(2)):null),
+	            new SqlParameterValue(Types.BIGINT, obj.getCompanyId().getId()),
+	            new SqlParameterValue(Types.BIGINT, obj.getId())
+	            
+	        };
+
+	        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+	        vJdbcTemplate.update(SQL_UPDATE, vParams);
+		
+	}
+	
+	public int countAll() throws SQLException{
+		JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+		int countComputers = vJdbcTemplate.queryForObject(SQL_COUNT_ALL, Integer.class);
+		
+		return countComputers;
 	}
 	
 	/**
@@ -258,29 +204,24 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 	 */
 	@Override
 	public List<Computer> displayAll() throws SQLException{
-		List<Computer> computerList = new ArrayList<Computer>();
-		Connection connection = getDataSource().getConnection();
-		Statement stmt = connection.createStatement();
-		try {
-			ResultSet resultats = stmt.executeQuery(SQL_FIND_ALL);
-			while(resultats.next()) {
-				int id = resultats.getInt("id");
-				String name = resultats.getString("name");
-				LocalDateTime introduced = resultats.getTimestamp("introduced")!=null?resultats.getTimestamp("introduced").toLocalDateTime():null;
-				LocalDateTime discontinued = resultats.getTimestamp("discontinued")!=null?resultats.getTimestamp("discontinued").toLocalDateTime():null;
-				Company companyId = resultats.getInt("company_id")!=0?new Company.CompanyBuilder(resultats.getInt("company_id")).name(resultats.getString("company.name")).build():null;
-				ComputerBuilder computer= new Computer.ComputerBuilder().id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
-				computerList.add(computer.build());
-			}
-			resultats.close();
-			} catch (SQLException e) {
-				logger.error("Votre requête SQL est incorrect");
-			}
-		finally {
-			stmt.close();
-			connection.close();
-		}
-		return computerList;
+		JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+
+        RowMapper<Computer> vRowMapper = new RowMapper<Computer>() {
+            public Computer mapRow(ResultSet pRS, int pRowNum) throws SQLException {
+                ComputerBuilder vComputer = new Computer.ComputerBuilder();
+                int id = pRS.getInt("id");
+			String name = pRS.getString("name");
+			LocalDateTime introduced = pRS.getTimestamp("introduced")!=null?pRS.getTimestamp("introduced").toLocalDateTime():null;
+			LocalDateTime discontinued = pRS.getTimestamp("discontinued")!=null?pRS.getTimestamp("discontinued").toLocalDateTime():null;
+			Company companyId = pRS.getInt("company_id")!=0?new Company.CompanyBuilder(pRS.getInt("company_id")).name(pRS.getString("company.name")).build():null;
+			vComputer.id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
+                return vComputer.build();
+            }
+        };
+
+        List<Computer> vListComputer = vJdbcTemplate.query(SQL_FIND_ALL, vRowMapper);
+
+        return vListComputer;
 		
 	}
 	
@@ -293,61 +234,45 @@ public class ComputerDAOImpl extends AbstractDao implements ComputerDAO{
 	 */
 	@Override
 	public List<Computer> displayPagination(int limit, int offset) throws SQLException {
-		List<Computer> computerList = new ArrayList<Computer>();
-		Connection connection = getDataSource().getConnection();
-		PreparedStatement stmt = connection.prepareStatement(SQL_FIND_ALL_PAGINATION);
-		try {
-			stmt.setInt(1, limit);
-			stmt.setInt(2, offset);
-			ResultSet resultats = stmt.executeQuery();
-			while(resultats.next()) {
-				int id = resultats.getInt("id");
-				String name = resultats.getString("name");
-				LocalDateTime introduced = resultats.getTimestamp("introduced")!=null?resultats.getTimestamp("introduced").toLocalDateTime():null;
-				LocalDateTime discontinued = resultats.getTimestamp("discontinued")!=null?resultats.getTimestamp("discontinued").toLocalDateTime():null;
-				Company companyId = resultats.getInt("company_id")!=0?new Company.CompanyBuilder(resultats.getInt("company_id")).name(resultats.getString("company.name")).build():null;
-				ComputerBuilder computer= new Computer.ComputerBuilder().id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
-				computerList.add(computer.build());
-			}
-			resultats.close();
-			} catch (SQLException e) {
-				logger.error("Votre requête SQL est incorrect");
-			}
-		finally {
-			stmt.close();
-			connection.close();
-		}
-		return computerList;
+		JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+
+        RowMapper<Computer> vRowMapper = new RowMapper<Computer>() {
+            public Computer mapRow(ResultSet pRS, int pRowNum) throws SQLException {
+                ComputerBuilder vComputer = new Computer.ComputerBuilder();
+                int id = pRS.getInt("id");
+                String name = pRS.getString("name");
+                LocalDateTime introduced = pRS.getTimestamp("introduced")!=null?pRS.getTimestamp("introduced").toLocalDateTime():null;
+                LocalDateTime discontinued = pRS.getTimestamp("discontinued")!=null?pRS.getTimestamp("discontinued").toLocalDateTime():null;
+                Company companyId = pRS.getInt("company_id")!=0?new Company.CompanyBuilder(pRS.getInt("company_id")).name(pRS.getString("company.name")).build():null;
+                vComputer.id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
+                return vComputer.build();
+            }
+        };
+
+        List<Computer> vListComputerPagination = vJdbcTemplate.query(SQL_FIND_ALL_PAGINATION, vRowMapper, limit, offset);
+
+        return vListComputerPagination!=null?vListComputerPagination:new ArrayList<Computer>();
 	}
 	
-	public List<Computer> SearchByNameAsc(String searchByName, String searchByCompany, int limit, int offset) throws SQLException {
-		List<Computer> computerList = new ArrayList<Computer>();
-		Connection connection = getDataSource().getConnection();
-		PreparedStatement stmt = connection.prepareStatement(SQL_PAGE_NAME_ASC);
-		try {
-			stmt.setString(1, '%'+searchByName+'%');
-			stmt.setString(2, '%'+searchByCompany+'%');
-			stmt.setInt(3, limit);
-			stmt.setInt(4, offset);
-			ResultSet resultats = stmt.executeQuery();
-			while(resultats.next()) {
-				int id = resultats.getInt("id");
-				String name = resultats.getString("name");
-				LocalDateTime introduced = resultats.getTimestamp("introduced")!=null?resultats.getTimestamp("introduced").toLocalDateTime():null;
-				LocalDateTime discontinued = resultats.getTimestamp("discontinued")!=null?resultats.getTimestamp("discontinued").toLocalDateTime():null;
-				Company companyId = resultats.getInt("company_id")!=0?new Company.CompanyBuilder(resultats.getInt("company_id")).name(resultats.getString("company.name")).build():null;
-				ComputerBuilder computer= new Computer.ComputerBuilder().id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
-				computerList.add(computer.build());
-			}
-			resultats.close();
-			} catch (SQLException e) {
-				logger.error("Votre requête SQL est incorrect");
-			}
-		finally {
-			stmt.close();
-			connection.close();
-		}
-		return computerList;
+	public List<Computer> searchByNameAsc(String searchByName, String searchByCompany, int limit, int offset) throws SQLException {
+		JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+
+        RowMapper<Computer> vRowMapper = new RowMapper<Computer>() {
+            public Computer mapRow(ResultSet pRS, int pRowNum) throws SQLException {
+                ComputerBuilder vComputer = new Computer.ComputerBuilder();
+                int id = pRS.getInt("id");
+                String name = pRS.getString("name");
+                LocalDateTime introduced = pRS.getTimestamp("introduced")!=null?pRS.getTimestamp("introduced").toLocalDateTime():null;
+                LocalDateTime discontinued = pRS.getTimestamp("discontinued")!=null?pRS.getTimestamp("discontinued").toLocalDateTime():null;
+                Company companyId = pRS.getInt("company_id")!=0?new Company.CompanyBuilder(pRS.getInt("company_id")).name(pRS.getString("company.name")).build():null;
+                vComputer.id(id).name(name).introduced(introduced).discontinued(discontinued).companyId(companyId);
+                return vComputer.build();
+            }
+        };
+
+        List<Computer> vListComputerSearchByName = vJdbcTemplate.query(SQL_PAGE_NAME_ASC, vRowMapper, '%'+searchByName+'%','%'+searchByCompany+'%', limit, offset);
+
+        return vListComputerSearchByName;
 	}
 	
 	

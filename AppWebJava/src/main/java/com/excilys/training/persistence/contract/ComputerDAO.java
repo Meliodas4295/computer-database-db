@@ -13,17 +13,19 @@ public interface ComputerDAO {
 
 	List<Computer> displayAll() throws SQLException;
 
-	Computer update(Computer obj) throws SQLException;
+	void update(Computer obj) throws SQLException;
 
 	void delete(int id) throws SQLException;
 
-	Computer create(Computer obj) throws SQLException;
+	void create(Computer obj) throws SQLException;
 
 	Computer find(int id) throws SQLException;
 
 	void deleteByCompany(Company company) throws SQLException;
 	
-	List<Computer> SearchByNameAsc(String searchName, String lettre, int limit, int offset) throws SQLException;
+	List<Computer> searchByNameAsc(String searchName, String lettre, int limit, int offset) throws SQLException;
+	
+	int countAll() throws SQLException;
 	
 
 }
