@@ -5,14 +5,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SqlParameterValue;
 
 import com.excilys.training.jdbc.ConnectionMySQL;
 import com.excilys.training.model.Company;
+import com.excilys.training.model.Computer;
 import com.excilys.training.model.Company.CompanyBuilder;
 import com.excilys.training.persistence.AbstractDao;
 import com.excilys.training.persistence.contract.CompanyDAO;
@@ -67,26 +72,13 @@ public class CompanyDAOImpl extends AbstractDao implements CompanyDAO{
 	 */
 	@Override
 	public Company find(int id) throws SQLException {
-		CompanyBuilder company= new Company.CompanyBuilder(id);
-		Connection connection = getDataSource().getConnection();
-		connection.setAutoCommit(false);
-		PreparedStatement stmt = connection.prepareStatement(SQL_FIND_BY_ID);
-		try {
-			stmt.setInt(1, id);
-			ResultSet resultats = stmt.executeQuery();
-			while(resultats.next()) {
-				company.name(resultats.getString("name"));
-			}
-			resultats.close();
-			connection.commit();
-			} catch (SQLException e) {
-				connection.rollback();
-				logger.error("Votre requête SQL est incorrect");			}
-		finally {
-			stmt.close();
-			connection.close();
-		}
-		return company.build();
+		Object[] vParams = {
+	            new SqlParameterValue(Types.INTEGER, id),
+	        };
+
+	        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+	        Company vFindCompany = vJdbcTemplate.queryForObject(SQL_FIND_BY_ID, vParams, Company.class);
+	        return vFindCompany;
 	}
 
 	
@@ -97,10 +89,7 @@ public class CompanyDAOImpl extends AbstractDao implements CompanyDAO{
 	 * @return la Company créer.
 	 */
 	@Override
-	public Company create(Company obj) {
-		return obj;
-		
-	}
+	public void create(Company obj) {}
 	/**
 	 * Permet d'effacer une Company de la base de données.
 	 * @param id
@@ -109,21 +98,11 @@ public class CompanyDAOImpl extends AbstractDao implements CompanyDAO{
 	@Override
 	public void delete(Company company) throws SQLException {
 		this.computerDao.deleteByCompany(company);
-		Connection connection = getDataSource().getConnection();
-		connection.setAutoCommit(false);
-		PreparedStatement stmt = connection.prepareStatement(SQL_DELETE);
-		try {
-			stmt.setInt(1, company.getId());
-			stmt.executeUpdate();
-			connection.commit();
-			} catch (SQLException e) {
-				connection.rollback();
-				logger.error("Votre requête SQL est incorrect");			}
-		finally {
-			stmt.close();
-			connection.close();
-			
-		}
+		Object[] vParams = {
+	            new SqlParameterValue(Types.BIGINT, company.getId()),
+	        };
+	        JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+	        vJdbcTemplate.update(SQL_DELETE, vParams);
 	}
 	/**
 	 * Permet de modifier une Company de la base de données.
@@ -132,10 +111,7 @@ public class CompanyDAOImpl extends AbstractDao implements CompanyDAO{
 	 * @return la Company modifier.
 	 */
 	@Override
-	public Company update(Company obj) {
-		return obj;
-		
-	}
+	public void update(Company obj) {}
 	
 	/**
 	 * Permet de visualiser les Company de la base de données.
@@ -144,26 +120,19 @@ public class CompanyDAOImpl extends AbstractDao implements CompanyDAO{
 	 */
 	@Override
 	public List<Company> displayAll() throws SQLException{
-		List<Company> companyList = new ArrayList<Company>();
-		Connection connection = getDataSource().getConnection();
-		connection.setAutoCommit(false);
-		Statement stmt = connection.createStatement();
-		try {
-			ResultSet resultats = stmt.executeQuery(SQL_FIND_ALL);
-			while(resultats.next()) {
-				CompanyBuilder company = new Company.CompanyBuilder(resultats.getInt("id")).name(resultats.getString("name"));
-				companyList.add(company.build());
-			}
-			resultats.close();
-			connection.commit();
-			} catch (SQLException e) {
-				connection.rollback();
-				logger.error("Votre requête SQL est incorrect");			}
-		finally {
-			stmt.close();
-			connection.close();
-		}
-		return companyList;
+		JdbcTemplate vJdbcTemplate = new JdbcTemplate(getDataSource());
+
+        RowMapper<Company> vRowMapper = new RowMapper<Company>() {
+            public Company mapRow(ResultSet pRS, int pRowNum) throws SQLException {
+                CompanyBuilder vCompany = new Company.CompanyBuilder(pRS.getInt("id"));
+                vCompany.name(pRS.getString("name"));
+                return vCompany.build();
+            }
+        };
+
+        List<Company> vListCompany = vJdbcTemplate.query(SQL_FIND_ALL, vRowMapper);
+
+        return vListCompany;
 	}
 	
 	/**

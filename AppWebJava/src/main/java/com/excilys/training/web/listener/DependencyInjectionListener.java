@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import com.excilys.training.jdbc.ConnectionMySQL;
 import com.excilys.training.persistence.DAOFactory;
 import com.excilys.training.persistence.impl.CompanyDAOImpl;
 import com.excilys.training.persistence.impl.ComputerDAOImpl;

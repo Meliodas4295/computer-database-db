@@ -8,7 +8,7 @@
   
   <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:ApplicationContext.xml</param-value>
+        <param-value>/WEB-INF/spring-servlet.xml</param-value>
     </context-param>
   
   <servlet>
@@ -40,5 +40,21 @@
 		<servlet-name>EditComputer</servlet-name>
 		<url-pattern>/EditComputer</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>SpringMvcServlet</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value></param-value>
+        </init-param>
+    	<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+    	<servlet-name>SpringMvcServlet</servlet-name>
+    	<url-pattern>/</url-pattern>
+	</servlet-mapping>
+		
   
 </web-app>

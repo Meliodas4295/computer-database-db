@@ -8,6 +8,10 @@ import com.excilys.training.service.AbstractService;
 import com.excilys.training.service.contract.ComputerService;
 
 public class ComputerServiceImpl extends AbstractService implements ComputerService{
+	
+	public int countAllComputers() throws SQLException{
+		return getDaoFactory().getComputerDao().countAll();
+	}
 	/**
 	 * Permet de récupérer toutes les Computer de la BDD.
 	 * @return la liste des Computer.
@@ -55,7 +59,7 @@ public class ComputerServiceImpl extends AbstractService implements ComputerServ
 		getDaoFactory().getComputerDao().update(c);
 	}
 	
-	public List<Computer> SearchComputerByName(String searchName, String lettre, int limit, int offset) throws SQLException {
-		return getDaoFactory().getComputerDao().SearchByNameAsc(searchName, lettre, limit, offset);
+	public List<Computer> searchComputerByName(String searchName, String lettre, int limit, int offset) throws SQLException {
+		return getDaoFactory().getComputerDao().searchByNameAsc(searchName, lettre, limit, offset);
 	}
 }

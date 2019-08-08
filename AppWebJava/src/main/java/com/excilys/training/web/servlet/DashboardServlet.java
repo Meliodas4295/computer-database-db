@@ -24,12 +24,15 @@ public class DashboardServlet extends HttpServlet {
 	         throws ServletException, IOException {
 		   String[] valeurs = req.getParameterValues("selection");
 		    if(valeurs!=null) {
+		    	System.out.println(valeurs[0]);
 		    	for(int i = 0; i<valeurs.length;i++) {
 		    		try {
 						AbstractServlet.getServiceFactory().getComputerService().deleteComputer(Integer.parseInt(valeurs[i]));
 					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (SQLException e) {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 		    	}
@@ -40,7 +43,7 @@ public class DashboardServlet extends HttpServlet {
 				int nombreValeurParPage = 1;
 		    	int queryPage = req.getParameter("page") != null ? Integer.parseInt(req.getParameter("page")) : 1;
 		    	try {
-					searchComputer = AbstractServlet.getServiceFactory().getComputerService().SearchComputerByName(search, search ,nombreValeurParPage, (queryPage-1)*nombreValeurParPage);
+					searchComputer = AbstractServlet.getServiceFactory().getComputerService().searchComputerByName(search, search ,nombreValeurParPage, (queryPage-1)*nombreValeurParPage);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
