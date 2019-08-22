@@ -1,0 +1,10 @@
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/webapp/src/main/java/com/excilys/training/web/controller/MainController.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/webapp/src/main/java/com/excilys/training/web/servlet/AbstractServlet.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/webapp/src/main/java/com/excilys/training/web/controller/AddComputerController.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/webapp/src/main/java/com/excilys/training/web/controller/AbstractController.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/webapp/src/main/java/com/excilys/training/web/controller/DeleteComputerController.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/webapp/src/main/java/com/excilys/training/web/servlet/DashboardServlet.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/webapp/src/main/java/com/excilys/training/web/controller/EditComputerController.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/webapp/src/main/java/com/excilys/training/web/servlet/EditComputer.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/webapp/src/main/java/com/excilys/training/web/servlet/AddComputer.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/webapp/src/main/java/com/excilys/training/web/controller/DashboardController.java

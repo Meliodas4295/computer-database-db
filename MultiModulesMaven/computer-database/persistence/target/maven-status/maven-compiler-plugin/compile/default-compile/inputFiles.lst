@@ -1,0 +1,8 @@
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/persistence/src/main/java/com/excilys/training/persistence/contract/ComputerDAO.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/persistence/src/main/java/com/excilys/training/persistence/impl/CompanyDAOImpl.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/persistence/src/main/java/com/excilys/training/persistence/DAOFactory.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/persistence/src/main/java/com/excilys/training/persistence/impl/ComputerDAOImpl.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/persistence/src/main/java/com/excilys/training/persistence/contract/UserDao.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/persistence/src/main/java/com/excilys/training/persistence/contract/CompanyDAO.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/persistence/src/main/java/com/excilys/training/persistence/AbstractDao.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/persistence/src/main/java/com/excilys/training/persistence/impl/UserDaoImpl.java

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <bean id="dataSource" destroy-method="close"
+          class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/computer-database-db"/>
+        <property name="username" value="admincdb"/>
+        <property name="password" value="qwerty1234"/>
+    </bean>
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    	<property name="configLocation" value="/WEB-INF/hibernate.cfg.xml" />
+    	
+	</bean>
+	<bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+           <property name="persistenceXmlLocations" value="classpath*:META-INF/persistence.xml"/>
+           <property name="defaultDataSource" ref="dataSource"/>
+     </bean>
+	
+    <bean
+        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+        id="entityManagerFactory">
+        <property name="jpaPropertyMap">
+  		<map>
+    		<entry key="eclipselink.weaving" value="false"/>
+  		</map>
+		</property>
+        <property name="dataSource" ref="dataSource" />
+        <property name="persistenceUnitManager" ref="persistenceUnitManager" />
+    </bean>
+    
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+      <property name="entityManagerFactory" ref="entityManagerFactory" />
+  	</bean>
+    
+    
+    <bean id="abstractDao" abstract="true">
+        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="entityManager">
+        <bean class = "org.springframework.orm.jpa.support.SharedEntityManagerBean">
+            <property name = "entityManagerFactory" ref="entityManagerFactory"/>  
+        </bean>
+    	</property>
+    	<property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    
+    <!-- ===== Déclaration des DAO ===== -->
+    <bean id="computerDao" class="com.excilys.training.persistence.impl.ComputerDAOImpl" parent="abstractDao" />
+    <bean id="companyDao" class="com.excilys.training.persistence.impl.CompanyDAOImpl" parent="abstractDao"/>
+	<bean id="userDao" class="com.excilys.training.persistence.impl.UserDaoImpl" parent="abstractDao"/>
+    <!-- ===== DAOFactory ===== -->
+    <bean id="daoFactory" class="com.excilys.training.persistence.DAOFactory">
+        <property name="computerDao" ref="computerDao"/>
+        <property name="companyDao" ref="companyDao"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <!-- ==== AbstractService ===== -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.excilys.training.service.AbstractService"/>
+        <property name="targetMethod" value="setDaoFactory"/>
+        <property name="arguments" ref="daoFactory"/>
+    </bean>
+    
+    <!-- ===== Déclaration des Services ===== -->
+    <bean id="computerService" class="com.excilys.training.service.impl.ComputerServiceImpl"/>
+    <bean id="companyService" class="com.excilys.training.service.impl.CompanyServiceImpl"/>
+	<bean id="myUserDetailsService" class="com.excilys.training.service.impl.MyUserDetailsServiceImpl"/>
+    <!-- ===== ServiceFactory ===== -->
+    <bean id="serviceFactory" class="com.excilys.training.service.ServiceFactory">
+        <property name="computerService" ref="computerService"/>
+        <property name="companyService" ref="companyService"/>
+    </bean>
+
+    <!-- ==== AbstractServlet ===== -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.excilys.training.web.servlet.AbstractServlet"/>
+        <property name="targetMethod" value="setServiceFactory"/>
+        <property name="arguments" ref="serviceFactory"/>
+    </bean>
+    
+    <!-- ==== ComputerMapper ==== -->
+    <bean id="computerMapper" class="com.excilys.training.binding.mapper.ComputerMapper"/>
+    
+    <!-- ==== AbstractValidator ==== -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.excilys.training.binding.validator.AbstractValidator"/>
+        <property name="targetMethod" value="setComputerMapper"/>
+        <property name="arguments" ref="computerMapper"/>
+    </bean>
+    
+    <!-- ==== AbstractController ==== -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.excilys.training.web.controller.AbstractController"/>
+        <property name="targetMethod" value="setServiceFactory"/>
+        <property name="arguments" ref="serviceFactory"/>
+    </bean>
+</beans>

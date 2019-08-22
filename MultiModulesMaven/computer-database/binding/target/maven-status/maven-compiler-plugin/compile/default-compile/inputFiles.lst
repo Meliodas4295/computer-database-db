@@ -1,0 +1,9 @@
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/binding/src/main/java/com/excilys/training/binding/dto/CompanyDTO.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/binding/src/main/java/com/excilys/training/binding/mapper/ComputerMapper.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/binding/src/main/java/com/excilys/training/binding/exception/ComputerException.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/binding/src/main/java/com/excilys/training/binding/validator/Validator.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/binding/src/main/java/com/excilys/training/binding/validator/AbstractValidator.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/binding/src/main/java/com/excilys/training/binding/dto/ComputerDTO.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/binding/src/main/java/com/excilys/training/binding/exception/EmptyNameException.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/binding/src/main/java/com/excilys/training/binding/exception/DateOrderException.java
+/Users/Romain/Desktop/MavenProject/MultiModulesMaven/computer-database/binding/src/main/java/com/excilys/training/binding/mapper/CompanyMapper.java

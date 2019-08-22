@@ -1,0 +1,7 @@
+com/excilys/training/service/contract/ComputerService.class
+com/excilys/training/service/AbstractService.class
+com/excilys/training/service/ServiceFactory.class
+com/excilys/training/service/impl/CompanyServiceImpl.class
+com/excilys/training/service/impl/ComputerServiceImpl.class
+com/excilys/training/service/contract/CompanyService.class
+com/excilys/training/service/impl/MyUserDetailsServiceImpl.class

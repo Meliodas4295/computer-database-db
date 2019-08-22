@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm    
+http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+    version="1.0">
+    <description>My First JPA XML Application</description>
+    <package>entity</package> 
+    <entity class="com.excilys.training.core.Company" name="Company">        
+        <table name="company"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="name">
+                <column name="name"/>
+            </basic>
+        </attributes>
+   </entity>
+   <entity class="com.excilys.training.core.Computer" name="Computer">        
+        <table name="computer"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="name">
+                <column name="name"/>
+            </basic>
+            <basic name="introduced">
+                <column name="introduced"/>
+            </basic>
+            <basic name="discontinued">
+                <column name="discontinued"/>
+            </basic>
+            <many-to-one name="companyId" target-entity="com.excilys.training.core.Company">
+            	<join-column name="company_id" referenced-column-name="id" />
+            </many-to-one>
+        </attributes>
+   </entity>
+    <entity class="com.excilys.training.core.User" name="User">        
+        <table name="users"/>
+        <attributes>
+        	<id name="username">
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="password">
+                <column name="password"/>
+            </basic>
+            <basic name="enabled">
+                <column name="enabled"/>
+            </basic>
+            <one-to-many name="userRole" target-entity="com.excilys.training.core.UserRole"/>
+        </attributes>
+   </entity>
+    <entity class="com.excilys.training.core.UserRole" name="UserRole">        
+        <table name="user_roles"/>
+        <attributes>
+        	<id name="userRoleId">
+                <generated-value strategy="TABLE"/>
+            </id>
+            <basic name="role">
+                <column name="role"/>
+            </basic>
+            <many-to-one name="user" target-entity="com.excilys.training.core.User">
+            	<join-column name="username" referenced-column-name="username" />
+            </many-to-one>
+        </attributes>
+   </entity>
+</entity-mappings>

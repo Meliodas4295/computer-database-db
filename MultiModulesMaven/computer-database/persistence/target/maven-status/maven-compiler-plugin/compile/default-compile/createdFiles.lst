@@ -1,0 +1,8 @@
+com/excilys/training/persistence/DAOFactory.class
+com/excilys/training/persistence/impl/CompanyDAOImpl.class
+com/excilys/training/persistence/impl/ComputerDAOImpl.class
+com/excilys/training/persistence/contract/CompanyDAO.class
+com/excilys/training/persistence/impl/UserDaoImpl.class
+com/excilys/training/persistence/contract/UserDao.class
+com/excilys/training/persistence/AbstractDao.class
+com/excilys/training/persistence/contract/ComputerDAO.class
